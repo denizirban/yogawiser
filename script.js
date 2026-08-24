@@ -603,7 +603,7 @@ const places = [
     city: "Hamburg",
     country: "Germany",
     system: "Algae · Energy · Architecture",
-    image: "https://grist.org/wp-content/uploads/2013/04/arup.jpeg?quality=75&strip=all",
+    image: image: "assets/biq-house.jpg",
     photoCredit: "Photo: Arup / BIQ House",
     changed: "The building facade contains photobioreactors where microalgae grow in sunlight, providing shade while producing biomass and capturing solar heat.",
     matters: "The facade stops being a static boundary. It behaves more like a thin farm wrapped around apartments — growing, shading and participating in the building's energy system.",
