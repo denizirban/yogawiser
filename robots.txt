@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# ChatGPT Search
+User-agent: OAI-SearchBot
+Allow: /
+
+# Claude Search
+User-agent: Claude-SearchBot
+Allow: /
+
+# Claude user-initiated web retrieval
+User-agent: Claude-User
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://www.yogawiser.com/sitemap.xml
