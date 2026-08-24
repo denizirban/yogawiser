@@ -655,6 +655,20 @@ const places = [
 
 ];
 
+const fieldNoteSlugs = {
+  "De Ceuvel": "de-ceuvel",
+  "BlueCity": "bluecity",
+  "ReTuna": "retuna",
+  "CopenHill": "copenhill",
+  "Prinzessinnengarten": "prinzessinnengarten",
+  "Lufa Farms": "lufa-farms",
+  "Earthship Visitor Center": "earthship-visitor-center",
+  "Torri Superiore": "torri-superiore",
+  "Vauban": "vauban",
+  "Heliotrope": "heliotrope",
+  "BIQ House": "biq-house"
+};
+
 const listEl = document.getElementById("place-list");
 const inputEl = document.getElementById("atlas-search");
 const resultCountEl = document.getElementById("result-count");
@@ -676,6 +690,14 @@ const story = {
   scale: document.getElementById("story-scale"),
   link: document.getElementById("story-link")
 };
+
+const fieldNoteLink = story.link.cloneNode(false);
+fieldNoteLink.id = "story-field-note";
+fieldNoteLink.textContent = "Read field note ↗";
+fieldNoteLink.setAttribute("aria-label", "Read Yogawiser field note");
+fieldNoteLink.style.display = "none";
+fieldNoteLink.style.marginLeft = "12px";
+story.link.insertAdjacentElement("afterend", fieldNoteLink);
 
 let filteredPlaces = [...places];
 let activeName = places[0].name;
@@ -734,6 +756,15 @@ function selectPlace(place) {
     story.access.textContent = place.access;
     story.scale.textContent = place.scale;
     story.link.href = place.link;
+
+    const fieldNoteSlug = fieldNoteSlugs[place.name];
+    if (fieldNoteSlug) {
+      fieldNoteLink.href = `/places/${fieldNoteSlug}/`;
+      fieldNoteLink.style.display = "";
+    } else {
+      fieldNoteLink.removeAttribute("href");
+      fieldNoteLink.style.display = "none";
+    }
 
     document.querySelectorAll(".place-row").forEach((row) => {
       row.classList.toggle("is-active", row.dataset.name === place.name);
