@@ -77,3 +77,77 @@ section#read h2{margin-bottom:34px}
   .index-grid{grid-template-columns:1fr}
   .card,.card:nth-child(odd),.card:nth-child(even){padding:20px 0;border-right:0}
 }
+
+
+/* Semantic network / related reading */
+.related-section{padding-bottom:58px}
+.related-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  border-top:1px solid var(--line);
+  border-left:1px solid var(--line);
+}
+.related-card{
+  min-height:205px;
+  padding:17px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  text-decoration:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.related-card:hover{background:rgba(255,255,255,.18)}
+.related-kicker{
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--muted);
+}
+.related-card strong{
+  font-size:22px;
+  line-height:1;
+  letter-spacing:-.025em;
+  font-weight:500;
+}
+.related-card>span:not(.related-kicker){
+  font-size:12px;
+  line-height:1.45;
+  margin-top:auto;
+}
+.related-card small{
+  font-size:8px;
+  line-height:1.35;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+.related-guide{
+  margin-top:14px;
+  border-top:1px solid var(--line-strong);
+  border-bottom:1px solid var(--line-strong);
+  padding:15px 0;
+  display:grid;
+  grid-template-columns:130px 1fr auto;
+  align-items:center;
+  gap:18px;
+  text-decoration:none;
+}
+.related-guide span{
+  font-size:8px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--muted);
+}
+.related-guide strong{
+  font-size:16px;
+  font-weight:500;
+}
+.related-guide b{font-size:16px;font-weight:400}
+.related-guide:hover strong{color:var(--muted)}
+@media(max-width:800px){
+  .related-grid{grid-template-columns:1fr}
+  .related-card{min-height:150px}
+  .related-guide{grid-template-columns:1fr auto}
+  .related-guide span{grid-column:1/-1}
+}
