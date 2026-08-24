@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7e3eb" />
+  <title>Yogawiser Atlas — Better ways of living, already here.</title>
+  <meta name="description" content="A field guide to places where another way of living already exists." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Yogawiser home"><img src="assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
+    <span class="section-mark">ATLAS</span>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#atlas">Index</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="search-zone" aria-labelledby="atlas-title">
+    <div class="intro">
+      <h1 id="atlas-title">A field guide to places where another way of living already exists.</h1>
+      <p>Real places. Working systems. Things you can visit, learn from, and sometimes copy.</p>
+    </div>
+    <label class="search" for="atlas-search">
+      <span class="search-label">Search</span>
+      <input id="atlas-search" type="search" autocomplete="off" placeholder="Search by city, place or system" aria-label="Search by city, place or system" />
+      <span class="search-arrow" aria-hidden="true">↘</span>
+    </label>
+    <div class="quick-filters" aria-label="Suggested searches">
+      <button type="button" data-query="Berlin">Berlin</button>
+      <button type="button" data-query="Amsterdam">Amsterdam</button>
+      <button type="button" data-query="Food">Food</button>
+      <button type="button" data-query="Materials">Materials</button>
+      <button type="button" data-query="Energy">Energy</button>
+      <button type="button" data-query="Community">Community</button>
+    </div>
+  </section>
+
+  <main id="atlas" class="atlas-shell">
+    <section class="index-panel" aria-label="Atlas places">
+      <div class="index-head">
+        <span>PLACE</span>
+        <span>SYSTEM</span>
+        <span id="result-count">50 / 50</span>
+      </div>
+      <div id="place-list" class="place-list"></div>
+      <div id="empty-state" class="empty-state" hidden>
+        <p>No evidence here yet.</p>
+        <button id="clear-search" type="button">Clear search</button>
+      </div>
+    </section>
+
+    <aside class="story-panel" aria-live="polite">
+      <div class="story-media-wrap">
+        <img id="story-image" class="story-image" src="assets/de-ceuvel.jpg" alt="" />
+        <div class="story-counter"><span id="story-number">01</span> / <span id="story-total">50</span></div>
+        <div id="photo-credit" class="photo-credit"></div>
+      </div>
+
+      <div class="story-copy">
+        <div class="story-title-row">
+          <div>
+            <p id="story-location" class="eyebrow"></p>
+            <h2 id="story-title"></h2>
+          </div>
+          <a id="story-link" class="visit-link" href="#" target="_blank" rel="noopener noreferrer">VISIT ↗</a>
+        </div>
+
+        <div class="story-grid">
+          <div>
+            <p class="label">WHAT THEY CHANGED</p>
+            <p id="story-changed" class="body-copy"></p>
+          </div>
+          <div>
+            <p class="label">WHY IT MATTERS</p>
+            <p id="story-matters" class="body-copy"></p>
+          </div>
+        </div>
+
+        <div class="story-meta">
+          <div><span class="label">SYSTEM</span><span id="story-system"></span></div>
+          <div><span class="label">ACCESS</span><span id="story-access"></span></div>
+          <div><span class="label">SCALE</span><span id="story-scale"></span></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <section id="about" class="about-section">
+    <p class="about-kicker">ABOUT</p>
+    <p class="about-copy">Yogawiser is a field guide to systems that already work. Places, projects and communities rethinking how we grow food, use water, build, move, share and live. Less future-thinking. More evidence.</p>
+  </section>
+
+  <footer class="footer">
+    <p>YOGAWISER ATLAS / PROTOTYPE 002</p>
+    <p>50 places. More evidence soon.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
