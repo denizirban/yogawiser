@@ -13,7 +13,7 @@
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 003</span>
+    <span class="section-mark">GROUND / BETA 005</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -36,14 +36,23 @@
           <input id="location" name="location" type="text" autocomplete="address-level2" placeholder="City, country" required />
           <span class="field-help" data-copy="locationHelp">City or nearest town is enough.</span>
         </div>
+        <div class="field field-wide">
+          <label for="parcelSystem" data-copy="parcelSystemLabel">Local land-reference system</label>
+          <select id="parcelSystem" name="parcelSystem"><option value="turkey" data-copy="parcelTurkey">Türkiye — ada / parsel</option><option value="eu" data-copy="parcelEU">EU — cadastral reference</option><option value="uk" data-copy="parcelUK">UK — title number / UPRN</option><option value="us" data-copy="parcelUS">US — APN / parcel ID</option><option value="au" data-copy="parcelAU">Australia / NZ — lot / plan</option><option value="other" data-copy="parcelOther">Other / not sure</option></select>
+        </div>
         <div class="field">
-          <label for="island"><span data-copy="islandLabel">Block / island</span> <em data-copy="optional">optional</em></label>
+          <label for="island"><span id="land-ref-a-label" data-copy="islandLabel">Block / island</span> <em data-copy="optional">optional</em></label>
           <input id="island" name="island" type="text" inputmode="numeric" autocomplete="off" placeholder="—" />
         </div>
         <div class="field">
-          <label for="parcel"><span data-copy="parcelLabel">Parcel</span> <em data-copy="optional">optional</em></label>
+          <label for="parcel"><span id="land-ref-b-label" data-copy="parcelLabel">Parcel</span> <em data-copy="optional">optional</em></label>
           <input id="parcel" name="parcel" type="text" inputmode="numeric" autocomplete="off" placeholder="—" />
-          <span class="field-help" data-copy="parcelHelp">Saved as a reference only; no land-registry lookup yet.</span>
+          <span class="field-help" data-copy="parcelHelp">Saved as a reference only; it does not import legal boundaries.</span>
+        </div>
+        <div class="field field-wide">
+          <label for="climateZone" data-copy="climateZoneLabel">Climate profile</label>
+          <select id="climateZone" name="climateZone"><option value="auto" data-copy="climateAuto">Estimate from location</option><option value="mediterranean" data-copy="climateMediterranean">Dry-summer Mediterranean</option><option value="arid" data-copy="climateArid">Arid / semi-arid</option><option value="temperate" data-copy="climateTemperate">Temperate seasonal</option><option value="cold" data-copy="climateCold">Cold winter</option><option value="subtropical" data-copy="climateSubtropical">Humid subtropical</option><option value="tropical" data-copy="climateTropical">Tropical</option></select>
+          <span class="field-help" data-copy="climateZoneHelp">Choose this manually when the location estimate is too broad.</span>
         </div>
         <fieldset class="field field-wide choice-field">
           <legend data-copy="spaceLabel">What kind of space?</legend>
@@ -155,7 +164,7 @@
       <div class="result-empty" id="result-empty"><span class="empty-number">01</span><p data-copy="empty">Your planting options will appear here.</p></div>
       <div class="results" id="results" hidden>
         <div class="result-head">
-          <div><p class="result-kicker"><span data-copy="reading">SITE READING</span> / <span id="result-location">SITE</span></p><h2 id="result-title" data-copy="resultTitle">Three workable planting systems.</h2></div>
+          <div><p class="result-kicker"><span data-copy="reading">SITE READING</span> / <span id="result-location">SITE</span></p><h2 id="result-title" data-copy="resultTitle">Six workable planting systems.</h2></div>
           <div class="confidence"><span data-copy="confidence">PLAN STAGE</span><strong id="confidence-value">PRELIMINARY</strong><small id="confidence-label">0/6 FIELD MEASUREMENTS</small></div>
         </div>
         <div class="land-summary">
@@ -198,7 +207,7 @@
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 003</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 005</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
   <script src="ground.js"></script>
 </body>
 </html>
