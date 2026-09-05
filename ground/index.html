@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f0ff70" />
   <link rel="canonical" href="https://www.yogawiser.com/ground/" />
   <title>Yogawiser Ground — What Could Grow Here?</title>
-  <meta name="description" content="Compare crop, water and seasonal-risk scenarios for a terrace, garden or field. A global prototype calibrated first in Fethiye–Muğla." />
+  <meta name="description" content="Compare crop, water, planting-pattern and seasonal-risk scenarios for a terrace, garden, field or orchard." />
   <link rel="icon" type="image/png" href="../assets/favicon.png" />
   <link rel="stylesheet" href="ground.css" />
 </head>
@@ -24,17 +24,26 @@
 
   <main class="ground-shell">
     <section class="input-panel" aria-labelledby="tool-title">
-      <div class="pilot-line"><span class="status-dot"></span><span data-copy="pilot">Fethiye–Muğla field pilot</span><span class="pilot-note" data-copy="pilotNote">Global model · locally calibrating</span></div>
+      <div class="pilot-line"><span class="status-dot"></span><span data-copy="pilot">Early planning model</span><span class="pilot-note" data-copy="pilotNote">Local inputs · transparent assumptions</span></div>
       <div class="tool-intro">
         <h1 id="tool-title" data-copy="title">What could grow here?</h1>
-        <p data-copy="intro">Add a few facts about your space. Ground compares useful crops, water demand and three seasonal scenarios before you plant.</p>
+        <p data-copy="intro">Describe the site, then compare crops, water demand, planting geometry and resilient growing systems.</p>
       </div>
 
       <form id="ground-form" class="ground-form">
         <div class="field field-wide">
           <label for="location" data-copy="locationLabel">Where is the land?</label>
-          <input id="location" name="location" type="text" autocomplete="address-level2" placeholder="Fethiye, Türkiye" value="Fethiye, Türkiye" required />
-          <span class="field-help" data-copy="locationHelp">City or nearest town is enough. No title deed needed.</span>
+          <input id="location" name="location" type="text" autocomplete="address-level2" placeholder="City, country" required />
+          <span class="field-help" data-copy="locationHelp">City or nearest town is enough.</span>
+        </div>
+        <div class="field">
+          <label for="island"><span data-copy="islandLabel">Block / island</span> <em data-copy="optional">optional</em></label>
+          <input id="island" name="island" type="text" inputmode="numeric" autocomplete="off" placeholder="—" />
+        </div>
+        <div class="field">
+          <label for="parcel"><span data-copy="parcelLabel">Parcel</span> <em data-copy="optional">optional</em></label>
+          <input id="parcel" name="parcel" type="text" inputmode="numeric" autocomplete="off" placeholder="—" />
+          <span class="field-help" data-copy="parcelHelp">Saved as a reference only; no land-registry lookup yet.</span>
         </div>
         <fieldset class="field field-wide choice-field">
           <legend data-copy="spaceLabel">What kind of space?</legend>
@@ -61,22 +70,53 @@
           <label for="goal" data-copy="goalLabel">Main priority</label>
           <select id="goal" name="goal"><option value="resilience" data-copy="goalResilience">Climate resilience</option><option value="water" data-copy="goalWater">Use less water</option><option value="food" data-copy="goalFood">Grow more food</option><option value="income" data-copy="goalIncome">Income potential</option><option value="care" data-copy="goalCare">Low maintenance</option></select>
         </div>
-        <button class="analyse-button" type="submit"><span data-copy="analyse">Run first estimate</span><span aria-hidden="true">↘</span></button>
+        <details class="measure-panel field-wide" id="measure-panel">
+          <summary><span data-copy="measureToggle">Add field measurements</span><span aria-hidden="true">+</span></summary>
+          <div class="measure-grid">
+            <div class="field">
+              <label for="soil" data-copy="soilLabel">Soil / growing medium</label>
+              <select id="soil" name="soil"><option value="unknown" data-copy="unknown">Not sure</option><option value="container" data-copy="soilContainer">Container mix</option><option value="sandy" data-copy="soilSandy">Sandy</option><option value="loam" data-copy="soilLoam">Loam</option><option value="clay" data-copy="soilClay">Clay-heavy</option></select>
+            </div>
+            <div class="field">
+              <label for="soilDepth" data-copy="depthLabel">Usable soil depth</label>
+              <div class="input-unit"><input id="soilDepth" name="soilDepth" type="number" min="5" max="300" step="1" placeholder="—" inputmode="decimal" /><span>cm</span></div>
+            </div>
+            <div class="field">
+              <label for="dailyWater" data-copy="waterCapacityLabel">Irrigation capacity</label>
+              <div class="input-unit"><input id="dailyWater" name="dailyWater" type="number" min="0" max="1000000" step="1" placeholder="—" inputmode="decimal" /><span>L/day</span></div>
+            </div>
+            <div class="field">
+              <label for="slope" data-copy="slopeLabel">Slope</label>
+              <select id="slope" name="slope"><option value="unknown" data-copy="unknown">Not sure</option><option value="flat" data-copy="slopeFlat">Flat / terrace</option><option value="gentle" data-copy="slopeGentle">Gentle</option><option value="steep" data-copy="slopeSteep">Steep</option></select>
+            </div>
+            <div class="field">
+              <label for="trees" data-copy="treesLabel">Existing trees</label>
+              <select id="trees" name="trees"><option value="unknown" data-copy="unknown">Not sure</option><option value="none" data-copy="treesNone">None</option><option value="few" data-copy="treesFew">A few</option><option value="many" data-copy="treesMany">Established canopy</option></select>
+            </div>
+            <div class="field">
+              <label for="lastCrop" data-copy="lastCropLabel">Previous crop</label>
+              <input id="lastCrop" name="lastCrop" type="text" autocomplete="off" placeholder="—" />
+            </div>
+          </div>
+          <p class="measure-note" data-copy="measureNote">Measurements change water feasibility, root-depth fit and the recommended layout.</p>
+        </details>
+        <button class="analyse-button" type="submit"><span data-copy="analyse">Build planting options</span><span aria-hidden="true">↘</span></button>
       </form>
-      <p class="form-note" data-copy="formNote">No account. No land records. This first estimate stays on your device.</p>
+      <p class="form-note" data-copy="formNote">No account or registry lookup. Inputs and saved readings stay on this device.</p>
     </section>
 
     <section class="result-panel" aria-live="polite" aria-labelledby="result-title">
-      <div class="result-empty" id="result-empty"><span class="empty-number">01</span><p data-copy="empty">Your first land reading will appear here.</p></div>
+      <div class="result-empty" id="result-empty"><span class="empty-number">01</span><p data-copy="empty">Your planting options will appear here.</p></div>
       <div class="results" id="results" hidden>
         <div class="result-head">
-          <div><p class="result-kicker"><span data-copy="reading">LAND READING</span> / <span id="result-location">FETHIYE</span></p><h2 id="result-title" data-copy="resultTitle">Three ways to use this ground.</h2></div>
-          <div class="confidence"><span data-copy="confidence">DATA STAGE</span><strong id="confidence-value">PILOT</strong><small id="confidence-label">UNVALIDATED ESTIMATE</small></div>
+          <div><p class="result-kicker"><span data-copy="reading">SITE READING</span> / <span id="result-location">SITE</span></p><h2 id="result-title" data-copy="resultTitle">Three workable planting systems.</h2></div>
+          <div class="confidence"><span data-copy="confidence">PLAN STAGE</span><strong id="confidence-value">PRELIMINARY</strong><small id="confidence-label">0/6 FIELD MEASUREMENTS</small></div>
         </div>
         <div class="land-summary">
           <div><span data-copy="summaryArea">AREA</span><strong id="summary-area">1,200 m²</strong></div>
           <div><span data-copy="summaryClimate">CLIMATE</span><strong id="summary-climate">MEDITERRANEAN</strong></div>
           <div><span data-copy="summaryWater">WATER LIMIT</span><strong id="summary-water">MODERATE</strong></div>
+          <div><span data-copy="summaryCoverage">INPUT COVERAGE</span><strong id="summary-coverage">BASE</strong></div>
         </div>
         <div id="plan-list" class="plan-list"></div>
         <section class="scenario-section">
@@ -89,7 +129,7 @@
         </section>
         <section class="missing-section">
           <div><p class="result-kicker" data-copy="improveLabel">MAKE THIS READING BETTER</p><h3 data-copy="improveTitle">Add evidence, not paperwork.</h3></div>
-          <ul><li data-copy="improveSoil">Soil texture or a simple soil test</li><li data-copy="improveWater">Actual irrigation capacity</li><li data-copy="improveHistory">Last season’s crop and yield</li></ul>
+          <div id="measure-actions" class="measure-actions"></div>
         </section>
         <div class="result-actions"><button type="button" id="save-plan" data-copy="save">Save this reading</button><button type="button" id="reset-plan" data-copy="edit">Edit inputs</button></div>
         <p class="disclaimer" data-copy="disclaimer">Experimental decision support—not a guarantee of yield or a replacement for local soil testing and agronomic advice.</p>
