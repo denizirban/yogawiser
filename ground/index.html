@@ -13,7 +13,7 @@
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 001</span>
+    <span class="section-mark">GROUND / BETA 002</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -70,6 +70,36 @@
           <label for="goal" data-copy="goalLabel">Main priority</label>
           <select id="goal" name="goal"><option value="resilience" data-copy="goalResilience">Climate resilience</option><option value="water" data-copy="goalWater">Use less water</option><option value="food" data-copy="goalFood">Grow more food</option><option value="income" data-copy="goalIncome">Income potential</option><option value="care" data-copy="goalCare">Low maintenance</option></select>
         </div>
+        <details class="measure-panel field-wide" id="layout-panel" open>
+          <summary><span data-copy="layoutToggle">Place the essentials</span><span aria-hidden="true">+</span></summary>
+          <div class="measure-grid">
+            <div class="field">
+              <label for="plotShape" data-copy="shapeLabel">Land shape</label>
+              <select id="plotShape" name="plotShape"><option value="rectangle" data-copy="shapeRectangle">Long rectangle</option><option value="square" data-copy="shapeSquare">Near square</option><option value="irregular" data-copy="shapeIrregular">Irregular</option></select>
+            </div>
+            <div class="field">
+              <label for="housePosition" data-copy="houseLabel">House / main base</label>
+              <select id="housePosition" name="housePosition"><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" selected data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option><option value="none" data-copy="none">None</option></select>
+            </div>
+            <div class="field">
+              <label for="waterPosition" data-copy="waterSourceLabel">Water source</label>
+              <select id="waterPosition" name="waterPosition"><option value="north" data-copy="north">North edge</option><option value="east" selected data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option><option value="none" data-copy="unknown">Not sure</option></select>
+            </div>
+            <div class="field">
+              <label for="accessPosition" data-copy="accessLabel">Main entrance</label>
+              <select id="accessPosition" name="accessPosition"><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" selected data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option></select>
+            </div>
+            <div class="field">
+              <label for="treePosition" data-copy="treePositionLabel">Existing-tree area</label>
+              <select id="treePosition" name="treePosition"><option value="unknown" data-copy="unknown">Not sure</option><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option><option value="center" data-copy="center">Centre</option><option value="none" data-copy="none">None</option></select>
+            </div>
+            <div class="field">
+              <label for="fireEdge" data-copy="fireEdgeLabel">Most exposed edge</label>
+              <select id="fireEdge" name="fireEdge"><option value="unknown" data-copy="unknown">Not sure</option><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option><option value="none" data-copy="none">None</option></select>
+            </div>
+          </div>
+          <p class="measure-note" data-copy="layoutNote">Use approximate positions. The plan will explain what each zone is for and why it sits there.</p>
+        </details>
         <details class="measure-panel field-wide" id="measure-panel">
           <summary><span data-copy="measureToggle">Add field measurements</span><span aria-hidden="true">+</span></summary>
           <div class="measure-grid">
@@ -118,6 +148,16 @@
           <div><span data-copy="summaryWater">WATER LIMIT</span><strong id="summary-water">MODERATE</strong></div>
           <div><span data-copy="summaryCoverage">INPUT COVERAGE</span><strong id="summary-coverage">BASE</strong></div>
         </div>
+        <section class="site-plan-section" aria-labelledby="site-plan-title">
+          <div class="section-row"><div><p data-copy="sitePlanKicker">PERMACULTURE SITE READ</p><h3 id="site-plan-title" data-copy="sitePlanTitle">A first architecture for the land.</h3></div><p data-copy="sitePlanNote">Concept plan · verify on site</p></div>
+          <div class="site-plan-grid">
+            <div class="site-map-wrap">
+              <div id="site-map" class="site-map" role="img" aria-label="Conceptual land-use plan"></div>
+              <div id="site-legend" class="site-legend"></div>
+            </div>
+            <div id="site-insights" class="site-insights"></div>
+          </div>
+        </section>
         <div id="plan-list" class="plan-list"></div>
         <section class="scenario-section">
           <div class="section-row"><p data-copy="scenarioTitle">SEASON RANGE</p><p data-copy="scenarioNote">Not one forecast. Three plausible conditions.</p></div>
@@ -126,6 +166,10 @@
             <div class="scenario normal"><span data-copy="normal">TYPICAL</span><strong>BASE</strong><small data-copy="historicRange">historic range</small></div>
             <div class="scenario wet"><span data-copy="wet">WETTER</span><strong id="wet-yield">+12%</strong><small data-copy="yieldShift">yield shift</small></div>
           </div>
+        </section>
+        <section class="phasing-section">
+          <div class="section-row"><div><p data-copy="phasingKicker">BUILD IN PHASES</p><h3 data-copy="phasingTitle">Start with observation, not excavation.</h3></div><p data-copy="phasingNote">A low-regret sequence</p></div>
+          <div id="phasing-list" class="phasing-list"></div>
         </section>
         <section class="missing-section">
           <div><p class="result-kicker" data-copy="improveLabel">MAKE THIS READING BETTER</p><h3 data-copy="improveTitle">Add evidence, not paperwork.</h3></div>
@@ -136,7 +180,7 @@
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 001</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 002</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
   <script src="ground.js"></script>
 </body>
 </html>
