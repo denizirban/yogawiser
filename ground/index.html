@@ -8,12 +8,13 @@
   <title>Yogawiser Ground — What Could Grow Here?</title>
   <meta name="description" content="Compare crop, water, planting-pattern and seasonal-risk scenarios for a terrace, garden, field or orchard." />
   <link rel="icon" type="image/png" href="../assets/favicon.png" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3ynhHO8ffu/7GqjMZVCH0/RB0W0pM=" crossorigin="" />
   <link rel="stylesheet" href="ground.css" />
 </head>
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 005</span>
+    <span class="section-mark">GROUND / BETA 006</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -36,6 +37,37 @@
           <input id="location" name="location" type="text" autocomplete="address-level2" placeholder="City, country" required />
           <span class="field-help" data-copy="locationHelp">City or nearest town is enough.</span>
         </div>
+        <details class="map-panel field-wide" id="map-panel" open>
+          <summary><span data-copy="mapToggle">Draw the land</span><span aria-hidden="true">+</span></summary>
+          <div class="map-panel-body">
+            <div class="map-intro">
+              <div><strong data-copy="mapTitle">Measure the real boundary.</strong><p data-copy="mapIntro">Find the place, draw the boundary, then place the essentials. The measured area and relative positions feed the plan below.</p></div>
+              <span class="map-step">01 → 02 → 03</span>
+            </div>
+            <div class="map-search-actions">
+              <button type="button" id="find-location" data-copy="mapFind">Find typed location</button>
+              <button type="button" id="use-location" data-copy="mapLocate">Use my position</button>
+            </div>
+            <div id="land-map" class="land-map" role="application" aria-label="Interactive land boundary map"></div>
+            <div class="map-toolbar" aria-label="Map drawing tools">
+              <button type="button" id="draw-boundary" class="map-tool map-tool-primary"><span>01</span><b data-copy="mapDraw">Draw boundary</b></button>
+              <button type="button" class="map-tool" data-map-object="house"><span>H</span><b data-copy="mapHouse">House</b></button>
+              <button type="button" class="map-tool" data-map-object="water"><span>W</span><b data-copy="mapWater">Water</b></button>
+              <button type="button" class="map-tool" data-map-object="access"><span>E</span><b data-copy="mapAccess">Entrance</b></button>
+              <button type="button" class="map-tool" data-map-object="trees"><span>T</span><b data-copy="mapTrees">Trees</b></button>
+              <button type="button" class="map-tool" data-map-object="compost"><span>C</span><b data-copy="mapCompost">Compost</b></button>
+            </div>
+            <div class="map-meta">
+              <p id="map-status" aria-live="polite" data-copy="mapReady">Search for the place or move the map, then draw at least three boundary points.</p>
+              <div class="map-edit-actions"><button type="button" id="undo-map" data-copy="mapUndo">Undo point</button><button type="button" id="clear-map" data-copy="mapClear">Clear map</button></div>
+            </div>
+            <p class="map-credit"><span data-copy="mapCredit">Map and search data</span> © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap contributors</a></p>
+          </div>
+          <input type="hidden" id="mapLat" name="mapLat" />
+          <input type="hidden" id="mapLng" name="mapLng" />
+          <input type="hidden" id="boundaryGeoJSON" name="boundaryGeoJSON" />
+          <input type="hidden" id="mapObjects" name="mapObjects" />
+        </details>
         <div class="field field-wide">
           <label for="parcelSystem" data-copy="parcelSystemLabel">Local land-reference system</label>
           <select id="parcelSystem" name="parcelSystem"><option value="turkey" data-copy="parcelTurkey">Türkiye — ada / parsel</option><option value="eu" data-copy="parcelEU">EU — cadastral reference</option><option value="uk" data-copy="parcelUK">UK — title number / UPRN</option><option value="us" data-copy="parcelUS">US — APN / parcel ID</option><option value="au" data-copy="parcelAU">Australia / NZ — lot / plan</option><option value="other" data-copy="parcelOther">Other / not sure</option></select>
@@ -207,7 +239,9 @@
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 005</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 006</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="map.js"></script>
   <script src="ground.js"></script>
 </body>
 </html>
