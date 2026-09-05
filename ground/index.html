@@ -13,7 +13,7 @@
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 002</span>
+    <span class="section-mark">GROUND / BETA 003</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -97,6 +97,22 @@
               <label for="fireEdge" data-copy="fireEdgeLabel">Most exposed edge</label>
               <select id="fireEdge" name="fireEdge"><option value="unknown" data-copy="unknown">Not sure</option><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option><option value="none" data-copy="none">None</option></select>
             </div>
+            <div class="field">
+              <label for="compostPosition" data-copy="compostLabel">Compost point</label>
+              <select id="compostPosition" name="compostPosition"><option value="auto" data-copy="placeAuto">Place it for me</option><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option><option value="none" data-copy="none">None</option></select>
+            </div>
+            <div class="field">
+              <label for="rainCapture" data-copy="rainLabel">Roof-rain capture</label>
+              <select id="rainCapture" name="rainCapture"><option value="possible" data-copy="rainPossible">Possible / planned</option><option value="existing" data-copy="rainExisting">Already installed</option><option value="none" data-copy="none">None</option></select>
+            </div>
+            <div class="field">
+              <label for="organicWaste" data-copy="wasteLabel">Organic material</label>
+              <select id="organicWaste" name="organicWaste"><option value="kitchenGarden" data-copy="wasteBoth">Kitchen + garden</option><option value="garden" data-copy="wasteGarden">Garden only</option><option value="none" data-copy="none">None</option></select>
+            </div>
+            <div class="field">
+              <label for="sanitation" data-copy="sanitationLabel">Sanitation</label>
+              <select id="sanitation" name="sanitation"><option value="existing" data-copy="sanitationExisting">Existing sewer / approved septic</option><option value="compostStudy" data-copy="sanitationStudy">Explore a composting toilet</option><option value="none" data-copy="none">None</option></select>
+            </div>
           </div>
           <p class="measure-note" data-copy="layoutNote">Use approximate positions. The plan will explain what each zone is for and why it sits there.</p>
         </details>
@@ -157,6 +173,8 @@
             </div>
             <div id="site-insights" class="site-insights"></div>
           </div>
+          <div class="resource-loop-head"><span data-copy="loopKicker">RESOURCE LOOPS</span><p data-copy="loopNote">Reduce inputs by connecting useful outputs—without mixing sanitation into food compost.</p></div>
+          <div id="system-loops" class="system-loops"></div>
         </section>
         <div id="plan-list" class="plan-list"></div>
         <section class="scenario-section">
@@ -180,7 +198,7 @@
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 002</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 003</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
   <script src="ground.js"></script>
 </body>
 </html>
