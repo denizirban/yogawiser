@@ -11,11 +11,11 @@
       submission_id:newId(),
       consent:true,
       consent_version:"ground-2026-09-v2",
-      source_version:"010",
+      source_version:"011",
       language:language,
       location:text(plan.location).slice(0,200),
-      map_lat:roundedCoordinate(plan.mapLat),
-      map_lng:roundedCoordinate(plan.mapLng),
+      map_lat:plan.space==="terrace"?null:roundedCoordinate(plan.mapLat),
+      map_lng:plan.space==="terrace"?null:roundedCoordinate(plan.mapLng),
       parcel_system:text(plan.parcelSystem).slice(0,30)||null,
       land_reference_a:null,
       land_reference_b:null,
@@ -37,9 +37,9 @@
       sanitation:text(plan.sanitation).slice(0,30)||null,
       candidate_count:Number(plan.candidateCount)||0,
       recommended_crop_ids:(plan.ranked||[]).slice(0,12).map(item=>item.id),
-      strategy_choices:(plan.alternatives||[]).map(item=>({goal:item.goal,crop_id:item.top.id})),
+      strategy_choices:(plan.alternatives||[]).map(item=>({goal:item.goal,crop_id:item.top.id})).concat(plan.space==="terrace"?[{goal:"terrace_profile",length_m:optionalNumber(plan.terraceLength),width_m:optionalNumber(plan.terraceWidth),level:text(plan.terraceLevel),wind:text(plan.terraceWind),door_side:text(plan.terraceDoor),tap_side:text(plan.terraceWater),drain_side:text(plan.terraceDrain),open_edge:text(plan.terraceRailing),load_status:text(plan.terraceLoad)}]:[]),
       input_coverage:Number(plan.coverage)||0,
-      has_drawn_boundary:Boolean(plan.boundaryGeoJSON)
+      has_drawn_boundary:plan.space==="terrace"?false:Boolean(plan.boundaryGeoJSON)
     };
   }
 
