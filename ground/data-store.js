@@ -3,22 +3,22 @@
 
   const text=value=>String(value??"").trim();
   const optionalNumber=value=>{const number=Number(value);return value!==""&&Number.isFinite(number)?number:null};
-  const roundedCoordinate=value=>{const number=optionalNumber(value);return number===null?null:Math.round(number*1000)/1000};
+  const roundedCoordinate=value=>{const number=optionalNumber(value);return number===null?null:Math.round(number*100)/100};
   const newId=()=>globalThis.crypto?.randomUUID?.()||`ground-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
   function payloadFrom(plan,language){
     return {
       submission_id:newId(),
       consent:true,
-      consent_version:"ground-2026-09-v1",
-      source_version:"009",
+      consent_version:"ground-2026-09-v2",
+      source_version:"010",
       language:language,
       location:text(plan.location).slice(0,200),
       map_lat:roundedCoordinate(plan.mapLat),
       map_lng:roundedCoordinate(plan.mapLng),
       parcel_system:text(plan.parcelSystem).slice(0,30)||null,
-      land_reference_a:text(plan.island).slice(0,80)||null,
-      land_reference_b:text(plan.parcel).slice(0,80)||null,
+      land_reference_a:null,
+      land_reference_b:null,
       climate_zone:text(plan.climate?.zone||plan.climateZone).slice(0,40),
       space_type:text(plan.space).slice(0,30),
       area_m2:optionalNumber(plan.area),
