@@ -14,7 +14,7 @@
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 006</span>
+    <span class="section-mark">GROUND / BETA 007</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -56,6 +56,11 @@
               <button type="button" class="map-tool" data-map-object="access"><span>E</span><b data-copy="mapAccess">Entrance</b></button>
               <button type="button" class="map-tool" data-map-object="trees"><span>T</span><b data-copy="mapTrees">Trees</b></button>
               <button type="button" class="map-tool" data-map-object="compost"><span>C</span><b data-copy="mapCompost">Compost</b></button>
+              <button type="button" class="map-tool" data-map-object="bed"><span>B</span><b data-copy="mapBed">Growing beds</b></button>
+              <button type="button" class="map-tool" data-map-object="greenhouse"><span>G</span><b data-copy="mapGreenhouse">Greenhouse</b></button>
+              <button type="button" class="map-tool" data-map-object="tank"><span>R</span><b data-copy="mapTank">Rain tank</b></button>
+              <button type="button" class="map-tool" data-map-object="newtree"><span>N</span><b data-copy="mapNewTree">New tree zone</b></button>
+              <button type="button" class="map-tool" data-map-object="fire"><span>F</span><b data-copy="mapFire">Fire edge</b></button>
             </div>
             <div class="map-meta">
               <p id="map-status" aria-live="polite" data-copy="mapReady">Search for the place or move the map, then draw at least three boundary points.</p>
@@ -67,6 +72,7 @@
           <input type="hidden" id="mapLng" name="mapLng" />
           <input type="hidden" id="boundaryGeoJSON" name="boundaryGeoJSON" />
           <input type="hidden" id="mapObjects" name="mapObjects" />
+          <input type="hidden" id="mapMetrics" name="mapMetrics" />
         </details>
         <div class="field field-wide">
           <label for="parcelSystem" data-copy="parcelSystemLabel">Local land-reference system</label>
@@ -205,6 +211,7 @@
           <div><span data-copy="summaryWater">WATER LIMIT</span><strong id="summary-water">MODERATE</strong></div>
           <div><span data-copy="summaryCoverage">INPUT COVERAGE</span><strong id="summary-coverage">BASE</strong></div>
         </div>
+        <div class="regional-fit"><span data-copy="regionalKicker">REGIONAL CANDIDATE POOL</span><strong id="regional-pool">—</strong><p id="regional-note" data-copy="regionalNote">Filtered by climate profile, space, water and root conditions.</p></div>
         <section class="site-plan-section" aria-labelledby="site-plan-title">
           <div class="section-row"><div><p data-copy="sitePlanKicker">PERMACULTURE SITE READ</p><h3 id="site-plan-title" data-copy="sitePlanTitle">A first architecture for the land.</h3></div><p data-copy="sitePlanNote">Concept plan · verify on site</p></div>
           <div class="site-plan-grid">
@@ -216,6 +223,10 @@
           </div>
           <div class="resource-loop-head"><span data-copy="loopKicker">RESOURCE LOOPS</span><p data-copy="loopNote">Reduce inputs by connecting useful outputs—without mixing sanitation into food compost.</p></div>
           <div id="system-loops" class="system-loops"></div>
+        </section>
+        <section class="alternative-section" aria-labelledby="alternative-title">
+          <div class="section-row"><div><p data-copy="alternativeKicker">THREE WAYS TO USE THE LAND</p><h3 id="alternative-title" data-copy="alternativeTitle">Choose the compromise deliberately.</h3></div><p data-copy="alternativeNote">Switching changes the crop ranking</p></div>
+          <div id="alternative-list" class="alternative-list"></div>
         </section>
         <div id="plan-list" class="plan-list"></div>
         <section class="scenario-section">
@@ -234,14 +245,15 @@
           <div><p class="result-kicker" data-copy="improveLabel">MAKE THIS READING BETTER</p><h3 data-copy="improveTitle">Add evidence, not paperwork.</h3></div>
           <div id="measure-actions" class="measure-actions"></div>
         </section>
-        <div class="result-actions"><button type="button" id="save-plan" data-copy="save">Save this reading</button><button type="button" id="reset-plan" data-copy="edit">Edit inputs</button></div>
+        <div class="result-actions"><button type="button" id="save-plan" data-copy="save">Save this reading</button><button type="button" id="download-geojson" data-copy="downloadGeoJSON">Download GeoJSON</button><button type="button" id="print-plan" data-copy="printPlan">Print / PDF</button><button type="button" id="reset-plan" data-copy="edit">Edit inputs</button></div>
         <p class="disclaimer" data-copy="disclaimer">Experimental decision support—not a guarantee of yield or a replacement for local soil testing and agronomic advice.</p>
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 006</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 007</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="map.js"></script>
+  <script src="regional-crops.js"></script>
   <script src="ground.js"></script>
 </body>
 </html>

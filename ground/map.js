@@ -5,10 +5,10 @@
     en:{ready:"Search for the place or move the map, then draw at least three boundary points.",searching:"Finding the location…",found:"Location found. Zoom in if needed, then draw the boundary.",notFound:"No matching place found. Add a city and country, or move the map manually.",geo:"Finding your position…",geoError:"Position unavailable. Search by place name or move the map manually.",draw:"Click around the land boundary. Add at least three points, then choose Finish boundary.",finish:"Finish boundary",drawButton:"Draw boundary",measured:area=>`Boundary measured: ${formatArea(area)}. Now place any known site elements.`,place:type=>`Click the map to place ${labels.en[type].toLowerCase()}.`,placed:type=>`${labels.en[type]} placed. Choose another tool or build the plan.`,choose:"Choose Draw boundary or a site-element tool first.",undo:"Last boundary point removed.",cleared:"Map drawing cleared. The manually entered area remains available.",unavailable:"The interactive map could not load. Continue with the manual area and position fields below."},
     tr:{ready:"Yeri arayın veya haritayı kaydırın; ardından sınır için en az üç nokta çizin.",searching:"Konum aranıyor…",found:"Konum bulundu. Gerekirse yakınlaşın, sonra arazi sınırını çizin.",notFound:"Eşleşen yer bulunamadı. İlçe ve ülke ekleyin veya haritayı elle kaydırın.",geo:"Konumunuz bulunuyor…",geoError:"Konum alınamadı. Yer adıyla arayın veya haritayı elle kaydırın.",draw:"Arazi sınırı boyunca tıklayın. En az üç nokta ekleyip Sınırı bitir'e basın.",finish:"Sınırı bitir",drawButton:"Sınırı çiz",measured:area=>`Sınır ölçüldü: ${formatArea(area)}. Şimdi bildiğiniz alan öğelerini yerleştirin.`,place:type=>`${labels.tr[type]} konumu için haritaya tıklayın.`,placed:type=>`${labels.tr[type]} yerleştirildi. Başka bir araç seçin veya planı oluşturun.`,choose:"Önce Sınırı çiz veya bir alan öğesi aracı seçin.",undo:"Son sınır noktası geri alındı.",cleared:"Harita çizimi temizlendi. Elle girilen alan değeri korunuyor.",unavailable:"Etkileşimli harita yüklenemedi. Aşağıdaki alan ve yaklaşık konum bilgileriyle devam edebilirsiniz."}
   };
-  const labels={en:{house:"House",water:"Water",access:"Entrance",trees:"Trees",compost:"Compost"},tr:{house:"Ev",water:"Su",access:"Giriş",trees:"Ağaçlar",compost:"Kompost"}};
-  const letters={house:"H",water:"W",access:"E",trees:"T",compost:"C"};
+  const labels={en:{house:"House",water:"Water",access:"Entrance",trees:"Existing trees",compost:"Compost",bed:"Growing beds",greenhouse:"Greenhouse",tank:"Rain tank",newtree:"New tree zone",fire:"Fire edge"},tr:{house:"Ev",water:"Su",access:"Giriş",trees:"Mevcut ağaçlar",compost:"Kompost",bed:"Üretim yatakları",greenhouse:"Sera",tank:"Yağmur deposu",newtree:"Yeni ağaç bölgesi",fire:"Yangın sınırı"}};
+  const letters={house:"H",water:"W",access:"E",trees:"T",compost:"C",bed:"B",greenhouse:"G",tank:"R",newtree:"N",fire:"F"};
   let lang=document.documentElement.lang==="tr"?"tr":"en";
-  let map=null,mode=null,boundaryLayer=null,boundaryPoints=[],markers={},lastSearchAt=0;
+  let map=null,mode=null,boundaryLayer=null,boundaryPoints=[],markers={},zones={},lastSearchAt=0;
   let vertexLayer=null;
 
   const byId=id=>document.getElementById(id);
@@ -54,7 +54,7 @@
   }
 
   function syncObjectFields(type,point){
-    const ids={house:"housePosition",water:"waterPosition",access:"accessPosition",trees:"treePosition",compost:"compostPosition"};
+    const ids={house:"housePosition",water:"waterPosition",access:"accessPosition",trees:"treePosition",compost:"compostPosition",fire:"fireEdge"};
     const input=byId(ids[type]);if(!input)return;
     const direction=directionFor(point);
     input.value=direction==="center"&&!["trees"].includes(type)?(point.lat>=map.getCenter().lat?"north":"south"):direction;
@@ -62,19 +62,33 @@
 
   function syncObjects(){
     const data={};
-    Object.entries(markers).forEach(([type,marker])=>{const p=marker.getLatLng();data[type]={lat:Number(p.lat.toFixed(7)),lng:Number(p.lng.toFixed(7)),direction:directionFor(p)}});
+    const radii={compost:2,bed:3,greenhouse:5,tank:1.5,newtree:4,fire:12};
+    Object.entries(markers).forEach(([type,marker])=>{const p=marker.getLatLng();data[type]={lat:Number(p.lat.toFixed(7)),lng:Number(p.lng.toFixed(7)),direction:directionFor(p),...(radii[type]?{radiusM:radii[type]}:{})}});
     setHidden("mapObjects",Object.keys(data).length?JSON.stringify(data):"");
+    syncMetrics();
+  }
+
+  function syncMetrics(){
+    if(!map)return;
+    const point=type=>markers[type]?.getLatLng(),distance=(a,b)=>a&&b?Math.round(map.distance(a,b)):null;
+    let perimeter=0;if(boundaryPoints.length>=3)boundaryPoints.forEach((p,index)=>perimeter+=map.distance(p,boundaryPoints[(index+1)%boundaryPoints.length]));
+    const area=geodesicArea(boundaryPoints),data={perimeterM:Math.round(perimeter),usableAreaM2:Math.round(area*.72),waterToBedsM:distance(point("water"),point("bed")),waterToHouseM:distance(point("water"),point("house")),accessToHouseM:distance(point("access"),point("house"))};
+    setHidden("mapMetrics",area?JSON.stringify(data):"");
   }
 
   function renderBoundary(){
     if(boundaryLayer)map.removeLayer(boundaryLayer);
     vertexLayer.clearLayers();
-    boundaryPoints.forEach(point=>L.marker(point,{interactive:false,icon:L.divIcon({className:"boundary-vertex",iconSize:[12,12]})}).addTo(vertexLayer));
+    boundaryPoints.forEach((point,index)=>{
+      const vertex=L.marker(point,{interactive:true,draggable:true,title:lang==="tr"?"Sınır noktasını sürükle":"Drag boundary point",icon:L.divIcon({className:"boundary-vertex",iconSize:[12,12]})}).addTo(vertexLayer);
+      vertex.on("drag",event=>{boundaryPoints[index]=event.target.getLatLng();if(boundaryLayer)boundaryLayer.setLatLngs(boundaryPoints)});
+      vertex.on("dragend",event=>{boundaryPoints[index]=event.target.getLatLng();const area=renderBoundary();setStatus(ui[lang].measured(area))});
+    });
     if(boundaryPoints.length>=3)boundaryLayer=L.polygon(boundaryPoints,{color:"#171417",weight:3,fillColor:"#f0ff70",fillOpacity:.2}).addTo(map);
     else if(boundaryPoints.length>=1)boundaryLayer=L.polyline(boundaryPoints,{color:"#171417",weight:3,dashArray:"7 7"}).addTo(map);
     const area=geodesicArea(boundaryPoints);
     setHidden("boundaryGeoJSON",boundaryGeoJSON());
-    if(area>=1){const areaInput=byId("area");areaInput.value=Math.round(area);areaInput.dispatchEvent(new Event("input",{bubbles:true}));shapeFromBoundary()}
+    if(area>=1){const areaInput=byId("area"),center=boundaryLayer.getBounds().getCenter();areaInput.value=Math.round(area);areaInput.dispatchEvent(new Event("input",{bubbles:true}));setHidden("mapLat",center.lat.toFixed(7));setHidden("mapLng",center.lng.toFixed(7));shapeFromBoundary()}
     Object.entries(markers).forEach(([type,marker])=>syncObjectFields(type,marker.getLatLng()));
     syncObjects();
     return area;
@@ -96,7 +110,11 @@
   function iconFor(type){return L.divIcon({className:`map-object-icon kind-${type}`,html:letters[type],iconSize:[28,28],iconAnchor:[14,14]})}
   function placeObject(type,latlng){
     if(markers[type])map.removeLayer(markers[type]);
+    if(zones[type])map.removeLayer(zones[type]);
+    const zoneStyles={compost:{radius:2,color:"#8b5e3c"},bed:{radius:3,color:"#d4e800"},greenhouse:{radius:5,color:"#4caa96"},tank:{radius:1.5,color:"#3d72c8"},newtree:{radius:4,color:"#387946"},fire:{radius:12,color:"#d94b37"}},style=zoneStyles[type];
+    if(style)zones[type]=L.circle(latlng,{radius:style.radius,color:style.color,weight:2,fillColor:style.color,fillOpacity:.18,interactive:false}).addTo(map);
     markers[type]=L.marker(latlng,{icon:iconFor(type),draggable:true,title:labels[lang][type]}).addTo(map);
+    markers[type].on("drag",()=>zones[type]?.setLatLng(markers[type].getLatLng()));
     markers[type].on("dragend",()=>{syncObjectFields(type,markers[type].getLatLng());syncObjects()});
     syncObjectFields(type,latlng);syncObjects();setMode(null);setStatus(ui[lang].placed(type));
   }
@@ -133,15 +151,17 @@
 
   function clearMap(){
     if(boundaryLayer){map.removeLayer(boundaryLayer);boundaryLayer=null}
-    vertexLayer.clearLayers();Object.values(markers).forEach(marker=>map.removeLayer(marker));
-    boundaryPoints=[];markers={};["mapLat","mapLng","boundaryGeoJSON","mapObjects"].forEach(id=>setHidden(id,""));setMode(null);setStatus(ui[lang].cleared);
+    vertexLayer.clearLayers();Object.values(markers).forEach(marker=>map.removeLayer(marker));Object.values(zones).forEach(zone=>map.removeLayer(zone));
+    boundaryPoints=[];markers={};zones={};["mapLat","mapLng","boundaryGeoJSON","mapObjects","mapMetrics"].forEach(id=>setHidden(id,""));setMode(null);setStatus(ui[lang].cleared);
   }
 
   function init(){
     const container=byId("land-map");if(!container)return;
     if(!window.L){container.classList.add("map-unavailable");container.textContent=ui[lang].unavailable;document.querySelectorAll(".map-toolbar button,.map-search-actions button,.map-edit-actions button").forEach(button=>button.disabled=true);setStatus(ui[lang].unavailable);return}
     map=L.map(container,{zoomControl:true}).setView([39,35],5);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',referrerPolicy:"strict-origin-when-cross-origin"}).addTo(map);
+    const street=L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',referrerPolicy:"strict-origin-when-cross-origin"}).addTo(map);
+    const satellite=L.tileLayer("https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/g/{z}/{y}/{x}.jpg",{maxNativeZoom:14,maxZoom:19,attribution:'<a href="https://cloudless.eox.at">EOxCloudless</a> by EOX · modified Copernicus Sentinel data'});
+    L.control.layers({"MAP":street,"SATELLITE":satellite},null,{position:"topright",collapsed:false}).addTo(map);
     vertexLayer=L.layerGroup().addTo(map);map.on("click",onMapClick);
     byId("find-location").addEventListener("click",findLocation);byId("use-location").addEventListener("click",useCurrentLocation);
     byId("draw-boundary").addEventListener("click",()=>{if(mode==="boundary"&&boundaryPoints.length>=3){finishBoundary();return}setMode("boundary");setStatus(ui[lang].draw)});
