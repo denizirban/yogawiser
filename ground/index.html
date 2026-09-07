@@ -14,7 +14,7 @@
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 008</span>
+    <span class="section-mark">GROUND / BETA 009</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -193,9 +193,14 @@
           </div>
           <p class="measure-note" data-copy="measureNote">Measurements change water feasibility, root-depth fit and the recommended layout.</p>
         </details>
+        <label class="data-consent field-wide" for="shareData">
+          <input id="shareData" name="shareData" type="checkbox" value="yes" />
+          <span><strong data-copy="dataShareLabel">Share this site reading with Yogawiser</strong><small data-copy="dataShareHelp">Optional. Your entered location, parcel reference and planning inputs will be stored to improve Ground. Exact map boundaries are not uploaded.</small></span>
+        </label>
         <button class="analyse-button" type="submit"><span data-copy="analyse">Build planting options</span><span aria-hidden="true">↘</span></button>
+        <p id="data-status" class="data-status field-wide" role="status" aria-live="polite"></p>
       </form>
-      <p class="form-note" data-copy="formNote">No account or registry lookup. Inputs and saved readings stay on this device.</p>
+      <p class="form-note" data-copy="formNote">No account or registry lookup. Data is shared only when you select the optional consent box.</p>
     </section>
 
     <section class="result-panel" aria-live="polite" aria-labelledby="result-title">
@@ -251,10 +256,12 @@
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 008</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 009</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="map.js"></script>
   <script src="regional-crops.js"></script>
+  <script src="data-config.js"></script>
+  <script src="data-store.js"></script>
   <script src="ground.js"></script>
 </body>
 </html>
