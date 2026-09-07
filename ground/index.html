@@ -14,7 +14,7 @@
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 010</span>
+    <span class="section-mark">GROUND / BETA 011</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -33,11 +33,20 @@
 
       <form id="ground-form" class="ground-form">
         <div class="field field-wide">
-          <label for="location" data-copy="locationLabel">Where is the land?</label>
+          <label for="location" id="location-label" data-copy="locationLabel">Where is the land?</label>
           <input id="location" name="location" type="text" autocomplete="address-level2" placeholder="City, country" required />
           <span class="field-help" data-copy="locationHelp">City or nearest town is enough.</span>
         </div>
-        <details class="map-panel field-wide" id="map-panel" open>
+        <fieldset class="field field-wide choice-field">
+          <legend data-copy="spaceLabel">What kind of space?</legend>
+          <div class="segmented">
+            <label><input type="radio" name="space" value="terrace" /><span data-copy="terrace">Terrace</span></label>
+            <label><input type="radio" name="space" value="garden" /><span data-copy="garden">Garden</span></label>
+            <label><input type="radio" name="space" value="field" checked /><span data-copy="field">Field</span></label>
+            <label><input type="radio" name="space" value="orchard" /><span data-copy="orchard">Orchard</span></label>
+          </div>
+        </fieldset>
+        <details class="map-panel field-wide land-only" id="map-panel" open>
           <summary><span data-copy="mapToggle">Draw the land</span><span aria-hidden="true">+</span></summary>
           <div class="map-panel-body">
             <div class="map-intro">
@@ -74,15 +83,15 @@
           <input type="hidden" id="mapObjects" name="mapObjects" />
           <input type="hidden" id="mapMetrics" name="mapMetrics" />
         </details>
-        <div class="field field-wide">
+        <div class="field field-wide land-only">
           <label for="parcelSystem" data-copy="parcelSystemLabel">Local land-reference system</label>
           <select id="parcelSystem" name="parcelSystem"><option value="turkey" data-copy="parcelTurkey">Türkiye — ada / parsel</option><option value="eu" data-copy="parcelEU">EU — cadastral reference</option><option value="uk" data-copy="parcelUK">UK — title number / UPRN</option><option value="us" data-copy="parcelUS">US — APN / parcel ID</option><option value="au" data-copy="parcelAU">Australia / NZ — lot / plan</option><option value="other" data-copy="parcelOther">Other / not sure</option></select>
         </div>
-        <div class="field">
+        <div class="field land-only">
           <label for="island"><span id="land-ref-a-label" data-copy="islandLabel">Block / island</span> <em data-copy="optional">optional</em></label>
           <input id="island" name="island" type="text" inputmode="numeric" autocomplete="off" placeholder="—" />
         </div>
-        <div class="field">
+        <div class="field land-only">
           <label for="parcel"><span id="land-ref-b-label" data-copy="parcelLabel">Parcel</span> <em data-copy="optional">optional</em></label>
           <input id="parcel" name="parcel" type="text" inputmode="numeric" autocomplete="off" placeholder="—" />
           <span class="field-help" data-copy="parcelHelp">Saved as a reference only; it does not import legal boundaries.</span>
@@ -92,17 +101,28 @@
           <select id="climateZone" name="climateZone"><option value="auto" data-copy="climateAuto">Estimate from location</option><option value="mediterranean" data-copy="climateMediterranean">Dry-summer Mediterranean</option><option value="arid" data-copy="climateArid">Arid / semi-arid</option><option value="temperate" data-copy="climateTemperate">Temperate seasonal</option><option value="cold" data-copy="climateCold">Cold winter</option><option value="subtropical" data-copy="climateSubtropical">Humid subtropical</option><option value="tropical" data-copy="climateTropical">Tropical</option></select>
           <span class="field-help" data-copy="climateZoneHelp">Choose this manually when the location estimate is too broad.</span>
         </div>
-        <fieldset class="field field-wide choice-field">
-          <legend data-copy="spaceLabel">What kind of space?</legend>
-          <div class="segmented">
-            <label><input type="radio" name="space" value="terrace" /><span data-copy="terrace">Terrace</span></label>
-            <label><input type="radio" name="space" value="garden" /><span data-copy="garden">Garden</span></label>
-            <label><input type="radio" name="space" value="field" checked /><span data-copy="field">Field</span></label>
-            <label><input type="radio" name="space" value="orchard" /><span data-copy="orchard">Orchard</span></label>
+        <details class="measure-panel field-wide terrace-only" id="terrace-panel" hidden open>
+          <summary><span data-copy="terracePlanToggle">Describe the terrace</span><span aria-hidden="true">+</span></summary>
+          <div class="measure-grid">
+            <div class="field"><label for="terraceLength" data-copy="terraceLength">Length</label><div class="input-unit"><input id="terraceLength" name="terraceLength" type="number" min="1" max="100" step="0.1" placeholder="—" inputmode="decimal" /><span>m</span></div></div>
+            <div class="field"><label for="terraceWidth" data-copy="terraceWidth">Width</label><div class="input-unit"><input id="terraceWidth" name="terraceWidth" type="number" min="1" max="100" step="0.1" placeholder="—" inputmode="decimal" /><span>m</span></div></div>
+            <div class="field"><label for="terraceLevel" data-copy="terraceLevel">Floor level</label><select id="terraceLevel" name="terraceLevel"><option value="ground" data-copy="terraceGround">Ground floor</option><option value="low" data-copy="terraceLow">1–3 floors</option><option value="high" data-copy="terraceHigh">4+ floors</option></select></div>
+            <div class="field"><label for="terraceWind" data-copy="terraceWind">Wind exposure</label><select id="terraceWind" name="terraceWind"><option value="sheltered" data-copy="windSheltered">Sheltered</option><option value="moderate" selected data-copy="windModerate">Moderate</option><option value="exposed" data-copy="windExposed">Exposed</option></select></div>
+            <div class="field"><label for="terraceDoor" data-copy="terraceDoor">Door side</label><select id="terraceDoor" name="terraceDoor"><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" selected data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option></select></div>
+            <div class="field"><label for="terraceWater" data-copy="terraceTap">Tap side</label><select id="terraceWater" name="terraceWater"><option value="unknown" data-copy="unknown">Not sure</option><option value="north" data-copy="north">North edge</option><option value="east" selected data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option></select></div>
+            <div class="field"><label for="terraceDrain" data-copy="terraceDrain">Drain side</label><select id="terraceDrain" name="terraceDrain"><option value="unknown" data-copy="unknown">Not sure</option><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option></select></div>
+            <div class="field"><label for="terraceRailing" data-copy="terraceRailing">Open / railing edge</label><select id="terraceRailing" name="terraceRailing"><option value="unknown" data-copy="unknown">Not sure</option><option value="north" data-copy="north">North edge</option><option value="east" data-copy="east">East edge</option><option value="south" data-copy="south">South edge</option><option value="west" data-copy="west">West edge</option><option value="multiple" data-copy="multipleEdges">Multiple edges</option></select></div>
+            <div class="field field-wide"><label for="terraceLoad" data-copy="terraceLoad">Structural load status</label><select id="terraceLoad" name="terraceLoad"><option value="unknown" data-copy="loadUnknown">Not verified</option><option value="verified" data-copy="loadVerified">Verified by a professional</option><option value="lightOnly" data-copy="loadLight">Light containers only</option></select></div>
           </div>
-        </fieldset>
+          <div class="terrace-photo">
+            <div class="terrace-photo-head"><div><strong data-copy="terracePhotoTitle">Add a terrace photo (optional)</strong><p data-copy="terracePhotoHelp">The photo stays on this device. Select a marker, then click its real position.</p></div><label class="photo-upload"><input id="terracePhoto" type="file" accept="image/*" /><span data-copy="choosePhoto">Choose photo</span></label></div>
+            <div id="terrace-photo-tools" class="terrace-photo-tools" hidden><button type="button" data-terrace-marker="door"><b>D</b><span data-copy="markDoor">Door</span></button><button type="button" data-terrace-marker="water"><b>W</b><span data-copy="markTap">Tap</span></button><button type="button" data-terrace-marker="drain"><b>G</b><span data-copy="markDrain">Drain</span></button><button type="button" data-terrace-marker="rail"><b>R</b><span data-copy="markRail">Open edge</span></button><button type="button" id="clear-terrace-photo" data-copy="clearPhoto">Remove photo</button></div>
+            <div id="terrace-photo-stage" class="terrace-photo-stage" hidden><img id="terrace-photo-preview" alt="Terrace planning reference" /><div id="terrace-photo-markers" aria-hidden="true"></div></div>
+            <input type="hidden" id="terraceMarkers" name="terraceMarkers" />
+          </div>
+        </details>
         <div class="field">
-          <label for="area" data-copy="areaLabel">Growing area</label>
+          <label for="area" id="area-label" data-copy="areaLabel">Growing area</label>
           <div class="input-unit"><input id="area" name="area" type="number" min="1" max="1000000" step="1" value="1200" inputmode="decimal" required /><span>m²</span></div>
         </div>
         <div class="field">
@@ -117,7 +137,7 @@
           <label for="goal" data-copy="goalLabel">Main priority</label>
           <select id="goal" name="goal"><option value="resilience" data-copy="goalResilience">Climate resilience</option><option value="water" data-copy="goalWater">Use less water</option><option value="food" data-copy="goalFood">Grow more food</option><option value="income" data-copy="goalIncome">Income potential</option><option value="care" data-copy="goalCare">Low maintenance</option></select>
         </div>
-        <details class="measure-panel field-wide" id="layout-panel" open>
+        <details class="measure-panel field-wide land-only" id="layout-panel" open>
           <summary><span data-copy="layoutToggle">Place the essentials</span><span aria-hidden="true">+</span></summary>
           <div class="measure-grid">
             <div class="field">
@@ -214,7 +234,7 @@
         </div>
         <div class="regional-fit"><span data-copy="regionalKicker">REGIONAL CANDIDATE POOL</span><strong id="regional-pool">—</strong><p id="regional-note" data-copy="regionalNote">Filtered by climate profile, space, water and root conditions.</p></div>
         <section class="site-plan-section" aria-labelledby="site-plan-title">
-          <div class="section-row"><div><p data-copy="sitePlanKicker">PERMACULTURE SITE READ</p><h3 id="site-plan-title" data-copy="sitePlanTitle">A first architecture for the land.</h3></div><p data-copy="sitePlanNote">Concept plan · verify on site</p></div>
+          <div class="section-row"><div><p data-copy="sitePlanKicker">PERMACULTURE SITE READ</p><h3 id="site-plan-title" data-copy="sitePlanTitle">A first architecture for the land.</h3></div><p id="site-plan-note" data-copy="sitePlanNote">Concept plan · verify on site</p></div>
           <div class="site-plan-grid">
             <div class="site-map-wrap">
               <div id="site-map" class="site-map" role="img" aria-label="Conceptual land-use plan"></div>
@@ -252,7 +272,7 @@
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 010</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 011</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
   <dialog class="privacy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
     <div class="privacy-dialog-card">
       <p class="privacy-kicker" data-copy="privacyKicker">ONE-TIME DATA CHOICE</p>
@@ -260,7 +280,7 @@
       <p data-copy="privacyIntro">If you agree, this reading and future readings from this device are saved automatically to improve regional estimates.</p>
       <div class="privacy-details">
         <p><strong data-copy="privacySentTitle">Shared</strong><span data-copy="privacySent">Your typed location, approximate coordinates and area, growing conditions, and recommended systems.</span></p>
-        <p><strong data-copy="privacyNotSentTitle">Not shared</strong><span data-copy="privacyNotSent">Block/parcel references and the exact boundary drawn on the map.</span></p>
+        <p><strong data-copy="privacyNotSentTitle">Not shared</strong><span data-copy="privacyNotSent">Block/parcel references, the exact boundary and terrace photos.</span></p>
       </div>
       <p class="privacy-note" data-copy="privacyNote">No account is created. You can change this choice below the form at any time.</p>
       <div class="privacy-actions">
@@ -274,6 +294,7 @@
   <script src="regional-crops.js"></script>
   <script src="data-config.js"></script>
   <script src="data-store.js"></script>
+  <script src="terrace.js"></script>
   <script src="ground.js"></script>
 </body>
 </html>
