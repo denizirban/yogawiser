@@ -192,6 +192,9 @@ img{max-width:100%}
 .loop-card.is-caution{background:#eee5fa}
 
 .plan-list{border-bottom:1px solid var(--ink)}
+.show-more-plans{width:100%;padding:16px;border:0;border-bottom:1px solid var(--ink);background:var(--paper);font:12px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;letter-spacing:.04em}
+.show-more-plans:hover:not(:disabled){background:var(--lime)}
+.show-more-plans:disabled{color:var(--muted)}
 .alternative-section{padding:28px 0;border-bottom:1px solid var(--ink)}
 .alternative-section h3{margin:4px 0 0;font-size:clamp(30px,3.6vw,52px);line-height:.96;letter-spacing:-.05em;font-weight:500}
 .alternative-list{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink)}
