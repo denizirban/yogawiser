@@ -14,7 +14,7 @@
 <body>
   <header class="toolbar">
     <a class="brand" href="/" aria-label="Yogawiser Atlas"><img src="../assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">GROUND / BETA 009</span>
+    <span class="section-mark">GROUND / BETA 010</span>
     <div class="toolbar-actions">
       <div class="language" aria-label="Language">
         <button type="button" class="is-active" data-lang="en">EN</button><span>/</span><button type="button" data-lang="tr">TR</button>
@@ -193,14 +193,10 @@
           </div>
           <p class="measure-note" data-copy="measureNote">Measurements change water feasibility, root-depth fit and the recommended layout.</p>
         </details>
-        <label class="data-consent field-wide" for="shareData">
-          <input id="shareData" name="shareData" type="checkbox" value="yes" />
-          <span><strong data-copy="dataShareLabel">Share this site reading with Yogawiser</strong><small data-copy="dataShareHelp">Optional. Your entered location, parcel reference and planning inputs will be stored to improve Ground. Exact map boundaries are not uploaded.</small></span>
-        </label>
         <button class="analyse-button" type="submit"><span data-copy="analyse">Build planting options</span><span aria-hidden="true">↘</span></button>
         <p id="data-status" class="data-status field-wide" role="status" aria-live="polite"></p>
       </form>
-      <p class="form-note" data-copy="formNote">No account or registry lookup. Data is shared only when you select the optional consent box.</p>
+      <p class="form-note"><span data-copy="formNote">The first time, choose whether site readings may be shared without an account. The choice is remembered on this device.</span> <button type="button" id="data-preference-open" data-copy="changeDataChoice">Change data choice</button></p>
     </section>
 
     <section class="result-panel" aria-live="polite" aria-labelledby="result-title">
@@ -256,7 +252,23 @@
       </div>
     </section>
   </main>
-  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 009</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <footer class="ground-footer"><p>YOGAWISER GROUND / PROTOTYPE 010</p><p data-copy="footer">The global model starts broad. Real local seasons make it useful.</p></footer>
+  <dialog class="privacy-dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+    <div class="privacy-dialog-card">
+      <p class="privacy-kicker" data-copy="privacyKicker">ONE-TIME DATA CHOICE</p>
+      <h2 id="privacy-title" data-copy="privacyTitle">Help Ground learn from real land?</h2>
+      <p data-copy="privacyIntro">If you agree, this reading and future readings from this device are saved automatically to improve regional estimates.</p>
+      <div class="privacy-details">
+        <p><strong data-copy="privacySentTitle">Shared</strong><span data-copy="privacySent">Your typed location, approximate coordinates and area, growing conditions, and recommended systems.</span></p>
+        <p><strong data-copy="privacyNotSentTitle">Not shared</strong><span data-copy="privacyNotSent">Block/parcel references and the exact boundary drawn on the map.</span></p>
+      </div>
+      <p class="privacy-note" data-copy="privacyNote">No account is created. You can change this choice below the form at any time.</p>
+      <div class="privacy-actions">
+        <button type="button" id="privacy-decline" data-copy="privacyDecline">Continue without sharing</button>
+        <button type="button" id="privacy-allow" data-copy="privacyAllow">Share and continue</button>
+      </div>
+    </div>
+  </dialog>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="map.js"></script>
   <script src="regional-crops.js"></script>
