@@ -37,7 +37,7 @@ $('site').value='Manavgat · EFFIS 51931 / local satellite sample';
 $('lat').value=Number(center[1]).toFixed(5);$('lon').value=Number(center[0]).toFixed(5);$('size').value='500';
 drawROI();syncMap();invalidateScenes();
 if(map)map.fitBounds([[parsed.bounds[1],parsed.bounds[0]],[parsed.bounds[3],parsed.bounds[2]]],{padding:[26,26],maxZoom:11});
-const message='EFFIS 51931 loaded: '+parsed.points+' perimeter coordinates. Analysis is limited to the selected 1 km² square, not the entire 54,769 ha perimeter. See the map for the polygon extent.';
+const officialHa=Number(data.area_ha),areaLabel=Number.isFinite(officialHa)&&officialHa>0?officialHa.toLocaleString('en-US',{maximumFractionDigits:1})+' ha':'recorded fire footprint';const message='EFFIS 51931 loaded: '+parsed.points+' perimeter coordinates · source area '+areaLabel+'. Satellite statistics are computed only for the selected 1 km² square intersected with this boundary, not the whole event. See the map for the footprint.';
 msg.textContent=message;$('roi-status').textContent='Official EFFIS geometry · record 51931 · source recorded. Selected analysis square centered on a point within the EFFIS boundary (not necessarily its centroid). '+message;
 }catch(error){msg.textContent='Could not retrieve EFFIS geometry: '+(error.message||String(error))+'. Open the official source record above, save its shape as GeoJSON, then upload it manually.'}
 finally{clearTimeout(timeout);button.disabled=false}}
