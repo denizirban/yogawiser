@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="t d">
+<title id="t">Yogawiser SENSE – spatial experience study</title><desc id="d">A minimalist technical illustration of a responsive projection space with architectural surfaces, soft green light, and a movement sensing point.</desc>
+<defs>
+ <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9f2df"/><stop offset="1" stop-color="#c3decf"/></linearGradient>
+ <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eff8e7"/><stop offset="1" stop-color="#b3d5c4"/></linearGradient>
+ <linearGradient id="screen" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#b7f2d2"/><stop offset=".45" stop-color="#ecffdd"/><stop offset="1" stop-color="#9dcac7"/></linearGradient>
+ <linearGradient id="floor" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d2e7cd"/><stop offset="1" stop-color="#a9ccc0"/></linearGradient>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0 H0 V40" fill="none" stroke="#47796c" stroke-opacity=".16" stroke-width="1"/></pattern>
+ <clipPath id="panelClip"><path d="M341 180 L805 146 L805 446 L341 484 Z"/></clipPath>
+</defs>
+<rect width="1200" height="760" fill="url(#wash)"/>
+<rect width="1200" height="760" fill="url(#grid)"/>
+<g stroke="#416d5e" stroke-width="2" stroke-linejoin="round">
+ <path d="M174 252 L341 180 L341 484 L174 568 Z" fill="#badace"/>
+ <path d="M341 180 L805 146 L805 446 L341 484 Z" fill="url(#wall)"/>
+ <path d="M805 146 L949 234 L949 538 L805 446 Z" fill="#a1c8bf"/>
+ <path d="M174 568 L341 484 L805 446 L949 538 L778 672 L392 692 Z" fill="url(#floor)"/>
+</g>
+<g clip-path="url(#panelClip)">
+ <path d="M260 394 Q440 219 650 270 Q789 309 885 208" stroke="#8dd4bd" stroke-opacity=".46" stroke-width="112" fill="none"/>
+ <path d="M280 418 Q447 264 631 289 Q741 303 860 248" stroke="#ecffe5" stroke-opacity=".93" stroke-width="27" fill="none"/>
+ <path d="M303 459 Q480 335 649 347 Q762 348 836 319" stroke="#4d927e" stroke-opacity=".55" stroke-width="3" fill="none"/>
+ <path d="M303 418 Q453 246 646 266 Q755 292 861 217" stroke="#397665" stroke-opacity=".48" stroke-width="2" fill="none"/>
+ <path d="M373 189 V482 M434 182 V475 M495 176 V469 M555 171 V466 M616 167 V460 M677 160 V454 M738 154 V448" stroke="#447c6b" stroke-opacity=".17" stroke-width="1"/>
+ <path d="M339 272 L808 233 M339 357 L809 323 M341 442 L808 413" stroke="#447c6b" stroke-opacity=".16" stroke-width="1"/>
+</g>
+<g fill="none" stroke="#477b68" stroke-width="2" opacity=".45">
+ <path d="M176 568 L950 538"/><path d="M254 529 L894 582"/><path d="M329 491 L842 623"/>
+ <path d="M341 484 L392 692"/><path d="M505 471 L550 686"/><path d="M657 458 L697 678"/><path d="M805 446 L778 672"/>
+</g>
+<path d="M554 498 L738 485 L897 542 L719 562 Z" fill="#c7f7cf" fill-opacity=".7" stroke="#549682" stroke-width="2"/>
+<path d="M559 508 L740 494 L879 539 L719 554 Z" fill="#8fd3b7" fill-opacity=".34"/>
+<path d="M495 316 L645 466 L740 494 L583 310 Z" fill="#f7ffe6" fill-opacity=".23"/>
+<path d="M507 306 L651 468" stroke="#f7fff0" stroke-width="5" stroke-opacity=".64"/>
+<g stroke="#276c59" fill="none">
+ <ellipse cx="559" cy="555" rx="59" ry="23" stroke-width="2" stroke-dasharray="5 6" opacity=".64"/>
+ <ellipse cx="559" cy="555" rx="30" ry="12" stroke-width="2" opacity=".6"/>
+ <path d="M561 551 L561 479" stroke-width="2" stroke-dasharray="5 6" opacity=".63"/>
+ <path d="M623 545 Q676 517 697 476" stroke-width="2" stroke-dasharray="5 8" opacity=".55"/>
+</g>
+<circle cx="560" cy="549" r="7" fill="#2c6958"/><circle cx="560" cy="479" r="8" fill="#d8f9d9" stroke="#336f5c" stroke-width="2"/>
+<g stroke="#377968" stroke-width="1.3" opacity=".75" fill="none">
+ <path d="M85 66 H225 M85 66 V122"/><path d="M1055 66 H1115 V122"/><path d="M85 653 V691 H232"/><path d="M1055 690 H1115 V648"/>
+ <path d="M85 152 L135 152 M85 165 L110 165 M1115 150 L1065 150 M1115 163 L1090 163"/>
+</g>
+<g fill="#376d5c" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="16" letter-spacing="2">
+ <text x="86" y="52">SPACE / 001</text>
+ <text x="952" y="52">PLAN STUDY</text>
+ <text x="91" y="730">CAMERA / PRESENCE</text>
+ <text x="922" y="728">LIGHT / RESPONSE</text>
+</g>
+</svg>
