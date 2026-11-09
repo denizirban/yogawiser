@@ -61,7 +61,7 @@ if(Array.isArray(window.GROUND_REGIONAL_CROPS))crops.push(...window.GROUND_REGIO
 const cropZones={citrus:["mediterranean","subtropical","tropical"],loquat:["mediterranean","subtropical"],carob:["mediterranean","arid"],olive:["mediterranean","arid"],fig:["mediterranean","arid","temperate","subtropical"],pomegranate:["mediterranean","arid","temperate","subtropical"],almond:["mediterranean","arid","temperate"],apple:["temperate","cold"],pear:["temperate","cold"],walnut:["temperate","cold"],apricot:["mediterranean","arid","temperate","cold"],persimmon:["mediterranean","temperate","subtropical"],okra:["mediterranean","arid","subtropical","tropical"],sweetpotato:["mediterranean","subtropical","tropical"],aubergine:["mediterranean","arid","temperate","subtropical","tropical"],cucumber:["mediterranean","temperate","subtropical","tropical"],grape:["mediterranean","arid","temperate"]};
 crops.forEach(crop=>crop.climates=cropZones[crop.id]||crop.climates||["mediterranean","arid","temperate","cold","subtropical","tropical","general"]);
 
-let lang=localStorage.getItem("ground-lang")||(navigator.language.toLowerCase().startsWith("tr")?"tr":"en");
+let lang=localStorage.getItem("ground-lang")==="tr"?"tr":"en";
 let lastResult=null;
 const form=document.getElementById("ground-form"),results=document.getElementById("results"),empty=document.getElementById("result-empty");
 const t=key=>copy[lang][key];
