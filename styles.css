@@ -531,3 +531,10 @@ img { max-width: 100%; }
   .sense-feature-visual{height:auto;min-height:0}
   .sense-preview-data div,.ground-preview-data div{padding:10px}
 }
+
+/* SENSE photographic preview: preserve its compact Ground-aligned layout. */
+.sense-preview-map{background:#171e21}
+.sense-study-art{object-position:center center;filter:saturate(.96) contrast(1.035)}
+.sense-preview-map::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.4),transparent 25%,transparent 66%,rgba(0,0,0,.52));pointer-events:none}
+.sense-preview-map .sense-visual-label,.sense-preview-map .sense-visual-end{color:#fff;text-shadow:0 1px 7px rgba(0,0,0,.7)}
+.sense-preview-data{background:#e0e3dc}
