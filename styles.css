@@ -430,14 +430,12 @@ img { max-width: 100%; }
 
 /* Post-Fire Lab: discreet homepage entry using existing Atlas typography and palette. */
 .postfire-teaser{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:17px 18px;border-bottom:1px solid var(--line);background:var(--panel)}
-.postfire-teaser-copy{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:22px;row-gap:3px;align-items:center}
-.postfire-teaser-label{grid-row:span 2;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.04em;color:var(--muted)}
+.postfire-teaser-copy{display:grid;grid-template-columns:minmax(0,1fr);row-gap:4px;align-items:start;justify-items:start;text-align:left;min-width:0}
 .postfire-teaser h2{font-size:clamp(17px,2vw,24px);font-weight:500;letter-spacing:-.045em;line-height:1.1;margin:0}
 .postfire-teaser p{font-size:12px;color:var(--muted);margin:0;line-height:1.45}
 .postfire-teaser-cta{display:inline-flex;gap:25px;align-items:center;flex-shrink:0;border:1px solid var(--ink);padding:12px 15px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.03em;transition:background .2s,color .2s}
 .postfire-teaser-cta:hover{background:var(--ink);color:var(--bg)}
 .postfire-teaser-cta span{font-size:16px}
-@media(max-width:850px){.postfire-teaser-copy{grid-template-columns:1fr}.postfire-teaser-label{grid-row:auto;margin-bottom:3px}}
 @media(max-width:620px){.postfire-teaser{padding:15px 18px;align-items:flex-start;flex-direction:column;gap:12px}.postfire-teaser-cta{width:100%;justify-content:space-between}.postfire-teaser p{max-width:400px}}
 
 
