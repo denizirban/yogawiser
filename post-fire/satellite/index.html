@@ -49,6 +49,30 @@ h1{font-weight:500;letter-spacing:-.065em}.intro{font-size:15px;color:var(--mute
 .study-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:13px 0}.study-actions span{color:var(--muted);font-size:11px;flex:1}.study-actions .button{font-size:10px}.index-profile{margin-top:20px;padding:17px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.index-bars{display:grid;gap:11px;margin:16px 0}.index-bar{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr) 45px;align-items:center;gap:10px;font:11px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.index-bar-track{height:10px;background:#dadbd5;overflow:hidden}.index-bar-fill{height:100%}.index-bar strong{text-align:right;font-weight:500}.index-profile .sub{margin-bottom:0}@media(max-width:600px){.index-bar{grid-template-columns:minmax(0,100px) minmax(0,1fr) 38px;font-size:10px}.study-actions .button{width:100%}}
 </style><style>.timeline-module{border-top:1px solid var(--border);margin-top:22px;padding-top:24px}.timeline-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:22px}.timeline-title-row h3{font-size:25px;font-weight:500;letter-spacing:-.045em;margin:9px 0}.timeline-title-row .button{flex:none}.timeline-chart{margin-top:20px;min-height:0}.timeline-chart svg{max-width:100%;height:auto;width:100%;background:#f2f2ee}.timeline-table{display:grid;gap:7px;margin:18px 0}.timeline-record{display:grid;grid-template-columns:45px minmax(0,1fr) minmax(0,1.3fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:11px;align-items:start}.timeline-record strong{font-weight:700}.timeline-record span{overflow-wrap:anywhere;color:var(--muted)}.timeline-module>.button{margin-bottom:12px}@media(max-width:680px){.timeline-title-row{display:block}.timeline-title-row .button{width:100%;margin-top:12px}.timeline-record{grid-template-columns:40px 1fr}.timeline-record span:last-child{grid-column:2}}</style><style>html{scroll-behavior:smooth}#map,#analysis,#timeline-module{scroll-margin-top:85px}header nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap}header nav a{white-space:nowrap}@media(max-width:600px){header{flex-wrap:nowrap;gap:10px}header nav{gap:9px}header nav a{font-size:9px}.yw-brand img{max-width:110px}}</style><style>
 .rgb-compare{margin:18px 0 15px;border-top:1px solid var(--border);padding-top:20px}.rgb-head{display:flex;align-items:center;justify-content:space-between;gap:20px}.rgb-head h3{font-weight:500;letter-spacing:-.04em;font-size:23px;margin:6px 0}.rgb-head p{margin:0}.rgb-head .button{flex-shrink:0}.rgb-stage{position:relative;width:100%;max-height:540px;aspect-ratio:1/1;background:#1d2721;border:1px solid var(--border);margin-top:15px;overflow:hidden;isolation:isolate}.rgb-stage[hidden],.rgb-slider-label[hidden]{display:none!important}.rgb-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;image-rendering:auto}.rgb-after-clip{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}.rgb-divider{position:absolute;top:0;bottom:0;left:50%;width:2px;transform:translateX(-1px);background:#f4f0e5;box-shadow:0 0 8px #0008;pointer-events:none}.rgb-caption{position:absolute;bottom:14px;z-index:2;background:#17231edc;color:#fff;padding:8px 10px;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.rgb-caption.before{left:12px}.rgb-caption.after{right:12px}.rgb-slider-label{display:flex;align-items:center;gap:15px;margin:14px 0 0;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.03em}.rgb-slider-label input{width:100%;accent-color:#171417}@media(max-width:680px){.rgb-head{display:block}.rgb-head .button{width:100%;margin-top:12px}.rgb-stage{max-height:360px}.rgb-caption{font-size:8px;padding:6px}.rgb-slider-label{display:block}.rgb-slider-label input{display:block;margin-top:9px}}
+</style><style id="spectral-compare-styles">
+/* The same geospatial sampling grid powers RGB, dNBR and their composite. */
+#rgb-dnbr{display:none;z-index:3;pointer-events:none}
+.rgb-stage #rgb-before{z-index:0}.rgb-stage .rgb-after-clip{z-index:1}.rgb-stage .rgb-divider{z-index:2}
+.rgb-stage .rgb-after-clip canvas{width:100%;height:100%;object-fit:fill}
+.rgb-stage[data-mode="before"] .rgb-after-clip,.rgb-stage[data-mode="before"] .rgb-divider,.rgb-stage[data-mode="before"] #rgb-dnbr{display:none}
+.rgb-stage[data-mode="after"] .rgb-after-clip,.rgb-stage[data-mode="overlay"] .rgb-after-clip{clip-path:none!important}
+.rgb-stage[data-mode="after"] .rgb-divider,.rgb-stage[data-mode="overlay"] .rgb-divider,.rgb-stage[data-mode="dnbr"] .rgb-divider{display:none}
+.rgb-stage[data-mode="dnbr"]{background:#d6d9d7}
+.rgb-stage[data-mode="dnbr"] #rgb-before,.rgb-stage[data-mode="dnbr"] .rgb-after-clip{display:none}
+.rgb-stage[data-mode="dnbr"] #rgb-dnbr,.rgb-stage[data-mode="overlay"] #rgb-dnbr{display:block}
+.rgb-stage[data-mode="dnbr"] .rgb-caption,.rgb-stage[data-mode="overlay"] .rgb-caption.before{display:none}
+.rgb-stage[data-mode="compare"] #rgb-dnbr,.rgb-stage[data-mode="before"] #rgb-dnbr,.rgb-stage[data-mode="after"] #rgb-dnbr{display:none}
+.spectral-view-controls{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0 9px}
+.spectral-mode{border:1px solid var(--border);background:transparent;color:var(--ink);padding:10px 12px;cursor:pointer;font:10px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.025em}
+.spectral-mode.is-selected{border-color:var(--ink);background:var(--ink);color:#fff}
+.spectral-mode:disabled{cursor:not-allowed;opacity:.4}.spectral-mode:focus-visible{outline:2px solid #6e947a;outline-offset:2px}
+.spectral-actions{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.spectral-actions .rgb-slider-label{flex:1;min-width:0;margin-top:0}
+.spectral-actions .rgb-slider-label output{width:38px;text-align:right}
+.spectral-actions .button{flex-shrink:0}
+.spectral-legend{display:flex;align-items:center;gap:10px 15px;flex-wrap:wrap;font:10px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted);margin:10px 0}
+.spectral-legend[hidden]{display:none}.spectral-legend span{display:inline-flex;align-items:center;gap:5px}.spectral-legend i{width:11px;height:11px;border:1px solid #0002}
+@media(max-width:650px){.spectral-mode{flex:1 1 auto;padding:10px 8px;font-size:9px}.spectral-actions{display:block}.spectral-actions .button{width:100%;margin-top:9px}.spectral-legend{gap:5px 12px}}
 </style></head><body>
 <header><a href="/" aria-label="Yogawiser home" class="yw-brand"><img src="../../assets/yogawiser-logo-transparent.png" alt="Yogawiser" width="160" height="26"></a><nav aria-label="Post-Fire research navigation"><a href="/post-fire/">← LAB</a><a href="#map">MAP</a><a href="#analysis">RESULTS</a><a href="#timeline-module">TIMELINE</a></nav></header>
 <div class="wrap"><span class="eyebrow">YOGAWISER / POST-FIRE RECOVERY / SATELLITE EXPLORER</span><h1>Read the landscape<br>after fire.</h1><p class="intro">Discover real Sentinel-2 scenes, compare pre- and post-fire spectral measurements, and map an observed burn index around a location. Built for exploratory research—not a prescription for ecological intervention.</p><span class="badge">PUBLIC SATELLITE DATA · EXPERIMENTAL WORKFLOW</span>
@@ -63,16 +87,37 @@ h1{font-weight:500;letter-spacing:-.065em}.intro{font-size:15px;color:var(--mute
 <div class="scene-grid"><label class="scene-select">Pre-fire scene<select id="pre-scene"><option value="">Search to populate</option></select></label><label class="scene-select">Post-fire scene<select id="post-scene"><option value="">Search to populate</option></select></label></div>
 <div class="button-row"><button id="analyze" class="button" disabled>Analyze Sentinel-2 reflectance</button><a class="button secondary" href="https://browser.dataspace.copernicus.eu/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;text-align:center">Open Copernicus ↗</a></div>
 <section class="rgb-compare" id="rgb-compare" aria-labelledby="rgb-title">
- <div class="rgb-head"><div><span class="eyebrow">OPTICAL IMAGERY / SENTINEL-2</span><h3 id="rgb-title">Before / After</h3><p class="sub">Real RGB rasters for the selected coordinates and dates. Slide to compare the same sampled area.</p></div><button class="button secondary" id="rgb-load" type="button" disabled>LOAD RGB COMPARISON ↗</button></div>
+ <div class="rgb-head"><div><span class="eyebrow">OPTICAL IMAGERY / SENTINEL-2</span><h3 id="rgb-title">Before / After / Change</h3><p class="sub">Compare real RGB rasters, inspect observed dNBR on the same sampling grid, or overlay spectral change on post-fire imagery.</p></div><button class="button secondary" id="rgb-load" type="button" disabled>LOAD RGB COMPARISON ↗</button></div>
  <div id="rgb-stage" class="rgb-stage" hidden>
   <canvas id="rgb-before" width="96" height="96" aria-label="Pre-fire RGB satellite image"></canvas>
   <div class="rgb-after-clip" id="rgb-after-clip"><canvas id="rgb-after" width="96" height="96" aria-label="Post-fire RGB satellite image"></canvas></div>
+  <canvas id="rgb-dnbr" width="96" height="96" aria-label="Observed dNBR spectral change overlay"></canvas>
   <div class="rgb-divider" id="rgb-divider" aria-hidden="true"></div>
   <span class="rgb-caption before">BEFORE / <span id="rgb-pre-date"></span></span><span class="rgb-caption after">AFTER / <span id="rgb-post-date"></span></span>
  </div>
  <label class="rgb-slider-label" id="rgb-slider-wrap" hidden>BEFORE / AFTER SPLIT <input id="rgb-slider" type="range" min="0" max="100" value="50" aria-label="Reveal before or after satellite imagery"></label>
+ <div class="spectral-view-controls" role="group" aria-label="Choose satellite visualization">
+  <button id="rgb-mode-compare" class="spectral-mode" type="button" data-view="compare" aria-pressed="false" disabled>COMPARE</button>
+  <button id="rgb-mode-before" class="spectral-mode" type="button" data-view="before" aria-pressed="false" disabled>BEFORE</button>
+  <button id="rgb-mode-after" class="spectral-mode" type="button" data-view="after" aria-pressed="false" disabled>AFTER</button>
+  <button id="rgb-mode-dnbr" class="spectral-mode" type="button" data-view="dnbr" aria-pressed="false" disabled>dNBR MAP</button>
+  <button id="rgb-mode-overlay" class="spectral-mode" type="button" data-view="overlay" aria-pressed="false" disabled>OVERLAY</button>
+ </div>
+ <div class="spectral-actions">
+  <label id="rgb-opacity-wrap" class="rgb-slider-label" hidden>CHANGE LAYER OPACITY <input id="rgb-opacity" type="range" min="0" max="100" value="70" aria-label="Adjust spectral change overlay opacity"><output id="rgb-opacity-value" for="rgb-opacity">70%</output></label>
+  <button id="rgb-export" class="button secondary" type="button" disabled>EXPORT VIEW PNG ↗</button>
+ </div>
+ <div id="rgb-legend" class="spectral-legend" hidden aria-label="dNBR color legend">
+  <span><i style="background:#377a56"></i> Negative</span>
+  <span><i style="background:#d4cf9c"></i> Little change</span>
+  <span><i style="background:#e2be7e"></i> 0.10–0.27</span>
+  <span><i style="background:#dca05e"></i> 0.27–0.44</span>
+  <span><i style="background:#b96745"></i> 0.44–0.66</span>
+  <span><i style="background:#9a4f39"></i> ≥0.66</span>
+  <span><i style="background:#d6d9d7"></i> No valid sample</span>
+ </div>
  <p id="rgb-status" class="sub" role="status" aria-live="polite">Select real pre- and post-fire scenes, then load RGB imagery.</p>
- <p class="sub">Satellite pixels are rendered with a shared RGB stretch for visual comparison. This is not a verified fire boundary, corrected surface reflectance product or change classification.</p>
+ <p class="sub">RGB images use a shared display stretch. dNBR is derived separately from NIR and SWIR2 with two-date SCL screening. These experimental layers show sampled spectral change—not a verified fire perimeter, calibrated severity class, or ecological recovery forecast.</p>
 </section>
 <div class="scene-quality" aria-live="polite"><div><span>PRE-FIRE DATASET</span><strong id="pre-quality">Not selected</strong></div><div><span>POST-FIRE DATASET</span><strong id="post-quality">Not selected</strong></div><div><span>SCENE COMPATIBILITY</span><strong id="scene-compatibility">Awaiting scene pair</strong></div></div><div class="status" id="analysis-status" role="status">Select one pre-fire and one post-fire scene to enable analysis.</div></section>
 <section id="analysis" class="panel analysis"><h2>03 / Observed spectral change</h2><p class="sub">dNBR = NBR before − NBR after, where NBR = (NIR − SWIR2) / (NIR + SWIR2). Pixel sample uses Sentinel-2 L2A Cloud-Optimized GeoTIFF assets. Results can be affected by cloud, smoke, shadows, misregistration, vegetation phenology and processing offsets.</p>
