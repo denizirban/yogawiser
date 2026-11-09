@@ -439,3 +439,19 @@ img { max-width: 100%; }
 .postfire-teaser-cta span{font-size:16px}
 @media(max-width:850px){.postfire-teaser-copy{grid-template-columns:1fr}.postfire-teaser-label{grid-row:auto;margin-bottom:3px}}
 @media(max-width:620px){.postfire-teaser{padding:15px 18px;align-items:flex-start;flex-direction:column;gap:12px}.postfire-teaser-cta{width:100%;justify-content:space-between}.postfire-teaser p{max-width:400px}}
+
+
+/* Mobile Ground hero: content-driven height, no dead space before preview. */
+@media (max-width:900px){
+  .ground-feature-grid{min-height:0;grid-template-columns:minmax(0,1fr)}
+  .ground-feature-copy{min-height:0;gap:0}
+  .ground-feature-cta{margin-top:12px}
+}
+@media (max-width:620px){
+  .ground-feature-copy{min-height:0;padding:30px 14px 22px}
+  .ground-feature-copy h1{font-size:clamp(43px,11.4vw,58px);line-height:.94}
+  .ground-feature-copy p{margin:20px 0 23px;max-width:36ch;line-height:1.48}
+  .ground-feature-cta{margin-top:0;padding-top:12px;min-height:44px}
+  .ground-feature-preview{grid-template-rows:auto auto}
+  .ground-preview-map{min-height:240px}
+}
