@@ -546,3 +546,14 @@ img { max-width: 100%; }
 @media(max-width:940px){.yw-pathways-intro{grid-template-columns:1fr;gap:22px}.yw-pathways-intro-aside{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:24px}.yw-pathways-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.yw-pathway:nth-child(2){border-right:0}.yw-pathway:last-child{grid-column:span 2;border-right:0;border-top:1px solid var(--yw-rule)}.yw-pathway:last-child .yw-pathway-link{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:46px minmax(0,1fr)}.yw-pathway:last-child .yw-pathway-meta{grid-column:1/-1}.yw-pathway:last-child .yw-pathway-media{height:auto;min-height:300px}.yw-pathway:last-child .yw-pathway-copy{min-height:300px}.yw-pathway-copy{min-height:290px}.yw-pathway-media{height:300px}}
 @media(max-width:680px){.yw-pathways-intro{padding:35px 14px 32px;gap:25px}.yw-eyebrow{font-size:9px;margin-bottom:27px}.yw-pathways h1{font-size:clamp(45px,10.2vw,74px);letter-spacing:-.07em}.yw-pathways-intro-aside{display:flex;gap:23px}.yw-pathways-intro-aside p{font-size:13px}.yw-pathways-intro-aside a{width:100%}.yw-pathways-grid{grid-template-columns:1fr}.yw-pathway{border-right:0;border-bottom:1px solid var(--yw-rule)}.yw-pathway:nth-child(2){border-right:0}.yw-pathway:last-child{grid-column:auto;border-top:0}.yw-pathway:last-child .yw-pathway-link{display:flex}.yw-pathway:last-child .yw-pathway-meta{display:flex}.yw-pathway:last-child .yw-pathway-media{height:250px;min-height:0}.yw-pathway:last-child .yw-pathway-copy{min-height:0}.yw-pathway-meta{min-height:43px;padding:11px 14px}.yw-pathway-media{height:250px}.yw-pathway-copy{padding:24px 14px 22px;min-height:0}.yw-pathway-kicker{margin-bottom:15px}.yw-pathway-copy h2{font-size:clamp(36px,9vw,48px);margin-bottom:12px}.yw-pathway-copy p{font-size:13px;margin-bottom:27px}.yw-pathways-bottom{padding:14px;font-size:9px}.yw-pathways-bottom span:last-child{display:none}.topbar .section-mark{display:none}}
 @media(prefers-reduced-motion:reduce){.yw-pathway-cta span:last-child,.yw-pathway-media:after{transition:none}}
+
+/* Keep the long homepage descriptor from colliding with navigation on tablets. */
+@media(max-width:1050px) and (min-width:621px){
+  .topbar{grid-template-columns:1fr auto;gap:15px}
+  .topbar .section-mark{display:none}
+  .topbar .nav{gap:15px}
+}
+@media(max-width:620px){
+  .topbar .nav{gap:10px}
+  .topbar .brand img{max-width:100px;object-fit:contain}
+}
