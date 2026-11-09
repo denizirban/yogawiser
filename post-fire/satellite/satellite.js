@@ -113,5 +113,5 @@ $('search').addEventListener('click',search);$('analyze').addEventListener('clic
 $('timeline-run').addEventListener('click',runTimeline);$('timeline-export').addEventListener('click',exportTimeline);
 $('download-csv').addEventListener('click',()=>exportResults('csv'));$('download-json').addEventListener('click',()=>exportResults('json'));$('download-png').addEventListener('click',()=>exportResults('png'));
 $('pre-scene').addEventListener('change',()=>{last=null;sceneQA();resetRGB();rgbAvailability();$('analysis').classList.remove('visible');timelineRows=[];$('timeline-export').disabled=true});$('post-scene').addEventListener('change',()=>{last=null;sceneQA();resetRGB();rgbAvailability();$('analysis').classList.remove('visible');timelineRows=[];$('timeline-export').disabled=true});
-if(!loadSharedStudy()&&new URLSearchParams(location.search).get('demo')==='manavgat2021')setTimeout(startDemo,150);
+const params=new URLSearchParams(location.search);if(!loadSharedStudy()){if(params.get('case')==='effis51931')setTimeout(loadOfficialEFFIS,150);else if(params.get('demo')==='manavgat2021')setTimeout(startDemo,150)}
 })();
