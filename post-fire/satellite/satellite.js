@@ -13,7 +13,8 @@ if(!geometries.length||geometries.length>60)throw Error('No supported polygon ge
 function inRing(point,ring){const [x,y]=point;let inside=false;for(let i=0,j=ring.length-1;i<ring.length;j=i++){const a=ring[i],b=ring[j];if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])inside=!inside}return inside}
 function inBounds(lon,lat,b){return lon>=b[0]&&lon<=b[2]&&lat>=b[1]&&lat<=b[3]}
 function polygonBounds(polygon){const ring=polygon[0];let w=Infinity,s=Infinity,e=-Infinity,n=-Infinity;for(const c of ring){w=Math.min(w,c[0]);s=Math.min(s,c[1]);e=Math.max(e,c[0]);n=Math.max(n,c[1])}return[w,s,e,n]}
-function insideROI(lon,lat,geometry=roi?.geometry){if(!geometry)return true;return geometry.coordinates.some(p=>p.length>0&&inBounds(lon,lat,polygonBounds(p))&&inRing([lon,lat],p[0])&&!p.slice(1).some(hole=>inRing([lon,lat],hole)))}
+const roiBoundsCache=new WeakMap();
+function insideROI(lon,lat,geometry=roi?.geometry){if(!geometry)return true;let bounds=roiBoundsCache.get(geometry);if(!bounds){bounds=geometry.coordinates.map(p=>polygonBounds(p));roiBoundsCache.set(geometry,bounds)}return geometry.coordinates.some((p,i)=>p.length>0&&inBounds(lon,lat,bounds[i])&&inRing([lon,lat],p[0])&&!p.slice(1).some(hole=>inRing([lon,lat],hole)))}
 function interiorStudyPoint(geometry,bounds,preferred){if(preferred&&inBounds(preferred[0],preferred[1],bounds)&&insideROI(preferred[0],preferred[1],geometry))return preferred;
  const polygons=geometry.coordinates.map(p=>({p,b:polygonBounds(p)})).sort((a,b)=>((b.b[2]-b.b[0])*(b.b[3]-b.b[1]))-((a.b[2]-a.b[0])*(a.b[3]-a.b[1])));
  for(const {b} of polygons){for(const fraction of [.5,.3,.7,.15,.85,.4,.6,.05,.95]){for(const f of [fraction,.5,.3,.7,.15,.85]){const lon=b[0]+(b[2]-b[0])*fraction,lat=b[1]+(b[3]-b[1])*f;if(insideROI(lon,lat,geometry))return[lon,lat]}}}
