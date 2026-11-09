@@ -536,3 +536,40 @@ img { max-width: 100%; }
 .sense-preview-map::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.4),transparent 25%,transparent 66%,rgba(0,0,0,.52));pointer-events:none}
 .sense-preview-map .sense-visual-label,.sense-preview-map .sense-visual-end{color:#fff;text-shadow:0 1px 7px rgba(0,0,0,.7)}
 .sense-preview-data{background:#e0e3dc}
+
+
+/* Atlas-inspired editorial split for Ground and SENSE.
+   Each experience is a full-width two-page spread, not a promotional card. */
+.ground-feature-grid,
+.sense-feature-content{grid-template-columns:minmax(0, 1fr) minmax(0, 1fr);height:clamp(310px,32vw,440px);min-height:0}
+.ground-feature-copy,
+.sense-feature-copy{padding:clamp(30px,4.2vw,60px) clamp(18px,3vw,48px);justify-content:center;align-items:flex-start}
+.ground-feature-copy h1,
+.sense-feature h2{font-size:clamp(42px,4.4vw,74px);line-height:.96;font-weight:500;letter-spacing:-.064em}
+.ground-feature-copy p,
+.sense-feature-copy p{font-size:14px;line-height:1.58;margin:22px 0 30px}
+.ground-feature-cta,
+.sense-feature-cta{margin-top:auto;max-width:470px;min-width:0;width:100%;padding-top:13px}
+.ground-feature-preview{border-left:1px solid var(--line)}
+.sense-feature-content{display:grid}
+.sense-feature-visual{grid-column:1;grid-row:1;display:block;height:100%;min-height:0;border-left:0;border-right:1px solid var(--line)}
+.sense-feature-copy{grid-column:2;grid-row:1;min-width:0}
+.sense-preview-map{height:100%;min-height:0}
+.sense-study-art{height:100%;width:100%;min-height:0;object-fit:cover}
+@media(max-width:960px){
+ .ground-feature-grid,.sense-feature-content{height:auto;grid-template-columns:minmax(0,1fr)}
+ .ground-feature-copy,.sense-feature-copy{padding:32px 18px 27px;justify-content:flex-start}
+ .ground-feature-copy h1,.sense-feature h2{font-size:clamp(40px,6.4vw,62px)}
+ .ground-feature-preview{border-left:0;border-top:1px solid var(--line)}
+ .sense-feature-visual{grid-column:1;grid-row:1;border:0;border-bottom:1px solid var(--line);height:clamp(260px,50vw,450px)}
+ .sense-feature-copy{grid-column:1;grid-row:2}
+ .sense-preview-map{height:100%}
+ .sense-study-art{height:100%}
+}
+@media(max-width:620px){
+ .ground-feature-copy,.sense-feature-copy{padding:24px 14px 22px}
+ .ground-feature-copy h1,.sense-feature h2{font-size:clamp(36px,10vw,48px)}
+ .ground-feature-copy p,.sense-feature-copy p{font-size:13px;margin:16px 0 25px}
+ .sense-feature-visual{height:270px}
+ .ground-preview-map{height:230px}
+}
