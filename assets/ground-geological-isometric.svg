@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="760" viewBox="0 0 1120 760" role="img" aria-labelledby="title desc">
+<title id="title">Ground — isometric geological landscape study</title>
+<desc id="desc">Editorial illustration of a three-dimensional landscape cutaway with colorful geological strata, river-like green bands, topographic contours, fine cartographic lines and an illustrated key. Conceptual artwork, not survey data.</desc>
+<defs>
+ <pattern id="grain" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".4" fill="#766650" opacity=".17"/><circle cx="5.5" cy="6.5" r=".35" fill="#766650" opacity=".11"/></pattern>
+ <pattern id="finegrid" width="76" height="76" patternUnits="userSpaceOnUse"><path d="M76 0H0V76" fill="none" stroke="#766b5f" stroke-opacity=".085" stroke-width=".8"/></pattern>
+ <clipPath id="surface"><path d="M548 130L1008 340L574 601L111 360Z"/></clipPath>
+ <clipPath id="leftface"><path d="M111 360L574 601L574 710L111 469Z"/></clipPath>
+ <clipPath id="rightface"><path d="M574 601L1008 340L1008 444L574 710Z"/></clipPath>
+ <linearGradient id="paper" x1="0" y1="0" x2=".96" y2="1"><stop stop-color="#f4f0e7"/><stop offset=".46" stop-color="#f1ebdf"/><stop offset="1" stop-color="#f3eadf"/></linearGradient>
+ <linearGradient id="fleft" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#efa271"/><stop offset="1" stop-color="#d66f64"/></linearGradient>
+ <linearGradient id="fright" x1="0" y1="0" x2=".6" y2="1"><stop stop-color="#ea9a71"/><stop offset="1" stop-color="#dc747c"/></linearGradient>
+ <filter id="shade" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="19"/></filter>
+</defs>
+<rect width="1120" height="760" fill="url(#paper)"/>
+<rect width="1120" height="760" fill="url(#grain)"/>
+<rect width="1120" height="760" fill="url(#finegrid)"/>
+<ellipse cx="583" cy="661" rx="410" ry="53" fill="#917767" opacity=".17" filter="url(#shade)"/>
+<g fill="none" stroke="#aa9583" stroke-width="1" opacity=".26">
+ <path d="M-60 504C218 379 373 456 590 481S924 535 1190 408"/>
+ <path d="M-49 534C216 416 390 488 589 517S907 573 1178 445"/>
+ <path d="M-42 574C225 452 398 518 590 549S906 603 1185 479"/>
+</g>
+<!-- The vertical cut faces -->
+<path d="M111 360L574 601L574 710L111 469Z" fill="url(#fleft)"/>
+<path d="M574 601L1008 340L1008 444L574 710Z" fill="url(#fright)"/>
+<g clip-path="url(#leftface)">
+ <path d="M35 370C221 400 297 526 457 526S620 651 670 650" stroke="#f6c95a" stroke-width="73" fill="none"/>
+ <path d="M41 390C211 429 306 547 458 560S619 666 665 672" stroke="#f2aa4a" stroke-width="23" fill="none"/>
+ <path d="M37 433C196 474 321 561 450 600S570 661 641 684" stroke="#f9d475" stroke-width="18" fill="none"/>
+ <path d="M74 418C211 447 323 555 443 563S566 623 632 659" stroke="#6f9a72" stroke-width="20" fill="none"/>
+ <path d="M51 465C169 480 312 613 425 624S572 705 627 703" stroke="#c87669" stroke-width="45" fill="none"/>
+ <path d="M84 377C156 426 172 432 257 460C339 491 389 565 471 565S546 603 628 646" stroke="#9c584f" stroke-width="1.4" fill="none" opacity=".75"/>
+ <path d="M111 398C231 418 305 548 450 545S570 632 630 636" stroke="#fff1d4" stroke-width="1.4" fill="none" opacity=".9"/>
+ <path d="M115 433C227 465 325 573 455 588S575 650 632 672" stroke="#6b4b48" stroke-width="1.1" fill="none" opacity=".76"/>
+ <path d="M89 461C199 497 307 595 436 615S589 677 645 703" stroke="#5d4d4b" stroke-width="1.1" fill="none" opacity=".6"/>
+</g>
+<g clip-path="url(#rightface)">
+ <path d="M525 641C682 538 839 464 1068 369" stroke="#f7cd6a" stroke-width="67" fill="none"/>
+ <path d="M526 672C681 574 882 479 1058 406" stroke="#dd697b" stroke-width="57" fill="none"/>
+ <path d="M533 692C694 601 836 533 1084 433" stroke="#f39773" stroke-width="20" fill="none"/>
+ <path d="M534 622C640 594 702 523 793 501S934 412 1021 394" stroke="#5c967a" stroke-width="29" fill="none"/>
+ <path d="M538 623C675 552 831 457 1060 370" stroke="#675653" stroke-width="1.7" fill="none" opacity=".55"/>
+ <path d="M538 650C662 580 847 495 1057 399" stroke="#795a54" stroke-width="1.5" fill="none" opacity=".56"/>
+ <path d="M541 691C685 620 869 524 1055 429" stroke="#805956" stroke-width="1.3" fill="none" opacity=".65"/>
+ <path d="M669 531C669 567 688 598 690 638M781 458C773 514 810 527 809 590M915 397C916 469 940 482 947 540" stroke="#6c4c47" stroke-width="1.1" fill="none" opacity=".44"/>
+</g>
+<!-- Topographic top plane -->
+<path d="M548 130L1008 340L574 601L111 360Z" fill="#f49a62"/>
+<g clip-path="url(#surface)">
+ <rect x="78" y="115" width="970" height="520" fill="#ed945e"/>
+ <path d="M40 188C230 99 342 127 443 202S675 279 778 247S943 220 1109 115" fill="none" stroke="#f5bd54" stroke-width="151"/>
+ <path d="M49 199C244 117 354 151 464 220S680 307 797 264S975 251 1093 163" fill="none" stroke="#ffca50" stroke-width="70"/>
+ <path d="M-4 375C166 252 314 276 421 340S670 453 786 402S1000 329 1120 344" fill="none" stroke="#f8c757" stroke-width="98"/>
+ <path d="M-24 420C192 293 336 320 452 393S692 474 797 434S1014 372 1110 387" fill="none" stroke="#ffdf6f" stroke-width="43"/>
+ <path d="M0 537C194 417 353 450 485 523S737 576 885 514S1114 456 1180 472" fill="none" stroke="#d97062" stroke-width="117"/>
+ <path d="M-3 557C205 430 350 474 478 547S718 602 885 531S1095 466 1160 478" fill="none" stroke="#e98c69" stroke-width="35"/>
+ <!-- River like green structural region -->
+ <path d="M477 104C462 219 549 272 606 340S651 419 616 466S681 545 758 593" stroke="#336f60" stroke-width="100" fill="none" opacity=".96"/>
+ <path d="M477 104C462 219 549 272 606 340S651 419 616 466S681 545 758 593" stroke="#83a36e" stroke-width="58" fill="none"/>
+ <path d="M480 108C476 207 564 279 611 338S634 420 605 462S678 550 751 598" stroke="#b4bf74" stroke-width="20" fill="none" opacity=".75"/>
+ <path d="M863 138C851 219 801 288 736 336S666 389 615 422" stroke="#367363" stroke-width="69" fill="none"/>
+ <path d="M862 137C849 212 803 287 745 328S679 381 616 425" stroke="#87a16b" stroke-width="37" fill="none"/>
+ <path d="M865 139C850 214 817 265 755 323S688 375 615 425" stroke="#bdd195" stroke-width="10" fill="none"/>
+ <path d="M184 279C283 281 363 302 418 335S551 375 606 374" stroke="#3d7262" stroke-width="66" fill="none"/>
+ <path d="M183 280C288 284 363 309 418 336S540 378 608 373" stroke="#90a577" stroke-width="34" fill="none"/>
+ <path d="M178 274C274 283 358 306 424 337S559 382 608 376" stroke="#d3d69b" stroke-width="10" fill="none"/>
+ <!-- Pink exposed region -->
+ <path d="M842 474C890 424 994 388 1054 350L1082 470L904 593L774 579Z" fill="#d9708c" opacity=".92"/>
+ <path d="M906 473C960 431 1002 421 1090 389" stroke="#ef9fb4" stroke-width="20" fill="none" opacity=".76"/>
+ <g fill="none" stroke="#6b5246" stroke-width="1.15" opacity=".62">
+  <path d="M-30 169C240 71 356 164 467 221S713 313 796 267S1017 227 1128 191"/>
+  <path d="M-13 199C209 118 341 183 463 249S689 338 815 294S1006 255 1140 226"/>
+  <path d="M-6 228C221 159 340 204 466 272S704 365 829 319S1012 282 1143 256"/>
+  <path d="M-17 326C149 231 337 258 446 322S662 414 804 364S993 294 1122 318"/>
+  <path d="M-9 353C156 265 336 280 448 345S669 435 814 391S996 329 1109 348"/>
+  <path d="M-13 386C154 306 343 319 469 376S699 466 813 425S1023 367 1129 379"/>
+  <path d="M-28 449C182 370 342 394 473 460S691 538 827 479S1004 420 1126 419"/>
+  <path d="M-19 476C196 402 351 415 493 487S699 551 854 500S1018 447 1142 443"/>
+  <path d="M-20 510C197 435 354 454 490 527S705 570 845 529S1041 471 1130 460"/>
+ </g>
+ <g stroke="#534740" stroke-width=".75" stroke-dasharray="3 4" opacity=".42" fill="none">
+  <path d="M275 122C290 320 384 394 410 650"/>
+  <path d="M682 125C630 254 725 426 718 643"/>
+  <path d="M876 167C809 250 883 376 857 569"/>
+ </g>
+ <!-- Sampling point markers -->
+ <g fill="#f4e7c9" stroke="#4e463e" stroke-width="1.5">
+   <circle cx="424" cy="315" r="5"/><circle cx="585" cy="470" r="5"/><circle cx="785" cy="349" r="5"/>
+ </g>
+ <g fill="#423c35" font-size="12" font-family="ui-monospace,Menlo,monospace">
+  <text x="331" y="235">Ch2</text><text x="618" y="241">Ch1</text><text x="724" y="448">Qal</text><text x="374" y="473">Ch3</text><text x="885" y="332">Ch3</text>
+ </g>
+</g>
+<g stroke="#403936" stroke-width="2.1" stroke-linejoin="round" fill="none">
+ <path d="M548 130L1008 340L574 601L111 360Z"/>
+ <path d="M111 360V469L574 710V601"/>
+ <path d="M1008 340V444L574 710"/>
+</g>
+<!-- Geological alignment ticks -->
+<g fill="none" stroke="#42382f" stroke-opacity=".7" stroke-width="1.15">
+ <path d="M111 360l-20 -9M196 405l-19 -7M283 450l-18 -6M370 495l-18 -6M458 543l-18 -6"/>
+ <path d="M574 601l0 15M659 550l6 13M748 497l7 12M836 443l9 13M928 388l9 13"/>
+</g>
+<!-- Key intentionally labelled as illustrative, avoiding scientific authority claims -->
+<g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">
+ <text x="46" y="63" fill="#302d29" font-size="13" letter-spacing="2.1">GROUND / LAND STUDY</text>
+ <path d="M46 77H262" stroke="#3c342f" stroke-width=".8"/>
+ <text x="46" y="98" fill="#7a6b5f" font-size="10.5" letter-spacing="1.4">SCHEMATIC STRATA</text>
+ <g font-size="10.5" fill="#4c433d">
+  <rect x="46" y="113" width="22" height="9" fill="#efaa48"/><text x="77" y="122">01 / SURFACE</text>
+  <rect x="46" y="135" width="22" height="9" fill="#e9805b"/><text x="77" y="144">02 / SUBSTRATE</text>
+  <rect x="46" y="157" width="22" height="9" fill="#77a07b"/><text x="77" y="166">03 / WATER</text>
+  <rect x="46" y="179" width="22" height="9" fill="#d97891"/><text x="77" y="188">04 / DEEP LAYER</text>
+ </g>
+ <text x="862" y="70" fill="#4b423b" font-size="11" letter-spacing="1.25">ISOMETRIC / STUDY 01</text>
+ <text x="862" y="90" fill="#88776c" font-size="9.5" letter-spacing=".6">CONCEPTUAL SECTION</text>
+ <text x="904" y="663" fill="#5c514b" font-size="10" letter-spacing="1">X / Y / Z</text>
+ <text x="47" y="721" fill="#7b6a5e" font-size="9.5" letter-spacing="1.1">TOPOGRAPHY / STRATA / FIELD OBSERVATION</text>
+</g>
+<g stroke="#62554c" stroke-width="1.2" fill="none" opacity=".8">
+ <path d="M951 654V599M951 654L991 677M951 654L912 679"/>
+</g>
+</svg>
