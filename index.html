@@ -316,16 +316,15 @@
 .entry[data-entry="sense"] .panel-annotation{color:#262324;text-shadow:0 1px 8px rgba(255,255,255,.85)}
 .entry[data-entry="sense"] .panel-art img{filter:saturate(.86) contrast(1.04)}
 
-  /* ATLAS is now a standalone editorial field guide. */
-  .atlas-entry-link{align-items:center;gap:clamp(8px,1.1vw,16px)}
-  .atlas-entry-link .type{top:0;align-self:center}
-  .atlas-landing-cover{display:block;margin-left:auto;align-self:center;width:clamp(94px,17vw,260px);height:clamp(65px,9vw,117px);overflow:hidden;flex:none;border:1px solid rgba(16,16,16,.1);background:#b4c5cf}
-  .atlas-landing-cover img{width:100%;height:100%;object-fit:cover;object-position:center 66%;display:block;transition:transform .7s cubic-bezier(.18,.65,.15,1)}
-  .atlas-entry-link:hover .atlas-landing-cover img{transform:scale(1.065)}
-  .atlas-entry-link .num{opacity:1;align-self:center;margin-left:0;font-size:14px}
-  @media(max-width:780px){.atlas-landing-cover{width:clamp(85px,23vw,175px);height:68px}}
-  @media(max-width:450px){.atlas-entry-link .type{display:none}.atlas-landing-cover{width:110px;height:68px}.atlas-entry-link .entry-name{font-size:clamp(36px,10vw,50px)}.atlas-entry-link .num{display:none}}
-  @media(prefers-reduced-motion:reduce){.atlas-landing-cover img{transition:none}}
+  /* Atlas appears only as a title in the landing index; the cover belongs on /atlas/. */
+  .atlas-entry-link{display:flex;align-items:baseline;gap:clamp(7px,1vw,14px);width:100%}
+  .atlas-entry-link .type{align-self:center}
+  .atlas-entry-link .num{margin-left:auto;align-self:center;opacity:1}
+  @media(max-width:450px){
+    .atlas-entry-link .entry-name{font-size:clamp(36px,10.2vw,51px)}
+    .atlas-entry-link .type{display:inline;top:-.2em}
+    .atlas-entry-link .num{display:none}
+  }
 </style>
 </head>
 <body>
@@ -357,7 +356,6 @@
     <section class="entry atlas-navigation-entry" id="atlas" data-entry="atlas">
       <a class="entry-trigger atlas-entry-link" href="/atlas/" target="_blank" rel="noopener noreferrer" aria-label="Open Yogawiser Atlas in a new tab">
         <span class="entry-name">ATLAS</span><span class="type">(REAL PLACES / FIELD GUIDE)</span>
-        <span class="atlas-landing-cover"><img src="assets/atlas-cover-majara.svg" alt="Majara Residence colored earth domes" loading="lazy" decoding="async"></span>
         <span class="num" aria-hidden="true">03 ↗</span>
       </a>
     </section>
