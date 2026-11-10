@@ -20,7 +20,7 @@
   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 />
 
-<title>Yogawiser — Atlas, Ground & SENSE</title>
+<title>Yogawiser — Ground, SENSE, Atlas & Field Notes</title>
 
 <meta
   name="description"
@@ -91,59 +91,163 @@
 }
 </script>
 
+  <style>
+  :root{--black:#101010;--paper:#f9f9f8;--ink:#0a0a0a;--muted:#5d5d5d;--line:#d2d2d0;--serif:Georgia,'Times New Roman',serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:Arial,Helvetica,sans-serif}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--black);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  button,a,input{font:inherit}
+  button{color:inherit}
+  a{color:inherit;text-decoration:none}
+  .sheet{width:min(1470px,calc(100% - clamp(24px,10vw,160px)));min-height:calc(100svh - 12vh);background:var(--paper);margin:6vh auto;padding:18px clamp(17px,2.5vw,38px) 38px;box-shadow:0 24px 75px rgba(0,0,0,.09)}
+  .mast{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:14px;min-height:94px}
+  .logo{display:inline-flex;align-items:flex-start;justify-content:start;width:36px;min-height:42px}
+  .logo img{height:38px;width:auto;max-width:31px;object-fit:contain;mix-blend-mode:multiply;display:none}
+  .logo svg{width:28px;height:38px;display:block}
+  .mast a:not(.logo):hover{text-decoration:underline;text-underline-offset:3px}
+  .mast-mid,.mast-end,.micro,.type,.num,.index-head,.in-panel-eyebrow,.data-row,.panel-link,.footer{font:10px/1.35 var(--mono);letter-spacing:.012em;text-transform:uppercase}
+  .mast-mid{text-align:center;padding-top:7px}
+  .mast-end{justify-self:end;display:flex;gap:22px;padding-top:7px}
+  .index-intro{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:0 0 17px;margin-bottom:10px;border-bottom:1px solid transparent}
+  .index-intro p{margin:0}
+  .index-intro .left{font:10px var(--mono);letter-spacing:.05em}
+  .index-intro .right{font:10px var(--mono);color:var(--muted);text-align:right}
+  .index{margin:0;padding:0;list-style:none}
+  .entry{scroll-margin-top:75px;position:relative}
+  .entry-trigger{display:flex;align-items:baseline;text-align:left;gap:clamp(7px,1vw,14px);width:100%;background:transparent;border:0;padding:0;cursor:pointer;line-height:.93;position:relative;letter-spacing:-.085em;transition:transform .24s cubic-bezier(.2,.8,.2,1)}
+  .entry-trigger:hover{transform:translateX(8px)}
+  .entry-trigger:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
+  .entry-name{font-size:clamp(52px,6.7vw,110px);font-weight:400;line-height:.95;letter-spacing:-.086em;display:inline-block;max-width:100%;white-space:nowrap}
+  .entry-meta{display:flex;align-items:center;gap:14px;min-width:0}
+  .type{font-size:clamp(8px,.85vw,12px);letter-spacing:-.03em;white-space:nowrap;align-self:center;position:relative;top:-.7em}
+  .num{margin-left:auto;align-self:center;font-size:11px;line-height:1;opacity:0;transition:opacity .2s}
+  .entry-trigger:hover .num,.entry.is-open .num{opacity:1}
+  .entry.is-open .entry-trigger{font-weight:400}
+  .entry.is-open .entry-name{letter-spacing:-.096em}
+  .entry-panel{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .45s cubic-bezier(.22,.7,.19,1),opacity .25s;overflow:hidden}
+  .entry-panel-inner{min-height:0;overflow:hidden}
+  .entry.is-open .entry-panel{grid-template-rows:1fr;opacity:1}
+  .panel-wrap{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:17px 0 29px;padding:18px 0;display:grid;grid-template-columns:minmax(0,1.22fr) minmax(270px,.78fr);gap:clamp(16px,3.7vw,54px);align-items:stretch}
+  .panel-art{position:relative;min-height:270px;aspect-ratio:1.62;background:#e9e9e6;overflow:hidden}
+  .panel-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.96);transition:transform 1.3s cubic-bezier(.2,.7,.3,1)}
+  .entry.is-open .panel-art:hover img{transform:scale(1.045)}
+  .panel-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(12,15,13,.1),transparent 18%,transparent 72%,rgba(12,15,13,.1))}
+  .panel-annotation{position:absolute;bottom:12px;left:14px;right:14px;display:flex;justify-content:space-between;font:10px var(--mono);color:#191919;text-shadow:0 1px 3px rgba(255,255,255,.8);z-index:1}
+  .panel-art.dark .panel-annotation{color:white;text-shadow:0 1px 8px #111}
+  .panel-info{padding:4px 0 2px;display:flex;flex-direction:column;align-items:flex-start}
+  .in-panel-eyebrow{color:#686868;margin:0 0 23px}
+  .panel-info h2{font-size:clamp(33px,3.5vw,60px);line-height:.99;letter-spacing:-.07em;font-weight:400;margin:0 0 16px;max-width:14ch}
+  .panel-info h2 em{font-family:var(--serif);font-weight:400}
+  .panel-info p{font-size:clamp(14px,1.2vw,17px);line-height:1.5;max-width:38ch;color:#4c4c4c;margin:0 0 28px}
+  .data-row{width:100%;display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:11px 0;color:var(--muted)}
+  .data-row strong{font:inherit;color:var(--ink)}
+  .panel-link{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;border-top:1px solid var(--ink);padding:16px 1px 0;min-height:40px;transition:opacity .2s}
+  .panel-link:hover{opacity:.5}
+  .panel-link b{font-weight:400;font-size:20px;line-height:8px}
+  .scanning{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(255,255,255,.2) 50%,transparent 60%);background-size:100% 200%;animation:scan 11s ease-in-out infinite;pointer-events:none}
+  .sense-signal{position:absolute;z-index:1;inset:0;pointer-events:none;opacity:.7}
+  .sense-signal:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(90,22,95,.27)),repeating-linear-gradient(90deg,rgba(255,255,255,.15) 0 1px,transparent 1px 49px);mix-blend-mode:screen;animation:senseMove 14s linear infinite}
+  .sense-signal:after{content:"";position:absolute;left:47%;top:48%;width:140px;height:140px;transform:translate(-50%,-50%);border:1px solid #fff;border-radius:50%;box-shadow:0 0 0 32px rgba(255,255,255,.08),0 0 0 70px rgba(255,255,255,.05);animation:pulse 4s ease-in-out infinite}
+  .diagram{position:absolute;inset:0;background:#e5e7dc;overflow:hidden}
+  .diagram svg{width:100%;height:100%;display:block}
+  .about-art{background:#e4e5df;display:grid;place-items:center}
+  .about-art svg{width:72%;height:72%}
+  .divider{margin:clamp(45px,8vh,120px) 0 18px;border-top:1px solid var(--ink)}
+  .closing{display:grid;grid-template-columns:1fr minmax(230px,.35fr);gap:35px;padding:22px 0 56px}
+  .closing p{font:italic clamp(26px,3.5vw,53px)/1.08 var(--serif);letter-spacing:-.05em;margin:0;max-width:20ch}
+  .closing aside{align-self:end;font-size:13px;line-height:1.45;color:#5d5d5d}
+  .footer{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px;color:#737373;gap:12px}
+  @keyframes scan{0%{background-position:0 -150%}100%{background-position:0 150%}}
+  @keyframes senseMove{0%{transform:translateX(-30px)}100%{transform:translateX(30px)}}
+  @keyframes pulse{0%,100%{opacity:.3;scale:.9}50%{opacity:1;scale:1.04}}
+  @media(max-width:1200px){.entry-name{font-size:clamp(50px,6.3vw,86px)}}
+  @media(max-width:780px){
+   .sheet{width:calc(100% - 24px);margin:12px auto;padding:16px 17px 26px}
+   .mast{min-height:73px}
+   .index-intro .right{display:none}
+   .entry-name{font-size:clamp(43px,9vw,72px)}
+   .type{font-size:9px;top:-.32em;white-space:normal;max-width:120px;line-height:1.16}
+   .panel-wrap{grid-template-columns:1fr;gap:21px;padding:14px 0}
+   .panel-art{aspect-ratio:1.55;min-height:180px}
+   .panel-info h2{max-width:18ch}
+   .closing{grid-template-columns:1fr}
+   .closing aside{max-width:35ch}
+  }
+  @media(max-width:450px){
+   .sheet{width:calc(100% - 16px);padding:12px 13px 22px;margin:8px auto}
+   .mast{min-height:69px}
+   .mast-end{gap:11px}
+   .entry-trigger{gap:6px}
+   .entry-name{font-size:clamp(36px,10.2vw,51px);letter-spacing:-.092em}
+   .type{font-size:7.5px;line-height:1.1;top:-.2em;max-width:80px}
+   .num{display:none}
+   .panel-art{min-height:180px}
+   .panel-info p{margin-bottom:18px}
+   .closing p{font-size:32px}
+   .index-intro{padding-bottom:8px}
+  }
+  @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+  
+  /* Editorial index and integrated Atlas; no preview popovers. */
+  .mast-end{gap:clamp(9px,1.35vw,21px)}
+  .mast-end a{font-size:10px;white-space:nowrap}
+  .atlas-inline{overflow:hidden}
+  .atlas-inline .search-zone{margin-top:12px;padding:30px 18px 20px;background:#f3f3ef;border:1px solid var(--line)}
+  .atlas-inline .search-zone .intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(220px,.7fr)}
+  .atlas-inline .search-zone .intro h1{font-size:clamp(32px,3.5vw,55px);letter-spacing:-.056em;line-height:1}
+  .atlas-inline .atlas-shell{min-height:500px;background:#f4f4f0;border:1px solid var(--line);border-top:0}
+  .atlas-inline .story-panel{top:0;height:min(750px,90vh);position:sticky}
+  .atlas-inline .story-media-wrap{height:min(40vh,420px);min-height:260px}
+  .contact-art{background:#f0f0ed;padding:clamp(20px,3vw,46px);border:1px solid var(--line);min-height:340px;display:flex;align-items:center}
+  .contact-form{width:100%;max-width:590px;display:grid;gap:17px}
+  .contact-kicker{font:10px var(--mono);letter-spacing:.04em}
+  .contact-form label{display:grid;gap:6px;font:10px var(--mono);letter-spacing:.035em}
+  .contact-form input,.contact-form textarea{background:transparent;color:#111;border:0;border-bottom:1px solid #999;padding:11px 0;font:15px/1.45 var(--sans);border-radius:0;resize:vertical;outline-offset:2px;width:100%}
+  .contact-form input:focus,.contact-form textarea:focus{border-color:#111}
+  .contact-form input::placeholder,.contact-form textarea::placeholder{color:#848484}
+  .contact-submit{display:flex;justify-content:space-between;align-items:center;border:0;border-top:1px solid #111;background:transparent;padding:15px 0 3px;cursor:pointer;font:11px var(--mono);letter-spacing:.035em}
+  .contact-submit:hover{opacity:.58}
+  .contact-status{min-height:18px;margin:0;font:12px/1.35 var(--sans);color:#535353}
+  .contact-status[data-error="true"]{color:#9b3030}
+  .contact-honey{position:absolute!important;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+  .entry[data-entry="about"] .panel-info p{margin-bottom:28px}
+  .entry[data-entry="postfire"] .entry-name{font-size:clamp(43px,5vw,78px)}
+  @media(max-width:960px){.atlas-inline .atlas-shell{display:block}.atlas-inline .story-panel{position:relative;height:auto}.atlas-inline .story-media-wrap{height:380px}.atlas-inline .search-zone .intro{grid-template-columns:1fr}}
+  @media(max-width:450px){.mast{grid-template-columns:auto 1fr}.mast-mid{display:none}.mast-end{gap:9px;flex-wrap:wrap;max-width:240px;justify-content:flex-end}.mast-end a{font-size:8px}.entry[data-entry="postfire"] .entry-name{font-size:clamp(27px,7.8vw,42px)}.contact-art{padding:18px 14px}.atlas-inline .search-zone{padding:19px 12px}.atlas-inline .story-media-wrap{height:300px}.entry[data-entry="atlas"] .entry-name{font-size:clamp(36px,10vw,51px)}}
+  
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="Yogawiser home"><img src="assets/yogawiser-logo-transparent.png" alt="Yogawiser" /></a>
-    <span class="section-mark">ATLAS</span>
-    <nav class="nav" aria-label="Primary navigation">
-      <a class="nav-ground" href="/ground/">Ground</a>
-      <a href="/post-fire/">Post-Fire Lab</a>
-      <a href="/sense/">SENSE</a>
-      <a href="#atlas">Index</a>
-      <a href="#about">About</a>
-    </nav>
+<main class="sheet" id="top">
+  <header class="mast">
+    <a href="#top" class="logo" aria-label="Yogawiser home">
+      <img src="assets/yogawiser-logo-transparent.png" alt="Yogawiser" onload="this.style.display='block';this.nextElementSibling.style.display='none'" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg viewBox="0 0 529 708" aria-hidden="true"><path fill="#101010" d="M359 62H468V311L290 394L467 474V656H232V548H394L204 464C109 421 60 345 60 229H143C143 279 160 311 192 331L359 236Z"/></svg>
+    </a>
+    <span class="mast-mid">FIELD NOTES / INDEX</span>
+    <nav class="mast-end" aria-label="Site sections"><a href="#ground">GROUND</a><a href="#sense">SENSE</a><a href="#atlas">ATLAS</a><a href="#about">ABOUT</a></nav>
   </header>
-
-  <section class="postfire-teaser" aria-labelledby="postfire-teaser-title">
-    <div class="postfire-teaser-copy"><h2 id="postfire-teaser-title">What grows back after a fire?</h2><p>Explore ecological recovery scenarios and real satellite observations.</p></div>
-    <a class="postfire-teaser-cta" href="/post-fire/">EXPLORE POST-FIRE LAB <span aria-hidden="true">↗</span></a>
-  </section>
-
-  <section class="ground-feature" aria-labelledby="ground-feature-title">
-    <div class="ground-feature-head">
-      <p class="ground-feature-kicker">GROUND / EARLY ACCESS</p>
-      <a href="/ground/" class="ground-feature-open">OPEN TOOL ↗</a>
-    </div>
-    <div class="ground-feature-grid">
-      <div class="ground-feature-copy">
-        <h1 id="ground-feature-title">Draw a piece of land.<br>See what could grow.</h1>
-        <p>Compare crops, water demand, planting patterns and hot-season risk before you plant.</p>
-        <a href="/ground/" class="ground-feature-cta">ANALYSE YOUR SPACE <span>→</span></a>
-      </div>
-      <div class="ground-feature-preview" aria-hidden="true">
-        <div class="ground-preview-map">
-          <img class="ground-geology-art" src="assets/ground-geological-isometric.svg" alt="" loading="eager" decoding="async" />
-          <span class="ground-map-label">SITE / CLIMATE / WATER</span>
-        </div>
-        <div class="ground-preview-data">
-          <div><span>AREA</span><strong>1,240 m²</strong></div>
-          <div><span>WATER</span><strong>MEDIUM</strong></div>
-          <div><span>SCENARIOS</span><strong>03</strong></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sense-feature" aria-labelledby="sense-feature-title"><div class="sense-feature-top"><span>YOGAWISER / SENSE · EXPERIENCE DESIGN</span><a href="/sense/">OPEN SENSE ↗</a></div><div class="sense-feature-content"><div class="sense-feature-copy"><h2 id="sense-feature-title">Nature.<br><em>Beyond the screen.</em></h2><p>A new direction for responsive spaces, immersive nature and embodied experience. Explore real installations that are changing how people inhabit art, architecture and the natural world.</p><a class="sense-feature-cta" href="/sense/">DISCOVER SENSE & REAL-WORLD REFERENCES <span aria-hidden="true">→</span></a></div><div class="sense-feature-visual" aria-hidden="true">
-  <div class="sense-preview-map">
-    <img class="sense-study-art" src="assets/sense-exhibition-photo.svg" alt="" loading="lazy" decoding="async">
-    <span class="sense-visual-label">MOVEMENT → RESPONSE</span>
-    <span class="sense-visual-end">SPACE / LIGHT / SENSING</span>
-  </div>
-</div></div></section>
-
-  <section class="search-zone" aria-labelledby="atlas-title">
+  <div class="index-intro" id="index"><p class="left">YOGAWISER / SELECTED STUDIES</p><p class="right">CLICK A TITLE TO EXPAND ITS WORLD ↓</p></div>
+  <div class="index">
+    <section class="entry" id="ground" data-entry="ground">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-ground"><span class="entry-name">GROUND</span><span class="type">(LAND / PLANNING)</span><span class="num">01 ↘</span></button>
+      <div class="entry-panel" id="panel-ground" role="region" aria-label="Ground details"><div class="entry-panel-inner"><div class="panel-wrap">
+        <div class="panel-art"><img src="assets/ground-geological-isometric.svg" alt="Colorful geological cutaway with topographic layers" decoding="async"><span class="scanning" aria-hidden="true"></span><div class="panel-annotation"><span>LAND / STRUCTURE</span><span>01 / GROUND</span></div></div>
+        <div class="panel-info"><span class="in-panel-eyebrow">01 / SITE STUDY</span><h2>Draw a piece of land. <em>See what could grow.</em></h2><p>Sketch a site, consider climate and water, and compare what a landscape might support.</p><div class="data-row"><span>METHOD</span><strong>LAND / WATER / CLIMATE</strong></div><div class="data-row"><span>FORMAT</span><strong>INTERACTIVE STUDY</strong></div><a class="panel-link" href="https://www.yogawiser.com/ground/" target="_blank" rel="noopener noreferrer"><span>OPEN GROUND</span><b>↗</b></a></div>
+      </div></div></div>
+    </section>
+    <section class="entry" id="sense" data-entry="sense">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-sense"><span class="entry-name">SENSE</span><span class="type">(SPATIAL EXPERIENCE)</span><span class="num">02 ↘</span></button>
+      <div class="entry-panel" id="panel-sense" role="region" aria-label="Sense details"><div class="entry-panel-inner"><div class="panel-wrap">
+        <div class="panel-art dark"><img src="assets/sense-exhibition-photo.svg" alt="Immersive art installation with projected imagery and seated visitors" loading="lazy" decoding="async"><span class="sense-signal" aria-hidden="true"></span><div class="panel-annotation"><span>FEELING THE INVISIBLE</span><span>02 / SENSE</span></div></div>
+        <div class="panel-info"><span class="in-panel-eyebrow">02 / EXPERIENCE STUDY</span><h2>Nature, <em>beyond the screen.</em></h2><p>Explore responsive environments shaped by movement, light, presence and immersive nature.</p><div class="data-row"><span>LANGUAGE</span><strong>LIGHT / MOTION / SPACE</strong></div><div class="data-row"><span>FORMAT</span><strong>EXPERIENCE DESIGN</strong></div><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>OPEN SENSE</span><b>↗</b></a></div>
+      </div></div></div>
+    </section>
+    <section class="entry" id="atlas" data-entry="atlas">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-atlas"><span class="entry-name">ATLAS</span><span class="type">(REAL PLACES / FIELD GUIDE)</span><span class="num">03 ↘</span></button>
+      <div class="entry-panel" id="panel-atlas" role="region" aria-label="Atlas place index">
+        <div class="entry-panel-inner atlas-inline">
+            <section class="search-zone" aria-labelledby="atlas-title">
     <div class="intro">
       <h1 id="atlas-title">A field guide to places where another way of living already exists.</h1>
       <p>Real places. Working systems. Things you can visit, learn from, and sometimes copy.</p>
@@ -163,7 +267,7 @@
     </div>
   </section>
 
-  <main id="atlas" class="atlas-shell">
+  <div class="atlas-shell" aria-label="Atlas place index">
     <section class="index-panel" aria-label="Atlas places">
       <div class="index-head">
         <span>PLACE</span>
@@ -211,18 +315,95 @@
         </div>
       </div>
     </aside>
-  </main>
+  </div>
 
-  <section id="about" class="about-section">
-    <p class="about-kicker">ABOUT</p>
-    <p class="about-copy">Yogawiser explores how we observe, understand and experience natural systems. ATLAS documents real places, GROUND helps plan resilient spaces, POST-FIRE investigates ecological change, and SENSE explores immersive worlds shaped by nature and human presence.</p>
-  </section>
 
-  <footer class="footer">
-    <p>YOGAWISER ATLAS / PROTOTYPE 002</p>
-    <p>50 places. More evidence soon.</p>
-  </footer>
-
-  <script src="script.js"></script>
+        </div>
+      </div>
+    </section>
+    <section class="entry" id="about" data-entry="about">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-about"><span class="entry-name">ABOUT</span><span class="type">(INDEPENDENT RESEARCH)</span><span class="num">04 ↘</span></button>
+      <div class="entry-panel" id="panel-about" role="region" aria-label="About details"><div class="entry-panel-inner"><div class="panel-wrap">
+        <div class="contact-art">
+          <form class="contact-form" id="contact-form-home" autocomplete="on">
+            <span class="contact-kicker">SEND A MESSAGE / 01</span>
+            <label for="contact-name">YOUR NAME <input id="contact-name" name="name" maxlength="100" autocomplete="name" placeholder="Name" required></label>
+            <label for="contact-email">EMAIL ADDRESS <input id="contact-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="name@example.com" required></label>
+            <label for="contact-message">MESSAGE <textarea id="contact-message" name="message" rows="5" maxlength="5000" placeholder="What would you like to discuss?" required></textarea></label>
+            <div class="contact-honey" aria-hidden="true"><label>Leave blank <input name="_honey" tabindex="-1" autocomplete="off"></label></div>
+            <button class="contact-submit" type="submit"><span>SEND MESSAGE</span><span aria-hidden="true">↗</span></button>
+            <p class="contact-status" aria-live="polite" role="status"></p>
+          </form>
+        </div>
+        <div class="panel-info"><span class="in-panel-eyebrow">04 / ABOUT THE PLATFORM</span><h2>Observe. Understand. <em>Experience.</em></h2><p>Yogawiser documents different ways of living, studying and designing with nature: from the ground beneath us to the spaces around us.</p><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>EXPLORE YOGAWISER SENSE</span><b>↗</b></a></div>
+      </div></div></div>
+    </section>
+    <section class="entry" id="postfire" data-entry="postfire">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-postfire"><span class="entry-name">POST–FIRE LAB</span><span class="type">(INTRODUCTION / ECOLOGICAL CHANGE)</span><span class="num">05 ↘</span></button>
+      <div class="entry-panel" id="panel-postfire" role="region" aria-label="Post-Fire Lab details"><div class="entry-panel-inner"><div class="panel-wrap">
+        <div class="panel-art diagram" role="img" aria-label="Schematic regeneration study showing a recovering landscape in stages">
+          <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="800" height="520" fill="#e1e3db"/><path d="M-20 330C140 250 260 295 376 243S675 130 832 175L832 520H-20Z" fill="#9caa88"/><path d="M-20 384C140 304 270 345 397 280S685 193 820 231L830 520H-20Z" fill="#b7b69a"/><path d="M-20 420C190 357 284 394 433 329S688 245 820 285L825 520H-20Z" fill="#6c835f"/><path d="M-20 448C153 380 283 432 406 378S665 311 830 336" fill="none" stroke="#d8c1a4" stroke-width="3"/><g stroke="#444b3a" stroke-width="2" fill="none" opacity=".65"><path d="M130 350V246m-18 27l18-50 18 50m-34-42h33"/><path d="M367 285V196m-23 35l23-57 23 57m-35-39h28"/><path d="M593 253V141m-27 38l27-63 27 63m-35-48h36"/></g><g stroke="#f1e7d8" stroke-opacity=".5"><path d="M0 65H800M0 130H800M0 195H800M0 260H800M0 325H800M0 390H800M130 0V520M260 0V520M390 0V520M520 0V520M650 0V520M780 0V520"/></g><text x="22" y="38" font-size="14" font-family="monospace">REGENERATION / SCHEMATIC STUDY</text><text x="22" y="496" font-size="13" font-family="monospace">T0 — T1 — T2 / CONCEPTUAL</text></svg>
+          <div class="panel-annotation"><span>RECOVERY / TIME</span><span>03 / POST–FIRE</span></div>
+        </div>
+        <div class="panel-info"><span class="in-panel-eyebrow">INTRODUCTION / ECOLOGICAL CHANGE</span><h2>What grows back <em>after a fire?</em></h2><p>Study possible pathways of regeneration through landscape scenarios and satellite observations.</p><div class="data-row"><span>FOCUS</span><strong>RECOVERY / VEGETATION</strong></div><div class="data-row"><span>FORMAT</span><strong>SCENARIOS / OBSERVATIONS</strong></div><a class="panel-link" href="https://www.yogawiser.com/post-fire/" target="_blank" rel="noopener noreferrer"><span>OPEN POST–FIRE LAB</span><b>↗</b></a></div>
+      </div></div></div>
+    </section>
+  </div>
+  <div class="divider" aria-hidden="true"></div>
+  <section class="closing" id="closing"><p>From the ground beneath us to the spaces <em>around us.</em></p><aside>Nature · intelligence · experience.<br>An evolving index of site studies, spatial experiments and regenerative worlds.</aside></section>
+  <footer class="footer"><span>YOGAWISER / SELECTED STUDIES</span><a href="#top">BACK TO TOP ↑</a><span>© 2026</span></footer>
+</main>
+<script>
+(function(){
+ const entries=[...document.querySelectorAll('.entry')];
+ const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function setOpen(entry,open){
+  entry.classList.toggle('is-open',open);
+  entry.querySelector('.entry-trigger').setAttribute('aria-expanded',String(open));
+ }
+ entries.forEach(entry=>{
+  entry.querySelector('.entry-trigger').addEventListener('click',()=>{
+   const open=!entry.classList.contains('is-open');
+   entries.forEach(other=>setOpen(other,false));
+   setOpen(entry,open);
+   if(open)window.setTimeout(()=>entry.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'}),100);
+  });
+ });
+ document.addEventListener('keydown',event=>{
+  if(event.key==='Escape')entries.forEach(entry=>setOpen(entry,false));
+ });
+})();
+</script>
+<script src="script.js"></script>
+<script>
+(function(){
+  const recipient=atob("ZGVuaXppcmJhbkBnbWFpbC5jb20=");
+  for(const form of document.querySelectorAll(".contact-form")){
+    form.addEventListener("submit",async event=>{
+      event.preventDefault();
+      const status=form.querySelector(".contact-status");
+      const submit=form.querySelector("button[type=submit]");
+      status.textContent="";
+      status.removeAttribute("data-error");
+      if(!form.reportValidity())return;
+      if((form.querySelector('[name="_honey"]')?.value||"").trim())return;
+      const fd=new FormData(form);
+      const data={name:String(fd.get("name")||"").trim(),email:String(fd.get("email")||"").trim(),message:String(fd.get("message")||"").trim(),_subject:"Yogawiser — New Contact Message",_template:"table",_url:location.href};
+      if(!data.name||!data.email||!data.message)return;
+      submit.disabled=true;status.textContent="Sending…";
+      try{
+        const response=await fetch("https://formsubmit.co/ajax/"+encodeURIComponent(recipient),{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)});
+        const result=await response.json();
+        if(!response.ok||result.success===false||result.success==="false")throw new Error("Provider declined the request");
+        form.reset();
+        status.textContent="Message submitted. Thank you.";
+      }catch(err){
+        status.setAttribute("data-error","true");
+        status.textContent="We couldn't send your message. Please try again.";
+      }finally{submit.disabled=false}
+    });
+  }
+})();
+</script>
 </body>
 </html>
