@@ -315,6 +315,17 @@
 
 .entry[data-entry="sense"] .panel-annotation{color:#262324;text-shadow:0 1px 8px rgba(255,255,255,.85)}
 .entry[data-entry="sense"] .panel-art img{filter:saturate(.86) contrast(1.04)}
+
+  /* ATLAS is now a standalone editorial field guide. */
+  .atlas-entry-link{align-items:center;gap:clamp(8px,1.1vw,16px)}
+  .atlas-entry-link .type{top:0;align-self:center}
+  .atlas-landing-cover{display:block;margin-left:auto;align-self:center;width:clamp(94px,17vw,260px);height:clamp(65px,9vw,117px);overflow:hidden;flex:none;border:1px solid rgba(16,16,16,.1);background:#b4c5cf}
+  .atlas-landing-cover img{width:100%;height:100%;object-fit:cover;object-position:center 66%;display:block;transition:transform .7s cubic-bezier(.18,.65,.15,1)}
+  .atlas-entry-link:hover .atlas-landing-cover img{transform:scale(1.065)}
+  .atlas-entry-link .num{opacity:1;align-self:center;margin-left:0;font-size:14px}
+  @media(max-width:780px){.atlas-landing-cover{width:clamp(85px,23vw,175px);height:68px}}
+  @media(max-width:450px){.atlas-entry-link .type{display:none}.atlas-landing-cover{width:110px;height:68px}.atlas-entry-link .entry-name{font-size:clamp(36px,10vw,50px)}.atlas-entry-link .num{display:none}}
+  @media(prefers-reduced-motion:reduce){.atlas-landing-cover img{transition:none}}
 </style>
 </head>
 <body>
@@ -325,7 +336,7 @@
       <svg viewBox="0 0 529 708" aria-hidden="true"><path fill="#101010" d="M359 62H468V311L290 394L467 474V656H232V548H394L204 464C109 421 60 345 60 229H143C143 279 160 311 192 331L359 236Z"/></svg>
     </a>
     <span class="mast-mid">FIELD NOTES / INDEX</span>
-    <nav class="mast-end" aria-label="Site sections"><a href="#ground">GROUND</a><a href="#sense">SENSE</a><a href="#atlas">ATLAS</a><a href="#about">ABOUT</a></nav>
+    <nav class="mast-end" aria-label="Site sections"><a href="#ground">GROUND</a><a href="#sense">SENSE</a><a href="/atlas/" target="_blank" rel="noopener noreferrer">ATLAS</a><a href="#about">ABOUT</a></nav>
   </header>
   <div class="index-intro" id="index"><p class="left">YOGAWISER / SELECTED STUDIES</p><p class="right">CLICK A TITLE TO EXPAND ITS WORLD ↓</p></div>
   <div class="index">
@@ -343,92 +354,12 @@
         <div class="panel-info"><span class="in-panel-eyebrow">02 / EXPERIENCE STUDY</span><h2>Nature,<br><em>beyond the screen.</em></h2><p>Explore responsive environments shaped by movement, light, presence and immersive nature.</p><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>OPEN SENSE</span><b>↗</b></a></div>
       </div></div></div>
     </section>
-    <section class="entry" id="atlas" data-entry="atlas">
-      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-atlas"><span class="entry-name">ATLAS</span><span class="type">(REAL PLACES / FIELD GUIDE)</span><span class="num">03 ↘</span></button>
-      <div class="entry-panel" id="panel-atlas" role="region" aria-label="Atlas place index">
-        <div class="entry-panel-inner atlas-inline">
-            <section class="search-zone" aria-labelledby="atlas-title">
-    <div class="intro">
-      <h1 id="atlas-title">A field guide to places where another way of living already exists.</h1>
-      <p>Real places. Working systems. Things you can visit, learn from, and sometimes copy.</p>
-    </div>
-    <label class="search" for="atlas-search">
-      <span class="search-label">Search</span>
-      <input id="atlas-search" type="search" autocomplete="off" placeholder="Search by city, place or system" aria-label="Search by city, place or system" />
-      <span class="search-arrow" aria-hidden="true">↘</span>
-    </label>
-    <div class="quick-filters" aria-label="Suggested searches">
-      <button type="button" data-query="Berlin">Berlin</button>
-      <button type="button" data-query="Amsterdam">Amsterdam</button>
-      <button type="button" data-query="Food">Food</button>
-      <button type="button" data-query="Materials">Materials</button>
-      <button type="button" data-query="Energy">Energy</button>
-      <button type="button" data-query="Community">Community</button>
-    </div>
-  </section>
-
-  <div class="atlas-shell" aria-label="Atlas place index">
-    <section class="index-panel" aria-label="Atlas places">
-      <div class="index-head">
-        <span>PLACE</span>
-        <span>SYSTEM</span>
-        <span id="result-count">50 / 50</span>
-      </div>
-      <div class="atlas-scroll-controls">
-        <span>SELECT A PLACE / SCROLL THE INDEX</span>
-        <div class="atlas-scroll-buttons" role="group" aria-label="Scroll places">
-          <button class="atlas-scroll-btn" type="button" id="atlas-scroll-up" aria-label="Scroll Atlas list up" title="Scroll up">↑</button>
-          <button class="atlas-scroll-btn" type="button" id="atlas-scroll-down" aria-label="Scroll Atlas list down" title="Scroll down">↓</button>
-        </div>
-      </div>
-      <div class="atlas-list-viewport" id="atlas-list-viewport" tabindex="0" role="region" aria-label="Atlas places, scroll for more">
-        <div id="place-list" class="place-list"></div>
-        <div id="empty-state" class="empty-state" hidden>
-          <p>No evidence here yet.</p>
-          <button id="clear-search" type="button">Clear search</button>
-        </div>
-      </div>
-    </section>
-
-    <aside class="story-panel" aria-live="polite">
-      <div class="story-media-wrap">
-        <img id="story-image" class="story-image" src="assets/de-ceuvel.jpg" alt="" />
-        <div class="story-counter"><span id="story-number">01</span> / <span id="story-total">50</span></div>
-        <div id="photo-credit" class="photo-credit"></div>
-      </div>
-
-      <div class="story-copy">
-        <div class="story-title-row">
-          <div>
-            <p id="story-location" class="eyebrow"></p>
-            <h2 id="story-title"></h2>
-          </div>
-          <a id="story-link" class="visit-link" href="#" target="_blank" rel="noopener noreferrer">VISIT ↗</a>
-        </div>
-
-        <div class="story-grid">
-          <div>
-            <p class="label">WHAT THEY CHANGED</p>
-            <p id="story-changed" class="body-copy"></p>
-          </div>
-          <div>
-            <p class="label">WHY IT MATTERS</p>
-            <p id="story-matters" class="body-copy"></p>
-          </div>
-        </div>
-
-        <div class="story-meta">
-          <div><span class="label">SYSTEM</span><span id="story-system"></span></div>
-          <div><span class="label">ACCESS</span><span id="story-access"></span></div>
-          <div><span class="label">SCALE</span><span id="story-scale"></span></div>
-        </div>
-      </div>
-    </aside>
-  </div>
-
-
-        </div>
-      </div>
+    <section class="entry atlas-navigation-entry" id="atlas" data-entry="atlas">
+      <a class="entry-trigger atlas-entry-link" href="/atlas/" target="_blank" rel="noopener noreferrer" aria-label="Open Yogawiser Atlas in a new tab">
+        <span class="entry-name">ATLAS</span><span class="type">(REAL PLACES / FIELD GUIDE)</span>
+        <span class="atlas-landing-cover"><img src="assets/atlas-cover-majara.svg" alt="Majara Residence colored earth domes" loading="lazy" decoding="async"></span>
+        <span class="num" aria-hidden="true">03 ↗</span>
+      </a>
     </section>
     <section class="entry" id="postfire" data-entry="postfire">
       <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-postfire"><span class="entry-name">POST–FIRE LAB</span><span class="type">(INTRODUCTION / ECOLOGICAL CHANGE)</span><span class="num">04 ↘</span></button>
@@ -470,7 +401,7 @@
 </main>
 <script>
 (function(){
- const entries=[...document.querySelectorAll('.entry')];
+ const entries=[...document.querySelectorAll('.entry')].filter(entry=>entry.querySelector('button.entry-trigger'));
  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  function setOpen(entry,open){
   entry.classList.toggle('is-open',open);
@@ -489,7 +420,7 @@
  });
 })();
 </script>
-<script src="script.js"></script>
+
 <script>
 (function(){
   const recipient=atob("ZGVuaXppcmJhbkBnbWFpbC5jb20=");
@@ -521,31 +452,5 @@
 })();
 </script>
 
-<script>
-(function(){
-  const viewport=document.getElementById('atlas-list-viewport');
-  const up=document.getElementById('atlas-scroll-up');
-  const down=document.getElementById('atlas-scroll-down');
-  if(!viewport||!up||!down)return;
-  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function updateArrows(){
-    up.disabled=viewport.scrollTop<=3;
-    down.disabled=viewport.scrollTop+viewport.clientHeight>=viewport.scrollHeight-3;
-  }
-  function scrollList(direction){
-    const firstRow=viewport.querySelector('.place-row');
-    const rowHeight=firstRow?firstRow.getBoundingClientRect().height:60;
-    viewport.scrollBy({top:direction*Math.max(rowHeight*4,viewport.clientHeight*.76),behavior:reducedMotion?'auto':'smooth'});
-  }
-  up.addEventListener('click',()=>scrollList(-1));
-  down.addEventListener('click',()=>scrollList(1));
-  viewport.addEventListener('scroll',updateArrows,{passive:true});
-  const observer=new MutationObserver(()=>{viewport.scrollTop=0;updateArrows()});
-  observer.observe(document.getElementById('place-list'),{childList:true});
-  if('ResizeObserver' in window)new ResizeObserver(updateArrows).observe(viewport);
-  window.addEventListener('resize',updateArrows);
-  updateArrows();
-})();
-</script>
 </body>
 </html>
