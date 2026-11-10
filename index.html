@@ -262,6 +262,56 @@
     .entry[data-entry="postfire"] .entry-name{font-size:clamp(25px,6.6vw,39px)}
   }
   @media(prefers-reduced-motion:reduce){.atlas-list-viewport{scroll-behavior:auto}}
+
+/* Compact image-led studies (no dashboard-style rows) */
+.entry[data-entry="ground"] .panel-wrap,
+.entry[data-entry="sense"] .panel-wrap,
+.entry[data-entry="postfire"] .panel-wrap{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(18px,3vw,40px);margin:13px 0 22px;padding:14px 0}
+.entry[data-entry="ground"] .panel-art,
+.entry[data-entry="sense"] .panel-art,
+.entry[data-entry="postfire"] .panel-art{height:clamp(235px,28vw,360px);min-height:0;aspect-ratio:auto}
+.entry[data-entry="ground"] .panel-info,
+.entry[data-entry="sense"] .panel-info,
+.entry[data-entry="postfire"] .panel-info{justify-content:flex-start}
+.entry[data-entry="ground"] .panel-info h2,
+.entry[data-entry="sense"] .panel-info h2,
+.entry[data-entry="postfire"] .panel-info h2{font-size:clamp(34px,3.65vw,59px);line-height:1.01;max-width:17ch;margin:0 0 12px}
+.entry[data-entry="sense"] .panel-info h2{max-width:19ch}
+.entry[data-entry="sense"] .panel-info h2 em{display:inline-block;font-style:italic}
+.entry[data-entry="ground"] .panel-info p,
+.entry[data-entry="sense"] .panel-info p,
+.entry[data-entry="postfire"] .panel-info p{font-size:14px;max-width:44ch;line-height:1.48;margin:0 0 12px}
+.entry[data-entry="ground"] .panel-link,
+.entry[data-entry="sense"] .panel-link,
+.entry[data-entry="postfire"] .panel-link{margin-top:12px;min-height:32px;padding:10px 1px 0}
+.entry[data-entry="ground"] .in-panel-eyebrow,
+.entry[data-entry="sense"] .in-panel-eyebrow,
+.entry[data-entry="postfire"] .in-panel-eyebrow{margin-bottom:13px}
+.entry[data-entry="sense"] .panel-art img{filter:saturate(.74) brightness(1.12) contrast(.92) sepia(.09);object-position:center center}
+.entry[data-entry="sense"] .panel-art.dark::after{background:linear-gradient(130deg,rgba(174,145,183,.16),rgba(241,229,207,.16) 38%,rgba(83,111,144,.13) 88%);mix-blend-mode:screen}
+.entry[data-entry="sense"] .sense-signal{opacity:.2}
+.entry[data-entry="about"] .panel-wrap{grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:clamp(20px,3vw,43px);margin:15px 0 18px;padding:15px 0}
+.entry[data-entry="about"] .panel-info h2{font-size:clamp(34px,3.3vw,52px);line-height:1.02;margin:0 0 13px}
+.entry[data-entry="about"] .panel-info p{font-size:13px;line-height:1.42;max-width:58ch;margin-bottom:15px}
+.entry[data-entry="about"] .about-services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 15px;margin:0 0 15px}
+.entry[data-entry="about"] .about-service{display:block;padding:11px 0}
+.entry[data-entry="about"] .about-service>span{display:block;font-size:9px;margin-bottom:5px}
+.entry[data-entry="about"] .about-service strong{font-size:14px;line-height:1.2}
+.entry[data-entry="about"] .about-service small{font-size:11px;line-height:1.35;margin-top:4px}
+.entry[data-entry="about"] .contact-art{padding:clamp(18px,2.5vw,32px);min-height:0;align-items:stretch}
+.entry[data-entry="about"] .contact-form{gap:12px}
+.entry[data-entry="about"] .contact-form input,
+.entry[data-entry="about"] .contact-form textarea{padding:8px 0;font-size:14px}
+.entry[data-entry="about"] .contact-form textarea{min-height:80px}
+.entry[data-entry="about"] .panel-link{margin-top:0;min-height:30px;padding-top:10px}
+@media(max-width:780px){
+ .entry[data-entry="ground"] .panel-wrap,.entry[data-entry="sense"] .panel-wrap,.entry[data-entry="postfire"] .panel-wrap,.entry[data-entry="about"] .panel-wrap{grid-template-columns:1fr;gap:20px}
+ .entry[data-entry="ground"] .panel-art,.entry[data-entry="sense"] .panel-art,.entry[data-entry="postfire"] .panel-art{height:clamp(225px,47vw,360px);min-height:0}
+}
+@media(max-width:450px){
+ .entry[data-entry="about"] .about-services{grid-template-columns:1fr}
+ .entry[data-entry="about"] .panel-info h2{font-size:40px}
+}
 </style>
 </head>
 <body>
@@ -279,15 +329,15 @@
     <section class="entry" id="ground" data-entry="ground">
       <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-ground"><span class="entry-name">GROUND</span><span class="type">(LAND / PLANNING)</span><span class="num">01 ↘</span></button>
       <div class="entry-panel" id="panel-ground" role="region" aria-label="Ground details"><div class="entry-panel-inner"><div class="panel-wrap">
-        <div class="panel-art"><img src="assets/ground-geological-isometric.svg" alt="Colorful geological cutaway with topographic layers" decoding="async"><span class="scanning" aria-hidden="true"></span><div class="panel-annotation"><span>LAND / STRUCTURE</span><span>01 / GROUND</span></div></div>
-        <div class="panel-info"><span class="in-panel-eyebrow">01 / SITE STUDY</span><h2>Draw a piece of land. <em>See what could grow.</em></h2><p>Sketch a site, consider climate and water, and compare what a landscape might support.</p><div class="data-row"><span>METHOD</span><strong>LAND / WATER / CLIMATE</strong></div><div class="data-row"><span>FORMAT</span><strong>INTERACTIVE STUDY</strong></div><a class="panel-link" href="https://www.yogawiser.com/ground/" target="_blank" rel="noopener noreferrer"><span>OPEN GROUND</span><b>↗</b></a></div>
+        <div class="panel-art"><img src="assets/ground-rural-editorial.svg" alt="Scandinavian editorial illustration of yellow fields, a river, rural house and trees" loading="lazy" decoding="async"><span class="scanning" aria-hidden="true"></span><div class="panel-annotation"><span>LAND / STRUCTURE</span><span>01 / GROUND</span></div></div>
+        <div class="panel-info"><span class="in-panel-eyebrow">01 / SITE STUDY</span><h2>Draw a piece of land. <em>See what could grow.</em></h2><p>Sketch a site, consider climate and water, and compare what a landscape might support.</p><a class="panel-link" href="https://www.yogawiser.com/ground/" target="_blank" rel="noopener noreferrer"><span>OPEN GROUND</span><b>↗</b></a></div>
       </div></div></div>
     </section>
     <section class="entry" id="sense" data-entry="sense">
       <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-sense"><span class="entry-name">SENSE</span><span class="type">(SPATIAL EXPERIENCE)</span><span class="num">02 ↘</span></button>
       <div class="entry-panel" id="panel-sense" role="region" aria-label="Sense details"><div class="entry-panel-inner"><div class="panel-wrap">
         <div class="panel-art dark"><img src="assets/sense-exhibition-photo.svg" alt="Immersive art installation with projected imagery and seated visitors" loading="lazy" decoding="async"><span class="sense-signal" aria-hidden="true"></span><div class="panel-annotation"><span>FEELING THE INVISIBLE</span><span>02 / SENSE</span></div></div>
-        <div class="panel-info"><span class="in-panel-eyebrow">02 / EXPERIENCE STUDY</span><h2>Nature, <em>beyond the screen.</em></h2><p>Explore responsive environments shaped by movement, light, presence and immersive nature.</p><div class="data-row"><span>LANGUAGE</span><strong>LIGHT / MOTION / SPACE</strong></div><div class="data-row"><span>FORMAT</span><strong>EXPERIENCE DESIGN</strong></div><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>OPEN SENSE</span><b>↗</b></a></div>
+        <div class="panel-info"><span class="in-panel-eyebrow">02 / EXPERIENCE STUDY</span><h2>Nature,<br><em>beyond the screen.</em></h2><p>Explore responsive environments shaped by movement, light, presence and immersive nature.</p><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>OPEN SENSE</span><b>↗</b></a></div>
       </div></div></div>
     </section>
     <section class="entry" id="atlas" data-entry="atlas">
@@ -380,11 +430,10 @@
     <section class="entry" id="postfire" data-entry="postfire">
       <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-postfire"><span class="entry-name">POST–FIRE LAB</span><span class="type">(INTRODUCTION / ECOLOGICAL CHANGE)</span><span class="num">04 ↘</span></button>
       <div class="entry-panel" id="panel-postfire" role="region" aria-label="Post-Fire Lab details"><div class="entry-panel-inner"><div class="panel-wrap">
-        <div class="panel-art diagram" role="img" aria-label="Schematic regeneration study showing a recovering landscape in stages">
-          <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="800" height="520" fill="#e1e3db"/><path d="M-20 330C140 250 260 295 376 243S675 130 832 175L832 520H-20Z" fill="#9caa88"/><path d="M-20 384C140 304 270 345 397 280S685 193 820 231L830 520H-20Z" fill="#b7b69a"/><path d="M-20 420C190 357 284 394 433 329S688 245 820 285L825 520H-20Z" fill="#6c835f"/><path d="M-20 448C153 380 283 432 406 378S665 311 830 336" fill="none" stroke="#d8c1a4" stroke-width="3"/><g stroke="#444b3a" stroke-width="2" fill="none" opacity=".65"><path d="M130 350V246m-18 27l18-50 18 50m-34-42h33"/><path d="M367 285V196m-23 35l23-57 23 57m-35-39h28"/><path d="M593 253V141m-27 38l27-63 27 63m-35-48h36"/></g><g stroke="#f1e7d8" stroke-opacity=".5"><path d="M0 65H800M0 130H800M0 195H800M0 260H800M0 325H800M0 390H800M130 0V520M260 0V520M390 0V520M520 0V520M650 0V520M780 0V520"/></g><text x="22" y="38" font-size="14" font-family="monospace">REGENERATION / SCHEMATIC STUDY</text><text x="22" y="496" font-size="13" font-family="monospace">T0 — T1 — T2 / CONCEPTUAL</text></svg>
+        <div class="panel-art postfire-editorial"><img src="assets/postfire-forest-editorial.svg" alt="Illustrated evergreen forest and bright yellow patchwork fields, symbolizing landscape recovery" loading="lazy" decoding="async">
           <div class="panel-annotation"><span>RECOVERY / TIME</span><span>04 / POST–FIRE</span></div>
         </div>
-        <div class="panel-info"><span class="in-panel-eyebrow">04 / INTRODUCTION · ECOLOGICAL CHANGE</span><h2>What grows back <em>after a fire?</em></h2><p>Study possible pathways of regeneration through landscape scenarios and satellite observations.</p><div class="data-row"><span>FOCUS</span><strong>RECOVERY / VEGETATION</strong></div><div class="data-row"><span>FORMAT</span><strong>SCENARIOS / OBSERVATIONS</strong></div><a class="panel-link" href="https://www.yogawiser.com/post-fire/" target="_blank" rel="noopener noreferrer"><span>OPEN POST–FIRE LAB</span><b>↗</b></a></div>
+        <div class="panel-info"><span class="in-panel-eyebrow">04 / INTRODUCTION · ECOLOGICAL CHANGE</span><h2>What grows back <em>after a fire?</em></h2><p>Study possible pathways of regeneration through landscape scenarios and satellite observations.</p><a class="panel-link" href="https://www.yogawiser.com/post-fire/" target="_blank" rel="noopener noreferrer"><span>OPEN POST–FIRE LAB</span><b>↗</b></a></div>
       </div></div></div>
     </section>    <section class="entry" id="about" data-entry="about">
       <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-about"><span class="entry-name">ABOUT</span><span class="type">(INDEPENDENT RESEARCH)</span><span class="num">05 ↘</span></button>
