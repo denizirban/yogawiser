@@ -20,7 +20,7 @@
   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 />
 
-<title>Yogawiser — Ground, SENSE, Atlas & Field Notes</title>
+<title>Yogawiser</title>
 
 <meta
   name="description"
@@ -316,15 +316,8 @@
 .entry[data-entry="sense"] .panel-annotation{color:#262324;text-shadow:0 1px 8px rgba(255,255,255,.85)}
 .entry[data-entry="sense"] .panel-art img{filter:saturate(.86) contrast(1.04)}
 
-  /* Atlas appears only as a title in the landing index; the cover belongs on /atlas/. */
-  .atlas-entry-link{display:flex;align-items:baseline;gap:clamp(7px,1vw,14px);width:100%}
-  .atlas-entry-link .type{align-self:center}
-  .atlas-entry-link .num{margin-left:auto;align-self:center;opacity:1}
-  @media(max-width:450px){
-    .atlas-entry-link .entry-name{font-size:clamp(36px,10.2vw,51px)}
-    .atlas-entry-link .type{display:inline;top:-.2em}
-    .atlas-entry-link .num{display:none}
-  }
+  /* Atlas cover is displayed inside the same expandable study layout as Ground and SENSE. */
+  .entry[data-entry="atlas"] .panel-art img{object-position:center 58%}
 </style>
 </head>
 <body>
@@ -335,7 +328,7 @@
       <svg viewBox="0 0 529 708" aria-hidden="true"><path fill="#101010" d="M359 62H468V311L290 394L467 474V656H232V548H394L204 464C109 421 60 345 60 229H143C143 279 160 311 192 331L359 236Z"/></svg>
     </a>
     <span class="mast-mid">FIELD NOTES / INDEX</span>
-    <nav class="mast-end" aria-label="Site sections"><a href="#ground">GROUND</a><a href="#sense">SENSE</a><a href="/atlas/" target="_blank" rel="noopener noreferrer">ATLAS</a><a href="#about">ABOUT</a></nav>
+    <nav class="mast-end" aria-label="Site sections"><a href="#ground">GROUND</a><a href="#sense">SENSE</a><a href="#atlas">ATLAS</a><a href="#about">ABOUT</a></nav>
   </header>
   <div class="index-intro" id="index"><p class="left">YOGAWISER / SELECTED STUDIES</p><p class="right">CLICK A TITLE TO EXPAND ITS WORLD ↓</p></div>
   <div class="index">
@@ -353,11 +346,12 @@
         <div class="panel-info"><span class="in-panel-eyebrow">02 / EXPERIENCE STUDY</span><h2>Nature,<br><em>beyond the screen.</em></h2><p>Explore responsive environments shaped by movement, light, presence and immersive nature.</p><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>OPEN SENSE</span><b>↗</b></a></div>
       </div></div></div>
     </section>
-    <section class="entry atlas-navigation-entry" id="atlas" data-entry="atlas">
-      <a class="entry-trigger atlas-entry-link" href="/atlas/" target="_blank" rel="noopener noreferrer" aria-label="Open Yogawiser Atlas in a new tab">
-        <span class="entry-name">ATLAS</span><span class="type">(REAL PLACES / FIELD GUIDE)</span>
-        <span class="num" aria-hidden="true">03 ↗</span>
-      </a>
+    <section class="entry" id="atlas" data-entry="atlas">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-atlas"><span class="entry-name">ATLAS</span><span class="type">(REAL PLACES / FIELD GUIDE)</span><span class="num">03 ↘</span></button>
+      <div class="entry-panel" id="panel-atlas" role="region" aria-label="Atlas details"><div class="entry-panel-inner"><div class="panel-wrap">
+        <div class="panel-art"><img src="assets/atlas-cover-majara.svg" alt="Colorful earth-domed architecture at Majara Residence on Hormuz Island" loading="lazy" decoding="async"><div class="panel-annotation"><span>REAL PLACES / LIVING SYSTEMS</span><span>03 / ATLAS</span></div></div>
+        <div class="panel-info"><span class="in-panel-eyebrow">03 / FIELD GUIDE</span><h2>Another way of <em>living already exists.</em></h2><p>Explore real places, working systems and regenerative ideas from around the world.</p><a class="panel-link" href="/atlas/" target="_blank" rel="noopener noreferrer"><span>OPEN ATLAS</span><b>↗</b></a></div>
+      </div></div></div>
     </section>
     <section class="entry" id="postfire" data-entry="postfire">
       <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-postfire"><span class="entry-name">POST–FIRE LAB</span><span class="type">(INTRODUCTION / ECOLOGICAL CHANGE)</span><span class="num">04 ↘</span></button>
