@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#f9f9f8"/>
+<title>Yogawiser Atlas — A Field Guide to Regenerative Places</title>
+<meta name="description" content="A curated field guide to 50 real places exploring regeneration, circular economies, community, water, food and ecological architecture."/>
+<link rel="canonical" href="https://www.yogawiser.com/atlas/"/>
+<meta property="og:title" content="Yogawiser Atlas — Real Places, Living Systems"/>
+<meta property="og:description" content="Explore real places where another way of living already exists."/>
+<meta property="og:image" content="https://www.yogawiser.com/assets/atlas-cover-majara.svg"/>
+<base href="/"/>
+<link rel="icon" type="image/png" href="assets/favicon.png"/>
+<link rel="stylesheet" href="styles.css"/>
+<style>
+:root{--atlas-paper:#f9f9f8;--atlas-ink:#101010;--atlas-line:#d2d2d0}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#101010;color:var(--atlas-ink)}
+.atlas-page{width:min(1470px,calc(100% - clamp(24px,10vw,160px)));background:var(--atlas-paper);margin:6vh auto;padding:18px clamp(17px,2.5vw,38px) 38px}
+.atlas-bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:16px;min-height:80px}
+.atlas-bar .brand{display:inline-flex;justify-self:start;align-items:start;width:30px}
+.atlas-bar .brand img{height:37px;width:auto;max-width:31px;object-fit:contain}
+.atlas-mark,.atlas-nav,.atlas-label,.atlas-credit,.atlas-footer{font:10px/1.45 ui-monospace,Consolas,monospace;letter-spacing:.035em;text-transform:uppercase}
+.atlas-mark{padding-top:7px;text-align:center}
+.atlas-nav{display:flex;justify-self:end;gap:18px;flex-wrap:wrap;padding-top:7px}
+.atlas-nav a:hover{text-decoration:underline;text-underline-offset:3px}
+.atlas-hero{position:relative;min-height:clamp(330px,46vw,650px);border-top:1px solid #111;background:#d7ddda;overflow:hidden}
+.atlas-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 57%;display:block}
+.atlas-label{position:absolute;left:18px;top:18px;background:rgba(249,249,248,.94);padding:7px 10px}
+.atlas-credit{position:absolute;bottom:13px;right:13px;padding:6px 9px;background:rgba(249,249,248,.92);font-size:9px}
+.atlas-intro{padding:clamp(28px,4.5vw,68px) 0 38px;display:grid;grid-template-columns:1.4fr .6fr;gap:40px;border-bottom:1px solid #111}
+.atlas-intro h1{margin:0;font-size:clamp(43px,6vw,94px);line-height:.94;letter-spacing:-.083em;font-weight:400;max-width:14ch}
+.atlas-intro h1 em{font-family:Georgia,serif;font-weight:400}
+.atlas-intro p{margin:0;color:#616161;font-size:15px;line-height:1.55;max-width:36ch;align-self:end}
+.atlas-browser .search-zone{padding:26px 0 22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.9fr);column-gap:24px;background:none;border:0;border-bottom:1px solid var(--atlas-line)}
+.atlas-browser .search-zone .intro{display:none}
+.atlas-browser .search-zone .search{margin:0;grid-column:1/-1}
+.atlas-browser .search-zone .quick-filters{grid-column:1/-1;margin-top:13px}
+.atlas-browser .atlas-shell{height:clamp(520px,70vh,760px);min-height:0;display:grid;grid-template-columns:minmax(300px,41%) minmax(0,1fr);border:1px solid var(--atlas-line);border-top:0;overflow:hidden}
+.atlas-browser .index-panel{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.atlas-browser .index-head{flex:none}
+.atlas-browser .atlas-scroll-controls{display:flex;justify-content:space-between;align-items:center;background:#ededeb;border-bottom:1px solid var(--atlas-line);padding:8px 13px;gap:12px;font:10px ui-monospace,Consolas,monospace}
+.atlas-scroll-buttons{display:flex;gap:5px}
+.atlas-scroll-btn{border:1px solid var(--atlas-line);background:#fff;width:32px;height:29px;cursor:pointer}
+.atlas-scroll-btn:disabled{opacity:.25;cursor:default}
+.atlas-browser .atlas-list-viewport{flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scroll-behavior:smooth}
+.atlas-browser .place-row{padding:10px 13px}
+.atlas-browser .story-panel{height:100%;top:0;position:relative;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.atlas-browser .story-media-wrap{height:clamp(240px,35vh,380px);min-height:240px}
+.atlas-footer{padding:22px 0 0;display:flex;justify-content:space-between;gap:15px}
+@media(max-width:930px){
+.atlas-page{width:calc(100% - 24px);margin:12px auto;padding:16px}
+.atlas-intro{grid-template-columns:1fr;gap:16px}
+.atlas-browser .atlas-shell{display:block;height:auto;overflow:visible}
+.atlas-browser .index-panel{height:min(48vh,410px);min-height:260px}
+.atlas-browser .story-panel{height:auto;max-height:670px;border-top:1px solid var(--atlas-line)}
+.atlas-browser .story-media-wrap{height:310px;min-height:220px}
+.atlas-bar{grid-template-columns:1fr auto}
+.atlas-mark{display:none}
+}
+@media(max-width:520px){
+.atlas-bar{min-height:74px}
+.atlas-nav{max-width:220px;justify-content:flex-end;gap:9px;font-size:9px}
+.atlas-hero{min-height:345px}
+.atlas-hero img{object-position:55% center}
+.atlas-intro h1{font-size:clamp(42px,11vw,62px)}
+.atlas-browser .search-zone{grid-template-columns:1fr}
+.atlas-browser .index-panel{height:380px}
+.atlas-browser .story-media-wrap{height:260px}
+.atlas-credit{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.atlas-browser .atlas-list-viewport{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="atlas-page" id="top">
+<header class="atlas-bar">
+<a class="brand" href="/" aria-label="Yogawiser home"><img src="assets/yogawiser-logo-transparent.png" alt="Yogawiser logo"/></a>
+<span class="atlas-mark">YOGAWISER / ATLAS</span>
+<nav class="atlas-nav" aria-label="Yogawiser navigation"><a href="/#ground">GROUND</a><a href="/#sense">SENSE</a><a href="/#postfire">POST-FIRE</a><a href="/#about">ABOUT</a></nav>
+</header>
+<div class="atlas-hero"><img src="assets/atlas-cover-majara.svg" alt="Colorful earth-domed architecture of Majara Residence on Hormuz Island, Iran" fetchpriority="high"/><span class="atlas-label">ATLAS / REAL PLACES</span><span class="atlas-credit">MAJARA RESIDENCE · HORMUZ ISLAND / ZAV ARCHITECTS</span></div>
+<section class="atlas-intro" aria-labelledby="atlas-title"><h1 id="atlas-title">A field guide to places where <em>another way of living</em> already exists.</h1><p>Real places. Working systems. Things you can visit, learn from, and sometimes copy.</p></section>
+<main class="atlas-browser">
+            <section class="search-zone" aria-label="Search the Atlas">
+    <label class="search" for="atlas-search">
+      <span class="search-label">Search</span>
+      <input id="atlas-search" type="search" autocomplete="off" placeholder="Search by city, place or system" aria-label="Search by city, place or system" />
+      <span class="search-arrow" aria-hidden="true">↘</span>
+    </label>
+    <div class="quick-filters" aria-label="Suggested searches">
+      <button type="button" data-query="Berlin">Berlin</button>
+      <button type="button" data-query="Amsterdam">Amsterdam</button>
+      <button type="button" data-query="Food">Food</button>
+      <button type="button" data-query="Materials">Materials</button>
+      <button type="button" data-query="Energy">Energy</button>
+      <button type="button" data-query="Community">Community</button>
+    </div>
+  </section>
+
+  <div class="atlas-shell" aria-label="Atlas place index">
+    <section class="index-panel" aria-label="Atlas places">
+      <div class="index-head">
+        <span>PLACE</span>
+        <span>SYSTEM</span>
+        <span id="result-count">50 / 50</span>
+      </div>
+      <div class="atlas-scroll-controls">
+        <span>SELECT A PLACE / SCROLL THE INDEX</span>
+        <div class="atlas-scroll-buttons" role="group" aria-label="Scroll places">
+          <button class="atlas-scroll-btn" type="button" id="atlas-scroll-up" aria-label="Scroll Atlas list up" title="Scroll up">↑</button>
+          <button class="atlas-scroll-btn" type="button" id="atlas-scroll-down" aria-label="Scroll Atlas list down" title="Scroll down">↓</button>
+        </div>
+      </div>
+      <div class="atlas-list-viewport" id="atlas-list-viewport" tabindex="0" role="region" aria-label="Atlas places, scroll for more">
+        <div id="place-list" class="place-list"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <p>No evidence here yet.</p>
+          <button id="clear-search" type="button">Clear search</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="story-panel" aria-live="polite">
+      <div class="story-media-wrap">
+        <img id="story-image" class="story-image" src="assets/de-ceuvel.jpg" alt="" />
+        <div class="story-counter"><span id="story-number">01</span> / <span id="story-total">50</span></div>
+        <div id="photo-credit" class="photo-credit"></div>
+      </div>
+
+      <div class="story-copy">
+        <div class="story-title-row">
+          <div>
+            <p id="story-location" class="eyebrow"></p>
+            <h2 id="story-title"></h2>
+          </div>
+          <a id="story-link" class="visit-link" href="#" target="_blank" rel="noopener noreferrer">VISIT ↗</a>
+        </div>
+
+        <div class="story-grid">
+          <div>
+            <p class="label">WHAT THEY CHANGED</p>
+            <p id="story-changed" class="body-copy"></p>
+          </div>
+          <div>
+            <p class="label">WHY IT MATTERS</p>
+            <p id="story-matters" class="body-copy"></p>
+          </div>
+        </div>
+
+        <div class="story-meta">
+          <div><span class="label">SYSTEM</span><span id="story-system"></span></div>
+          <div><span class="label">ACCESS</span><span id="story-access"></span></div>
+          <div><span class="label">SCALE</span><span id="story-scale"></span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+</main>
+<footer class="atlas-footer"><span>YOGAWISER / ATLAS · REAL PLACES</span><a href="#top">BACK TO TOP ↑</a><span>© 2026</span></footer>
+</div>
+<script src="script.js"></script>
+<script>
+(function(){
+const viewport=document.getElementById('atlas-list-viewport'),up=document.getElementById('atlas-scroll-up'),down=document.getElementById('atlas-scroll-down');
+if(!viewport||!up||!down)return;
+function update(){up.disabled=viewport.scrollTop<3;down.disabled=viewport.scrollTop+viewport.clientHeight>=viewport.scrollHeight-3}
+function scrollPage(dir){viewport.scrollBy({top:dir*viewport.clientHeight*.76,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'})}
+up.addEventListener('click',()=>scrollPage(-1));down.addEventListener('click',()=>scrollPage(1));
+viewport.addEventListener('scroll',update,{passive:true});
+new MutationObserver(()=>{viewport.scrollTop=0;update()}).observe(document.getElementById('place-list'),{childList:true});
+requestAnimationFrame(update);
+})();
+</script>
+</body></html>
