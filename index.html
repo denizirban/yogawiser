@@ -215,6 +215,53 @@
   @media(max-width:960px){.atlas-inline .atlas-shell{display:block}.atlas-inline .story-panel{position:relative;height:auto}.atlas-inline .story-media-wrap{height:380px}.atlas-inline .search-zone .intro{grid-template-columns:1fr}}
   @media(max-width:450px){.mast{grid-template-columns:auto 1fr}.mast-mid{display:none}.mast-end{gap:9px;flex-wrap:wrap;max-width:240px;justify-content:flex-end}.mast-end a{font-size:8px}.entry[data-entry="postfire"] .entry-name{font-size:clamp(27px,7.8vw,42px)}.contact-art{padding:18px 14px}.atlas-inline .search-zone{padding:19px 12px}.atlas-inline .story-media-wrap{height:300px}.entry[data-entry="atlas"] .entry-name{font-size:clamp(36px,10vw,51px)}}
   
+
+  /* Compact Atlas: independent scrollable index and story, with arrow controls. */
+  .atlas-inline .atlas-shell{height:clamp(440px,66vh,620px);min-height:0;display:grid;grid-template-columns:minmax(290px,42%) minmax(0,1fr);overflow:hidden}
+  .atlas-inline .index-panel{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+  .atlas-inline .index-head{flex:none;height:34px;padding:0 12px;grid-template-columns:1fr 112px 54px}
+  .atlas-scroll-controls{flex:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 12px 7px;background:#eaeae7;border-bottom:1px solid var(--line);font:9px/1.3 var(--mono);letter-spacing:.03em}
+  .atlas-scroll-buttons{display:flex;gap:5px}
+  .atlas-scroll-btn{width:29px;height:27px;border:1px solid #bbbcb6;background:#f9f9f8;cursor:pointer;font:16px/1 var(--sans);display:grid;place-items:center}
+  .atlas-scroll-btn:hover:not(:disabled){background:#101010;color:#fff}
+  .atlas-scroll-btn:disabled{opacity:.3;cursor:default}
+  .atlas-list-viewport{flex:1 1 0;min-height:0;max-height:100%;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#a3a4a0 #ededeb;overscroll-behavior-y:contain;scroll-behavior:smooth}
+  .atlas-list-viewport:focus-visible{outline:2px solid #222;outline-offset:-3px}
+  .atlas-inline .place-row{padding:10px 12px;grid-template-columns:27px minmax(0,1fr) 108px}
+  .atlas-inline .place-name{font-size:clamp(18px,1.6vw,23px)}
+  .atlas-inline .place-primary{padding-right:8px}
+  .atlas-inline .story-panel{position:relative;top:0;align-self:stretch;height:100%;min-height:0;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin}
+  .atlas-inline .story-media-wrap{height:clamp(205px,30vh,300px);min-height:205px}
+  .atlas-inline .story-copy{padding:16px}
+  .atlas-inline .story-title-row h2{font-size:clamp(30px,3vw,47px)}
+  .entry[data-entry="postfire"] .panel-art.diagram{position:relative;inset:auto;width:100%;min-height:260px;aspect-ratio:1.62;z-index:auto}
+  .entry[data-entry="postfire"] .panel-art.diagram svg{position:relative;width:100%;height:100%;object-fit:cover;display:block}
+  .entry[data-entry="postfire"] .entry-trigger{z-index:1}
+  .about-services{width:100%;border-top:1px solid #aaa;margin:2px 0 25px}
+  .about-service{display:grid;grid-template-columns:minmax(92px,30%) 1fr;gap:12px;border-bottom:1px solid var(--line);padding:12px 0}
+  .about-service>span{font:10px/1.35 var(--mono);color:#686868}
+  .about-service strong{display:block;font:500 16px/1.25 var(--sans);letter-spacing:-.025em}
+  .about-service small{display:block;color:#666;font:12px/1.5 var(--sans);margin-top:6px;max-width:35ch}
+  .entry[data-entry="about"] .panel-info{align-items:stretch}
+  .entry[data-entry="about"] .panel-info h2{font-size:clamp(39px,4vw,65px);max-width:none}
+  @media(max-width:900px){
+    .atlas-inline .atlas-shell{display:block;height:auto;min-height:0;overflow:visible}
+    .atlas-inline .index-panel{height:clamp(290px,47vh,410px);min-height:0;overflow:hidden}
+    .atlas-inline .index-head{grid-template-columns:1fr 92px 54px}
+    .atlas-inline .atlas-list-viewport{height:auto;max-height:none}
+    .atlas-inline .story-panel{height:auto;min-height:0;max-height:630px;overflow-y:auto;border-top:1px solid var(--line)}
+    .atlas-inline .story-media-wrap{height:min(43vh,320px);min-height:220px}
+  }
+  @media(max-width:450px){
+    .atlas-inline .index-head{grid-template-columns:1fr 86px 44px}
+    .atlas-inline .index-panel{height:345px}
+    .atlas-inline .place-row{grid-template-columns:26px minmax(0,1fr) 84px;padding:10px 12px}
+    .atlas-inline .place-name{font-size:20px}
+    .atlas-scroll-controls{padding:6px 9px;font-size:8px}
+    .about-service{grid-template-columns:1fr;gap:4px}
+    .entry[data-entry="postfire"] .entry-name{font-size:clamp(25px,6.6vw,39px)}
+  }
+  @media(prefers-reduced-motion:reduce){.atlas-list-viewport{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -274,10 +321,19 @@
         <span>SYSTEM</span>
         <span id="result-count">50 / 50</span>
       </div>
-      <div id="place-list" class="place-list"></div>
-      <div id="empty-state" class="empty-state" hidden>
-        <p>No evidence here yet.</p>
-        <button id="clear-search" type="button">Clear search</button>
+      <div class="atlas-scroll-controls">
+        <span>SELECT A PLACE / SCROLL THE INDEX</span>
+        <div class="atlas-scroll-buttons" role="group" aria-label="Scroll places">
+          <button class="atlas-scroll-btn" type="button" id="atlas-scroll-up" aria-label="Scroll Atlas list up" title="Scroll up">↑</button>
+          <button class="atlas-scroll-btn" type="button" id="atlas-scroll-down" aria-label="Scroll Atlas list down" title="Scroll down">↓</button>
+        </div>
+      </div>
+      <div class="atlas-list-viewport" id="atlas-list-viewport" tabindex="0" role="region" aria-label="Atlas places, scroll for more">
+        <div id="place-list" class="place-list"></div>
+        <div id="empty-state" class="empty-state" hidden>
+          <p>No evidence here yet.</p>
+          <button id="clear-search" type="button">Clear search</button>
+        </div>
       </div>
     </section>
 
@@ -321,8 +377,17 @@
         </div>
       </div>
     </section>
-    <section class="entry" id="about" data-entry="about">
-      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-about"><span class="entry-name">ABOUT</span><span class="type">(INDEPENDENT RESEARCH)</span><span class="num">04 ↘</span></button>
+    <section class="entry" id="postfire" data-entry="postfire">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-postfire"><span class="entry-name">POST–FIRE LAB</span><span class="type">(INTRODUCTION / ECOLOGICAL CHANGE)</span><span class="num">04 ↘</span></button>
+      <div class="entry-panel" id="panel-postfire" role="region" aria-label="Post-Fire Lab details"><div class="entry-panel-inner"><div class="panel-wrap">
+        <div class="panel-art diagram" role="img" aria-label="Schematic regeneration study showing a recovering landscape in stages">
+          <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="800" height="520" fill="#e1e3db"/><path d="M-20 330C140 250 260 295 376 243S675 130 832 175L832 520H-20Z" fill="#9caa88"/><path d="M-20 384C140 304 270 345 397 280S685 193 820 231L830 520H-20Z" fill="#b7b69a"/><path d="M-20 420C190 357 284 394 433 329S688 245 820 285L825 520H-20Z" fill="#6c835f"/><path d="M-20 448C153 380 283 432 406 378S665 311 830 336" fill="none" stroke="#d8c1a4" stroke-width="3"/><g stroke="#444b3a" stroke-width="2" fill="none" opacity=".65"><path d="M130 350V246m-18 27l18-50 18 50m-34-42h33"/><path d="M367 285V196m-23 35l23-57 23 57m-35-39h28"/><path d="M593 253V141m-27 38l27-63 27 63m-35-48h36"/></g><g stroke="#f1e7d8" stroke-opacity=".5"><path d="M0 65H800M0 130H800M0 195H800M0 260H800M0 325H800M0 390H800M130 0V520M260 0V520M390 0V520M520 0V520M650 0V520M780 0V520"/></g><text x="22" y="38" font-size="14" font-family="monospace">REGENERATION / SCHEMATIC STUDY</text><text x="22" y="496" font-size="13" font-family="monospace">T0 — T1 — T2 / CONCEPTUAL</text></svg>
+          <div class="panel-annotation"><span>RECOVERY / TIME</span><span>04 / POST–FIRE</span></div>
+        </div>
+        <div class="panel-info"><span class="in-panel-eyebrow">04 / INTRODUCTION · ECOLOGICAL CHANGE</span><h2>What grows back <em>after a fire?</em></h2><p>Study possible pathways of regeneration through landscape scenarios and satellite observations.</p><div class="data-row"><span>FOCUS</span><strong>RECOVERY / VEGETATION</strong></div><div class="data-row"><span>FORMAT</span><strong>SCENARIOS / OBSERVATIONS</strong></div><a class="panel-link" href="https://www.yogawiser.com/post-fire/" target="_blank" rel="noopener noreferrer"><span>OPEN POST–FIRE LAB</span><b>↗</b></a></div>
+      </div></div></div>
+    </section>    <section class="entry" id="about" data-entry="about">
+      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-about"><span class="entry-name">ABOUT</span><span class="type">(INDEPENDENT RESEARCH)</span><span class="num">05 ↘</span></button>
       <div class="entry-panel" id="panel-about" role="region" aria-label="About details"><div class="entry-panel-inner"><div class="panel-wrap">
         <div class="contact-art">
           <form class="contact-form" id="contact-form-home" autocomplete="on">
@@ -335,19 +400,17 @@
             <p class="contact-status" aria-live="polite" role="status"></p>
           </form>
         </div>
-        <div class="panel-info"><span class="in-panel-eyebrow">04 / ABOUT THE PLATFORM</span><h2>Observe. Understand. <em>Experience.</em></h2><p>Yogawiser documents different ways of living, studying and designing with nature: from the ground beneath us to the spaces around us.</p><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>EXPLORE YOGAWISER SENSE</span><b>↗</b></a></div>
+        <div class="panel-info"><span class="in-panel-eyebrow">05 / ABOUT / SERVICES</span><h2>Observe.<br>Understand.<br><em>Experience.</em></h2>
+<p>Yogawiser is an independent research and design practice exploring how land, ecological systems and human experience can shape more thoughtful ways of living.</p>
+<div class="about-services" aria-label="What Yogawiser offers">
+  <div class="about-service"><span>01 / GROUND</span><div><strong>Land &amp; climate studies</strong><small>Early-stage site analysis, water demand and planting scenarios.</small></div></div>
+  <div class="about-service"><span>02 / SENSE</span><div><strong>Immersive experience design</strong><small>Interactive spatial concepts, movement sensing and responsive light environments.</small></div></div>
+  <div class="about-service"><span>03 / ATLAS</span><div><strong>Research &amp; field documentation</strong><small>Curating real-world examples of regenerative places, materials and systems.</small></div></div>
+  <div class="about-service"><span>04 / POST-FIRE</span><div><strong>Ecological recovery exploration</strong><small>Scenario-based landscape research and satellite-observation methods.</small></div></div>
+</div><a class="panel-link" href="https://www.yogawiser.com/sense/" target="_blank" rel="noopener noreferrer"><span>EXPLORE YOGAWISER SENSE</span><b>↗</b></a></div>
       </div></div></div>
     </section>
-    <section class="entry" id="postfire" data-entry="postfire">
-      <button type="button" class="entry-trigger" aria-expanded="false" aria-controls="panel-postfire"><span class="entry-name">POST–FIRE LAB</span><span class="type">(INTRODUCTION / ECOLOGICAL CHANGE)</span><span class="num">05 ↘</span></button>
-      <div class="entry-panel" id="panel-postfire" role="region" aria-label="Post-Fire Lab details"><div class="entry-panel-inner"><div class="panel-wrap">
-        <div class="panel-art diagram" role="img" aria-label="Schematic regeneration study showing a recovering landscape in stages">
-          <svg viewBox="0 0 800 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="800" height="520" fill="#e1e3db"/><path d="M-20 330C140 250 260 295 376 243S675 130 832 175L832 520H-20Z" fill="#9caa88"/><path d="M-20 384C140 304 270 345 397 280S685 193 820 231L830 520H-20Z" fill="#b7b69a"/><path d="M-20 420C190 357 284 394 433 329S688 245 820 285L825 520H-20Z" fill="#6c835f"/><path d="M-20 448C153 380 283 432 406 378S665 311 830 336" fill="none" stroke="#d8c1a4" stroke-width="3"/><g stroke="#444b3a" stroke-width="2" fill="none" opacity=".65"><path d="M130 350V246m-18 27l18-50 18 50m-34-42h33"/><path d="M367 285V196m-23 35l23-57 23 57m-35-39h28"/><path d="M593 253V141m-27 38l27-63 27 63m-35-48h36"/></g><g stroke="#f1e7d8" stroke-opacity=".5"><path d="M0 65H800M0 130H800M0 195H800M0 260H800M0 325H800M0 390H800M130 0V520M260 0V520M390 0V520M520 0V520M650 0V520M780 0V520"/></g><text x="22" y="38" font-size="14" font-family="monospace">REGENERATION / SCHEMATIC STUDY</text><text x="22" y="496" font-size="13" font-family="monospace">T0 — T1 — T2 / CONCEPTUAL</text></svg>
-          <div class="panel-annotation"><span>RECOVERY / TIME</span><span>03 / POST–FIRE</span></div>
-        </div>
-        <div class="panel-info"><span class="in-panel-eyebrow">INTRODUCTION / ECOLOGICAL CHANGE</span><h2>What grows back <em>after a fire?</em></h2><p>Study possible pathways of regeneration through landscape scenarios and satellite observations.</p><div class="data-row"><span>FOCUS</span><strong>RECOVERY / VEGETATION</strong></div><div class="data-row"><span>FORMAT</span><strong>SCENARIOS / OBSERVATIONS</strong></div><a class="panel-link" href="https://www.yogawiser.com/post-fire/" target="_blank" rel="noopener noreferrer"><span>OPEN POST–FIRE LAB</span><b>↗</b></a></div>
-      </div></div></div>
-    </section>
+
   </div>
   <div class="divider" aria-hidden="true"></div>
   <section class="closing" id="closing"><p>From the ground beneath us to the spaces <em>around us.</em></p><aside>Nature · intelligence · experience.<br>An evolving index of site studies, spatial experiments and regenerative worlds.</aside></section>
@@ -403,6 +466,33 @@
       }finally{submit.disabled=false}
     });
   }
+})();
+</script>
+
+<script>
+(function(){
+  const viewport=document.getElementById('atlas-list-viewport');
+  const up=document.getElementById('atlas-scroll-up');
+  const down=document.getElementById('atlas-scroll-down');
+  if(!viewport||!up||!down)return;
+  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function updateArrows(){
+    up.disabled=viewport.scrollTop<=3;
+    down.disabled=viewport.scrollTop+viewport.clientHeight>=viewport.scrollHeight-3;
+  }
+  function scrollList(direction){
+    const firstRow=viewport.querySelector('.place-row');
+    const rowHeight=firstRow?firstRow.getBoundingClientRect().height:60;
+    viewport.scrollBy({top:direction*Math.max(rowHeight*4,viewport.clientHeight*.76),behavior:reducedMotion?'auto':'smooth'});
+  }
+  up.addEventListener('click',()=>scrollList(-1));
+  down.addEventListener('click',()=>scrollList(1));
+  viewport.addEventListener('scroll',updateArrows,{passive:true});
+  const observer=new MutationObserver(()=>{viewport.scrollTop=0;updateArrows()});
+  observer.observe(document.getElementById('place-list'),{childList:true});
+  if('ResizeObserver' in window)new ResizeObserver(updateArrows).observe(viewport);
+  window.addEventListener('resize',updateArrows);
+  updateArrows();
 })();
 </script>
 </body>
