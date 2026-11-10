@@ -573,3 +573,12 @@ img { max-width: 100%; }
  .sense-feature-visual{height:270px}
  .ground-preview-map{height:230px}
 }
+
+/* Ground geological atlas preview — image-only update; homepage layout unchanged. */
+.ground-preview-map{background:#f1eadf}
+.ground-geology-art{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 53%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.ground-feature-preview:hover .ground-geology-art{transform:scale(1.018)}
+.ground-map-label{z-index:2;background:rgba(246,239,227,.85);padding:5px 7px;border:1px solid rgba(64,55,44,.12);color:#3b3a32;letter-spacing:.06em}
+.ground-preview-data{background:#f1e9df;border-color:#4f4a40}
+.ground-preview-data div{border-color:rgba(76,67,59,.38)}
+@media(prefers-reduced-motion:reduce){.ground-geology-art{transition:none}.ground-feature-preview:hover .ground-geology-art{transform:none}}
