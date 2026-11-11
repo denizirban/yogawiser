@@ -318,6 +318,16 @@
 
   /* Atlas cover is displayed inside the same expandable study layout as Ground and SENSE. */
   .entry[data-entry="atlas"] .panel-art img{object-position:center 58%}
+
+  /* Subtle social navigation, consistent with the monochrome editorial layout. */
+  .mast-end .instagram-nav{display:inline-flex;align-items:center;justify-content:center;flex:0 0 20px;width:20px;height:20px;margin-top:-4px}
+  .instagram-nav svg{display:block;width:17px;height:17px}
+  .instagram-nav:hover,.instagram-contact:hover{opacity:.58}
+  .instagram-nav:focus-visible,.instagram-contact:focus-visible{outline:2px solid #101010;outline-offset:4px}
+  .instagram-contact{display:inline-flex;gap:10px;align-items:center;justify-self:start;width:max-content;border-top:1px solid #aaa;padding:12px 2px 0 0;max-width:100%;font:10px/1.35 var(--mono);letter-spacing:.025em;text-transform:uppercase;transition:opacity .2s}
+  .instagram-contact svg{display:block;flex:0 0 16px;width:16px;height:16px}
+  .instagram-contact span:last-child{font-size:14px;margin-left:5px}
+  @media(max-width:450px){.mast-end{align-items:center}.mast-end .instagram-nav{width:19px;flex-basis:19px;height:19px;margin-top:0}.mast-end .instagram-nav svg{width:15px;height:15px}}
 </style>
 </head>
 <body>
@@ -328,7 +338,7 @@
       <svg viewBox="0 0 529 708" aria-hidden="true"><path fill="#101010" d="M359 62H468V311L290 394L467 474V656H232V548H394L204 464C109 421 60 345 60 229H143C143 279 160 311 192 331L359 236Z"/></svg>
     </a>
     <span class="mast-mid">FIELD NOTES / INDEX</span>
-    <nav class="mast-end" aria-label="Site sections"><a href="#ground">GROUND</a><a href="#sense">SENSE</a><a href="#atlas">ATLAS</a><a href="#about">ABOUT</a></nav>
+    <nav class="mast-end" aria-label="Site sections"><a href="#ground">GROUND</a><a href="#sense">SENSE</a><a href="#atlas">ATLAS</a><a href="#about">ABOUT</a><a class="instagram-nav" href="https://www.instagram.com/yogawiser/" target="_blank" rel="noopener noreferrer" aria-label="Yogawiser on Instagram" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.65" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg></a></nav>
   </header>
   <div class="index-intro" id="index"><p class="left">YOGAWISER / SELECTED STUDIES</p><p class="right">CLICK A TITLE TO EXPAND ITS WORLD ↓</p></div>
   <div class="index">
@@ -373,6 +383,7 @@
             <div class="contact-honey" aria-hidden="true"><label>Leave blank <input name="_honey" tabindex="-1" autocomplete="off"></label></div>
             <button class="contact-submit" type="submit"><span>SEND MESSAGE</span><span aria-hidden="true">↗</span></button>
             <p class="contact-status" aria-live="polite" role="status"></p>
+            <a class="instagram-contact" href="https://www.instagram.com/yogawiser/" target="_blank" rel="noopener noreferrer" aria-label="Find Yogawiser on Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.5"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.65" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg><span>INSTAGRAM</span><span aria-hidden="true">↗</span></a>
           </form>
         </div>
         <div class="panel-info"><span class="in-panel-eyebrow">05 / ABOUT / SERVICES</span><h2>Observe.<br>Understand.<br><em>Experience.</em></h2>
